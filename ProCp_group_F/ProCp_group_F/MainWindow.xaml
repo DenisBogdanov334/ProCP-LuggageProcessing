@@ -1,0 +1,14 @@
+﻿<Window x:Class="ProCp_group_F.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProCp_group_F"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid Name = "maingrid" HorizontalAlignment="Left" Margin="10,10,0,9" Width="400"/>
+        <Button Name ="Start"  Content="Move luggage" Margin="415,69,281,0" VerticalAlignment="Top" Click="Button_Click" Width="90" Height="60" Background="CadetBlue"/>
+
+    </Grid>
+</Window>

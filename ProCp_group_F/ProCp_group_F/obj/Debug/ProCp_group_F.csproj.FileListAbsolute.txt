@@ -1,0 +1,15 @@
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\bin\Debug\ProCp_group_F.exe.config
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\bin\Debug\ProCp_group_F.exe
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\bin\Debug\ProCp_group_F.pdb
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\ProCp_group_F.csprojAssemblyReference.cache
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\MainWindow.g.cs
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\App.g.cs
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\ProCp_group_F_MarkupCompile.cache
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\ProCp_group_F_MarkupCompile.lref
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\MainWindow.baml
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\ProCp_group_F.g.resources
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\ProCp_group_F.Properties.Resources.resources
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\ProCp_group_F.csproj.GenerateResource.cache
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\ProCp_group_F.csproj.CoreCompileInputs.cache
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\ProCp_group_F.exe
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\ProCp_group_F\ProCp_group_F\obj\Debug\ProCp_group_F.pdb
