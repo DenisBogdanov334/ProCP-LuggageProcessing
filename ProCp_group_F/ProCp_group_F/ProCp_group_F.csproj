@@ -63,6 +63,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="grid_blank.cs" />
+    <Compile Include="grid_cdl.cs" />
+    <Compile Include="grid_cdr.cs" />
+    <Compile Include="grid_cross.cs" />
+    <Compile Include="grid_cul.cs" />
+    <Compile Include="grid_cur.cs" />
+    <Compile Include="grid_element.cs" />
+    <Compile Include="grid_lineh.cs" />
+    <Compile Include="grid_linev.cs" />
+    <Compile Include="grid_td.cs" />
+    <Compile Include="grid_tl.cs" />
+    <Compile Include="grid_tr.cs" />
+    <Compile Include="grid_tu.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
