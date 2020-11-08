@@ -8,24 +8,21 @@ namespace AirportLuggage_PoC
 {
     public class Luggage
     {
-        public int id { get; set; }
-        public double weight { get; set; }
-        public double volume { get; set; }
-        public int ownerId { get; set; }
+        public double Weight { get; set; }
+        public int TicketID { get; set; }
 
-        public Luggage(int id, double weight, double volume, int owner)
+
+        public Luggage(double weight, int ticketID)
         {
-            this.id = id;
-            this.weight = weight;
-            this.volume = volume;
-            this.ownerId = owner;
+            this.TicketID = ticketID;
+            this.Weight = weight;
         }
 
-        public string displayInfo()
-        {
-            string s;
-            s = "Luggage no: " + this.id + ", Weight: " + weight + "kg";
-            return s;
-        }
+        //public string displayInfo()
+        //{
+        //    string s;
+        //    s = "Luggage no: " + this.id + ", Weight: " + weight + "kg";
+        //    return s;
+        //}
     }
 }

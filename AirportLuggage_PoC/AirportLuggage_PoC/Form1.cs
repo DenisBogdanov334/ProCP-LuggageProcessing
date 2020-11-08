@@ -16,61 +16,83 @@ namespace AirportLuggage_PoC
 
         public StatisticsForm statsForm = new StatisticsForm();
 
-        public Luggage l1 = new Luggage(1, 22.4, 10.5, 1001);
-        public Luggage l2 = new Luggage(2, 22.4, 10.5, 1002);
-        public Luggage l3 = new Luggage(3, 22.4, 13.5, 1003);
-        public Luggage l4 = new Luggage(4, 22.7, 10.5, 1004);
-        public Luggage l5 = new Luggage(5, 25.4, 10.5, 1005);
+        //public Luggage l1 = new Luggage(1, 22.4, 10.5, 1001);
+        //public Luggage l2 = new Luggage(2, 22.4, 10.5, 1002);
+        //public Luggage l3 = new Luggage(3, 22.4, 13.5, 1003);
+        //public Luggage l4 = new Luggage(4, 22.7, 10.5, 1004);
+        //public Luggage l5 = new Luggage(5, 25.4, 10.5, 1005);
+
+        // create Employees
+        AirportEmployee emp1;
+        AirportEmployee emp2;
+        AirportEmployee emp3;
+        AirportBelt BeltA;
+        AirportBelt BeltB;
+        AirportBelt BeltC;
+
+
         public List<Luggage> luggages = new List<Luggage>();
+
         public Form1()
         {
             InitializeComponent();
 
-            luggages.Add(l1);
-            luggages.Add(l2);
-            luggages.Add(l3);
-            luggages.Add(l4);
-            luggages.Add(l5);
+            //luggages.Add(l1);
+            //luggages.Add(l2);
+            //luggages.Add(l3);
+            //luggages.Add(l4);
+            //luggages.Add(l5);
 
-            foreach (Luggage l in luggages)
-            {
-                listBox1.Items.Add(l.displayInfo());
-            }
+            //foreach (Luggage l in luggages)
+            //{
+            //    listBox1.Items.Add(l.displayInfo());
+            //}
 
-           
+            // Denis Start Here
+            emp1 = new AirportEmployee("John", 1, 2);
+            emp2 = new AirportEmployee("Michael", 2, 2);
+            emp3 = new AirportEmployee("Peter", 3, 2);
+            BeltA = new AirportBelt(150, 3, emp1.IdNumber);
+            BeltB = new AirportBelt(150, 3, emp2.IdNumber);
+            BeltC = new AirportBelt(150, 3, emp3.IdNumber);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AirportBelt beltA = new AirportBelt(150, 50, 75);
+            //AirportBelt beltA = new AirportBelt(150, 50, 75);
 
-            for (int i = 0; i < listBox1.Items.Count; i++)   
-            {
+            //for (int i = 0; i < listBox1.Items.Count; i++)   
+            //{
 
-                if(beltA.AddLuggage(luggages[i].weight))
-                {
-                    lbStatus.Items.Add("Luggage" + luggages[i].id+ " moved to belt A");
+            //    if(beltA.AddLuggage(luggages[i].weight))
+            //    {
+            //        lbStatus.Items.Add("Luggage" + luggages[i].id+ " moved to belt A");
 
-                    beltA.currentLoad += luggages[i].weight;
+            //        beltA.currentLoad += luggages[i].weight;
 
-                    listBox1.Items.RemoveAt(i);
-                    progressBar1.Style = ProgressBarStyle.Marquee;
-                    progressBar1.MarqueeAnimationSpeed = 50;
+            //        listBox1.Items.RemoveAt(i);
+            //        progressBar1.Style = ProgressBarStyle.Marquee;
+            //        progressBar1.MarqueeAnimationSpeed = 50;
                     
-                    i++;
-                }
-                else
-                {
-                    lbStatus.Items.Add("Luggage is too heavy. Waiting for belt to clear");
-                }
-            }
+            //        i++;
+            //    }
+            //    else
+            //    {
+            //        lbStatus.Items.Add("Luggage is too heavy. Waiting for belt to clear");
+            //    }
+            //}
             
+
+            // Denis Start Here
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            progressBar1.Style = ProgressBarStyle.Continuous;
-            progressBar1.MarqueeAnimationSpeed = 0;
+            //progressBar1.Style = ProgressBarStyle.Continuous;
+            //progressBar1.MarqueeAnimationSpeed = 0;
+
+            // Denis Start Here 
         }
 
         private void button4_Click(object sender, EventArgs e)
