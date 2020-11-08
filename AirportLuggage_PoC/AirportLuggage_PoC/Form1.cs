@@ -13,6 +13,9 @@ namespace AirportLuggage_PoC
 {
     public partial class Form1 : Form
     {
+
+        public StatisticsForm statsForm = new StatisticsForm();
+
         public Luggage l1 = new Luggage(1, 22.4, 10.5, 1001);
         public Luggage l2 = new Luggage(2, 22.4, 10.5, 1002);
         public Luggage l3 = new Luggage(3, 22.4, 13.5, 1003);
@@ -68,6 +71,11 @@ namespace AirportLuggage_PoC
         {
             progressBar1.Style = ProgressBarStyle.Continuous;
             progressBar1.MarqueeAnimationSpeed = 0;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            statsForm.Show();
         }
     }
 }
