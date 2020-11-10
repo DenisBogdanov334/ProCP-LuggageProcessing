@@ -16,7 +16,7 @@ namespace AirportLuggage_PoC
     {
         private LuggageManagement lm;
 
-        public StatisticsForm statsForm = new StatisticsForm();
+        
 
         public Luggage l1 = new Luggage(1, 22.4, 10.5, 1001);
         public Luggage l2 = new Luggage(2, 22.4, 10.5, 1002);
@@ -98,7 +98,8 @@ namespace AirportLuggage_PoC
 
         private void button4_Click(object sender, EventArgs e)
         {
-            statsForm.Show();
+            StatisticsForm frm = new StatisticsForm(lm);
+            frm.Show();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -171,6 +172,7 @@ namespace AirportLuggage_PoC
             DrawSimulation();
         }
     }
+
 
 }
 

@@ -1,18 +1,25 @@
-﻿using System;
+﻿using DenisProCP;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AirportLuggage_PoC
 {
-    class LuggageManagement
+    public class LuggageManagement
     {
         private List<Luggage> luggages;
         private List<UpcomingFlight> flights;
         private List<Passenger> passengers;
         private List<AirportBelt> belts;
+
+        public int totalLuggageBeltA { get; set; }
+        public int totalLuggageBeltB { get; set; }
+        public int totalLuggageBeltC { get; set; }
+
 
         public LuggageManagement()
         {
@@ -20,6 +27,10 @@ namespace AirportLuggage_PoC
             flights = new List<UpcomingFlight>();
             passengers = new List<Passenger>();
             belts = new List<AirportBelt>();
+            totalLuggageBeltA = 10;
+            totalLuggageBeltB = 61;
+            totalLuggageBeltC = 94;
+
             LoadData();
         }
 
@@ -44,10 +55,15 @@ namespace AirportLuggage_PoC
             luggages.Add(new Luggage(2003, 22.4, 10.5, 1003));
             luggages.Add(new Luggage(2004, 22.4, 10.5, 1004));
             luggages.Add(new Luggage(2005, 22.4, 10.5, 1005));
+
+            
         }
 
+       
+        
         private AirportBelt SetBeltForLuggage(Luggage luggage)
         {
+            
             Passenger passenger = GetPassenger(luggage.ownerId);
             if (passenger != null)
             {
@@ -56,9 +72,21 @@ namespace AirportLuggage_PoC
                 {
                     switch (flight.Zone)
                     {
-                        case "zoneA": return GetBelt("beltA");
-                        case "zoneB": return GetBelt("beltB");
-                        case "zoneC": return GetBelt("beltC");
+                        case "zoneA":
+                            {
+                                totalLuggageBeltA++;
+                                return GetBelt("beltA");
+                            }
+                        case "zoneB":
+                            {
+                                totalLuggageBeltB++;
+                                return GetBelt("beltB");
+                            }
+                        case "zoneC":
+                            {
+                                totalLuggageBeltC++;
+                                return GetBelt("beltC");
+                            }
                         default:
                             break;
                     }
@@ -122,6 +150,15 @@ namespace AirportLuggage_PoC
                     return passenger;
             }
             return null;
+        }
+        public List<Passenger> GetAllpassengers()
+        {
+            return this.passengers;
+        }
+
+        public List<UpcomingFlight> GetAllFlights()
+        {
+            return this.flights;
         }
 
         private UpcomingFlight GetFlight(string fid)

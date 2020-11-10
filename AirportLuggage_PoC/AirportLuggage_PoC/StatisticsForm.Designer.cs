@@ -33,12 +33,12 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblLuggageLoaded = new System.Windows.Forms.Label();
+            this.lblTotalLuggagewaiting = new System.Windows.Forms.Label();
             this.lblTotalLuggage = new System.Windows.Forms.Label();
-            this.lblAvgLugPerson = new System.Windows.Forms.Label();
-            this.lblLugWeight = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lbEmpName = new System.Windows.Forms.ListBox();
             this.lbEmpStation = new System.Windows.Forms.ListBox();
             this.lbEmpHoursWorked = new System.Windows.Forms.ListBox();
@@ -48,8 +48,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lbFlightinfo = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // chart1
@@ -58,21 +63,21 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(449, 25);
+            this.chart1.Location = new System.Drawing.Point(502, 25);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Belt ocupancy";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(339, 270);
+            this.chart1.Size = new System.Drawing.Size(286, 270);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LightGray;
-            this.groupBox1.Controls.Add(this.lblLugWeight);
-            this.groupBox1.Controls.Add(this.lblAvgLugPerson);
+            this.groupBox1.Controls.Add(this.lblLuggageLoaded);
+            this.groupBox1.Controls.Add(this.lblTotalLuggagewaiting);
             this.groupBox1.Controls.Add(this.lblTotalLuggage);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -84,32 +89,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Luggage info";
             // 
-            // label1
+            // lblLuggageLoaded
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Total luggage transported";
+            this.lblLuggageLoaded.AutoSize = true;
+            this.lblLuggageLoaded.Location = new System.Drawing.Point(192, 72);
+            this.lblLuggageLoaded.Name = "lblLuggageLoaded";
+            this.lblLuggageLoaded.Size = new System.Drawing.Size(35, 13);
+            this.lblLuggageLoaded.TabIndex = 5;
+            this.lblLuggageLoaded.Text = "label6";
             // 
-            // label2
+            // lblTotalLuggagewaiting
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Average luggage per person";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 72);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Average luggage weight";
+            this.lblTotalLuggagewaiting.AutoSize = true;
+            this.lblTotalLuggagewaiting.Location = new System.Drawing.Point(192, 50);
+            this.lblTotalLuggagewaiting.Name = "lblTotalLuggagewaiting";
+            this.lblTotalLuggagewaiting.Size = new System.Drawing.Size(35, 13);
+            this.lblTotalLuggagewaiting.TabIndex = 4;
+            this.lblTotalLuggagewaiting.Text = "label5";
             // 
             // lblTotalLuggage
             // 
@@ -120,23 +116,32 @@
             this.lblTotalLuggage.TabIndex = 3;
             this.lblTotalLuggage.Text = "label4";
             // 
-            // lblAvgLugPerson
+            // label3
             // 
-            this.lblAvgLugPerson.AutoSize = true;
-            this.lblAvgLugPerson.Location = new System.Drawing.Point(192, 50);
-            this.lblAvgLugPerson.Name = "lblAvgLugPerson";
-            this.lblAvgLugPerson.Size = new System.Drawing.Size(35, 13);
-            this.lblAvgLugPerson.TabIndex = 4;
-            this.lblAvgLugPerson.Text = "label5";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 72);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Total luggage loaded";
             // 
-            // lblLugWeight
+            // label2
             // 
-            this.lblLugWeight.AutoSize = true;
-            this.lblLugWeight.Location = new System.Drawing.Point(192, 72);
-            this.lblLugWeight.Name = "lblLugWeight";
-            this.lblLugWeight.Size = new System.Drawing.Size(35, 13);
-            this.lblLugWeight.TabIndex = 5;
-            this.lblLugWeight.Text = "label6";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(108, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Total luggage waiting";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Total luggage";
             // 
             // lbEmpName
             // 
@@ -159,15 +164,15 @@
             this.lbEmpHoursWorked.FormattingEnabled = true;
             this.lbEmpHoursWorked.Location = new System.Drawing.Point(262, 148);
             this.lbEmpHoursWorked.Name = "lbEmpHoursWorked";
-            this.lbEmpHoursWorked.Size = new System.Drawing.Size(78, 147);
+            this.lbEmpHoursWorked.Size = new System.Drawing.Size(114, 147);
             this.lbEmpHoursWorked.TabIndex = 4;
             // 
             // lbHourlySalary
             // 
             this.lbHourlySalary.FormattingEnabled = true;
-            this.lbHourlySalary.Location = new System.Drawing.Point(346, 148);
+            this.lbHourlySalary.Location = new System.Drawing.Point(382, 148);
             this.lbHourlySalary.Name = "lbHourlySalary";
-            this.lbHourlySalary.Size = new System.Drawing.Size(78, 147);
+            this.lbHourlySalary.Size = new System.Drawing.Size(114, 147);
             this.lbHourlySalary.TabIndex = 5;
             // 
             // label4
@@ -215,11 +220,51 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.LightGray;
+            this.groupBox2.Controls.Add(this.lbFlightinfo);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Location = new System.Drawing.Point(275, 25);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(204, 104);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Flight information";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(5, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(52, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Flight No.";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(82, 16);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Assigned belt";
+            // 
+            // lbFlightinfo
+            // 
+            this.lbFlightinfo.FormattingEnabled = true;
+            this.lbFlightinfo.Location = new System.Drawing.Point(6, 32);
+            this.lbFlightinfo.Name = "lbFlightinfo";
+            this.lbFlightinfo.Size = new System.Drawing.Size(192, 69);
+            this.lbFlightinfo.TabIndex = 2;
+            // 
             // StatisticsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 367);
+            this.ClientSize = new System.Drawing.Size(814, 370);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
@@ -236,6 +281,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,8 +292,8 @@
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label lblLugWeight;
-        private System.Windows.Forms.Label lblAvgLugPerson;
+        private System.Windows.Forms.Label lblLuggageLoaded;
+        private System.Windows.Forms.Label lblTotalLuggagewaiting;
         private System.Windows.Forms.Label lblTotalLuggage;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -260,5 +307,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ListBox lbFlightinfo;
     }
 }
