@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace DenisProCP
 {
-    internal class Airport
+    public class Airport
     {
         public List<AirportBelt> Belts { get; set; }
         public List<Flight> Flights { get; set; }

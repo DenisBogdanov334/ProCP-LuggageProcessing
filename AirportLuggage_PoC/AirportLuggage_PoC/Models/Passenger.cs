@@ -7,6 +7,10 @@ namespace DenisProCP
     public class Passenger
     {
         private static int PassengerIdGenerator = 0;
+        public int Id { get; set; }
+        public int FlightId { get; set; }
+        public bool Priority { get; set; }
+        public int AmountLuggage { get; set; }
 
         public Passenger(bool priority, int flightId)
         {
@@ -15,13 +19,7 @@ namespace DenisProCP
             FlightId = flightId;
 
             if (Priority) AmountLuggage = 2;
-
             AmountLuggage = 1;
         }
-
-        public int Id { get; set; }
-        public int FlightId { get; set; }
-        public bool Priority { get; set; }
-        public int AmountLuggage { get; set; }
     }
 }

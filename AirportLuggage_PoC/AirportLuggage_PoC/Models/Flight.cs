@@ -6,7 +6,11 @@ namespace DenisProCP
 {
     public class Flight
     {
-        private static int IdGenerator = 0;
+        private static int IdGenerator = 100;
+        public int FlightId { get; set; }
+        public DateTime Departure { get; set; }
+        public List<Passenger> Passengers { get; set; }
+        public List<Luggage> Luggages { get; set; }
 
         public Flight(DateTime departure)
         {
@@ -15,10 +19,5 @@ namespace DenisProCP
             Passengers = new List<Passenger>();
             Luggages = new List<Luggage>();
         }
-
-        public int FlightId { get; set; }
-        public DateTime Departure { get; set; }
-        public List<Passenger> Passengers { get; set; }
-        public List<Luggage> Luggages { get; set; }
     }
 }

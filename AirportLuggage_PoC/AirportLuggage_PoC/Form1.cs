@@ -1,20 +1,19 @@
-﻿using AirportLuggage_PoC.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DenisProCP;
+using System.Timers;
+using System.Threading.Tasks;
+using AirportLuggage_PoC.Properties;
+using System.Drawing;
 
 namespace AirportLuggage_PoC
 {
     public partial class Form1 : Form
     {
         private LuggageManagement lm;
+        Airport EindhovenAirport;
 
         public StatisticsForm statsForm = new StatisticsForm();
 
@@ -27,10 +26,12 @@ namespace AirportLuggage_PoC
 
         public List<Luggage> luggages = new List<Luggage>();
 
+
         public Form1()
         {
             InitializeComponent();
 
+            #region Ling
             //luggages.Add(l1);
             //luggages.Add(l2);
             //luggages.Add(l3);
@@ -42,20 +43,26 @@ namespace AirportLuggage_PoC
             //    listBox1.Items.Add(l.displayInfo());
             //}
 
-            // Denis Start Here
-
             lm = new LuggageManagement();
-            DrawSimulation();
-            UpdateListBoxes();
+            #endregion
+
+            EindhovenAirport = new Airport(Factory.FakeBelts(), Factory.FakeFlights(), Factory.FakeEmployees());
+            foreach (Flight flight in EindhovenAirport.Flights)
+            {
+                listBox1.Items.Add($"{flight.FlightId} with {flight.Passengers.Count} passengers, leaving {flight.Departure} with load {flight.Luggages.Count}");
+            }
+
+
+            //DrawSimulation();
+            //UpdateListBoxes();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
+            #region Ling
             //AirportBelt beltA = new AirportBelt(150, 50, 75);
-
             //for (int i = 0; i < listBox1.Items.Count; i++)
             //{
-
             //    if (beltA.AddLuggage(luggages[i].weight))
             //    {
             //        lbStatus.Items.Add("Luggage" + luggages[i].id + " moved to belt A");
@@ -73,23 +80,34 @@ namespace AirportLuggage_PoC
             //        lbStatus.Items.Add("Luggage is too heavy. Waiting for belt to clear");
             //    }
             //}
-
-
-            // Denis Start Here
-
-
+            #endregion
             timer1.Start();
 
+            for (int i = 0; i < EindhovenAirport.Belts.Count; i++)
+            {
+                EindhovenAirport.Belts[i].OnProcessedLuggageEvent += Form1_OnProcessedLuggage;
+                EindhovenAirport.Belts[i].OnReadyToLoad += Form1_OnReadyToLoad; ;
+                await EindhovenAirport.Employees[i].PutOnBelt(EindhovenAirport.Belts[i], EindhovenAirport.Flights[i]);
+            }
 
         }
 
+        private void Form1_OnReadyToLoad(object sender, Flight e)
+        {
+            lbStatus.Items.Add($"{e.FlightId} which departs at {e.Departure} is ready to load");
+            lbStatus.Refresh();
+        }
+
+        private void Form1_OnProcessedLuggage(object sender, string e)
+        {
+            var label = groupBox1.Controls.OfType<Label>().FirstOrDefault(x => x.Name == (sender as DenisProCP.AirportBelt).Name);
+            label.Text = e;
+            groupBox1.Refresh();
+        }
+
+
         private void button2_Click(object sender, EventArgs e)
         {
-            //progressBar1.Style = ProgressBarStyle.Continuous;
-            //progressBar1.MarqueeAnimationSpeed = 0;
-
-            // Denis Start Here
-
             progressBar1.Style = ProgressBarStyle.Continuous;
             progressBar1.MarqueeAnimationSpeed = 0;
 
@@ -101,13 +119,16 @@ namespace AirportLuggage_PoC
             statsForm.Show();
         }
 
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lm.MoveLuggagePerFlight("F100A");
-            ReDrawSimulation();
-            UpdateListBoxes();
+
+            //lm.MoveLuggagePerFlight("F100A");
+            //ReDrawSimulation();
+            //UpdateListBoxes();
         }
 
+        #region Ling
         private void DrawSimulation()
         {
             var belts = lm.GetBelts();
@@ -127,6 +148,7 @@ namespace AirportLuggage_PoC
                     pb.Visible = false;
             }
         }
+        #endregion
 
         private void ReDrawSimulation()
         {
@@ -171,6 +193,5 @@ namespace AirportLuggage_PoC
             DrawSimulation();
         }
     }
-
 }
 

@@ -56,6 +56,10 @@
             this.button4 = new System.Windows.Forms.Button();
             this.lbStatus = new System.Windows.Forms.ListBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.BeltA = new System.Windows.Forms.Label();
+            this.BeltB = new System.Windows.Forms.Label();
+            this.BeltC = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -65,11 +69,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(292, 143);
+            this.progressBar1.Location = new System.Drawing.Point(708, 101);
             this.progressBar1.MarqueeAnimationSpeed = 750;
             this.progressBar1.Maximum = 150;
             this.progressBar1.Name = "progressBar1";
@@ -79,7 +84,7 @@
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(292, 314);
+            this.progressBar2.Location = new System.Drawing.Point(650, 247);
             this.progressBar2.Maximum = 170;
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(454, 14);
@@ -88,7 +93,7 @@
             // 
             // progressBar3
             // 
-            this.progressBar3.Location = new System.Drawing.Point(289, 461);
+            this.progressBar3.Location = new System.Drawing.Point(542, 388);
             this.progressBar3.Maximum = 225;
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(562, 14);
@@ -98,9 +103,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1144, 36);
+            this.pictureBox1.Location = new System.Drawing.Point(1204, 36);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(183, 121);
+            this.pictureBox1.Size = new System.Drawing.Size(183, 136);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -108,7 +113,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(1144, 260);
+            this.pictureBox2.Location = new System.Drawing.Point(1204, 190);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(183, 121);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -118,7 +123,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(1144, 481);
+            this.pictureBox3.Location = new System.Drawing.Point(1204, 334);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(183, 121);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -128,7 +133,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(452, 112);
+            this.label1.Location = new System.Drawing.Point(868, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 6;
@@ -137,7 +142,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(452, 287);
+            this.label2.Location = new System.Drawing.Point(810, 220);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 7;
@@ -146,7 +151,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(449, 442);
+            this.label3.Location = new System.Drawing.Point(702, 369);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 13);
             this.label3.TabIndex = 8;
@@ -155,15 +160,15 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 55);
+            this.listBox1.Location = new System.Drawing.Point(12, 190);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(181, 498);
+            this.listBox1.Size = new System.Drawing.Size(433, 433);
             this.listBox1.TabIndex = 9;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(60, 21);
+            this.label4.Location = new System.Drawing.Point(31, 159);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 13);
             this.label4.TabIndex = 10;
@@ -172,7 +177,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(199, 90);
+            this.pictureBox4.Location = new System.Drawing.Point(615, 48);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(88, 124);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -182,7 +187,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(198, 257);
+            this.pictureBox5.Location = new System.Drawing.Point(556, 190);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(88, 124);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -192,7 +197,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(198, 407);
+            this.pictureBox6.Location = new System.Drawing.Point(451, 334);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(88, 124);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -202,7 +207,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(685, 90);
+            this.pictureBox7.Location = new System.Drawing.Point(1101, 48);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(88, 124);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -212,7 +217,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(752, 257);
+            this.pictureBox8.Location = new System.Drawing.Point(1110, 190);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(88, 124);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -222,7 +227,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(857, 407);
+            this.pictureBox9.Location = new System.Drawing.Point(1110, 334);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(88, 124);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -241,7 +246,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1215, 384);
+            this.label6.Location = new System.Drawing.Point(1215, 298);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 13);
             this.label6.TabIndex = 18;
@@ -250,7 +255,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(1215, 605);
+            this.label7.Location = new System.Drawing.Point(1215, 442);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 13);
             this.label7.TabIndex = 19;
@@ -258,7 +263,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 579);
+            this.button1.Location = new System.Drawing.Point(34, 65);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 23);
             this.button1.TabIndex = 20;
@@ -268,7 +273,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(163, 579);
+            this.button2.Location = new System.Drawing.Point(185, 65);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(123, 23);
             this.button2.TabIndex = 21;
@@ -278,7 +283,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 627);
+            this.button3.Location = new System.Drawing.Point(34, 113);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(119, 23);
             this.button3.TabIndex = 22;
@@ -288,7 +293,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(163, 627);
+            this.button4.Location = new System.Drawing.Point(185, 113);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(124, 23);
             this.button4.TabIndex = 23;
@@ -299,20 +304,57 @@
             // lbStatus
             // 
             this.lbStatus.FormattingEnabled = true;
-            this.lbStatus.Location = new System.Drawing.Point(857, 36);
+            this.lbStatus.Location = new System.Drawing.Point(917, 476);
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(251, 199);
+            this.lbStatus.Size = new System.Drawing.Size(460, 147);
             this.lbStatus.TabIndex = 24;
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // BeltA
+            // 
+            this.BeltA.AutoSize = true;
+            this.BeltA.Location = new System.Drawing.Point(19, 34);
+            this.BeltA.Name = "BeltA";
+            this.BeltA.Size = new System.Drawing.Size(0, 13);
+            this.BeltA.TabIndex = 25;
+            // 
+            // BeltB
+            // 
+            this.BeltB.AutoSize = true;
+            this.BeltB.Location = new System.Drawing.Point(19, 61);
+            this.BeltB.Name = "BeltB";
+            this.BeltB.Size = new System.Drawing.Size(0, 13);
+            this.BeltB.TabIndex = 26;
+            // 
+            // BeltC
+            // 
+            this.BeltC.AutoSize = true;
+            this.BeltC.Location = new System.Drawing.Point(19, 93);
+            this.BeltC.Name = "BeltC";
+            this.BeltC.Size = new System.Drawing.Size(0, 13);
+            this.BeltC.TabIndex = 27;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.BeltC);
+            this.groupBox1.Controls.Add(this.BeltA);
+            this.groupBox1.Controls.Add(this.BeltB);
+            this.groupBox1.Location = new System.Drawing.Point(683, 479);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 128);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1399, 672);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lbStatus);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -349,6 +391,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,6 +426,10 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ListBox lbStatus;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label BeltA;
+        private System.Windows.Forms.Label BeltB;
+        private System.Windows.Forms.Label BeltC;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
