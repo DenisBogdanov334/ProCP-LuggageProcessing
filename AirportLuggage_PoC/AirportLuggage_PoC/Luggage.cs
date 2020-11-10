@@ -9,21 +9,13 @@ namespace AirportLuggage_PoC
 {
     public class Luggage
     {
+        //Ling
         public int id { get; set; }
         public int ownerId { get; set; }
-        public double Weight { get; set; }
-        public int TicketID { get; set; }
-
         public Point position;
-
         public Status status { get; set; }
 
-        public Luggage(double weight, int ticketID)
-        {
-            this.TicketID = ticketID;
-            this.Weight = weight;
-        }
-
+        //Ling
         public Luggage(int id, double weight, double volume, int owner)
         {
             this.id = id;
@@ -76,7 +68,8 @@ namespace AirportLuggage_PoC
     }
 }
 
-public enum Status
+
+    public enum Status
 {
     WaitingForLoading,
     InTransfer,

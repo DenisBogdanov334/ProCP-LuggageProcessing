@@ -8,25 +8,13 @@ namespace AirportLuggage_PoC
 {
     public class Passenger
     {
-        public int TicketID { get; set; }
-        public int FlightNum { get; set; }
-        public bool Priority { get; set; }
-        public int Luggage { get; set; }
-
+        //Ling
         public int id { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-
         public string flightNo { get; set; }
 
-        public Passenger(int ticket, int flightNum, bool priority)
-        {
-            TicketID = ticket;
-            FlightNum = flightNum;
-            // if you don't get what this does, research it fam
-            Luggage = priority ? 2 : 1;
-        }
-
+        //Ling
         public Passenger(int id, string fname, string lname, string flight)
         {
             this.id = id;

@@ -12,7 +12,6 @@ C:\Users\rares\Documents\UNI\PROCP MASTER\procp\AirportLuggage_PoC\AirportLuggag
 C:\ProCPWorkingDirectory\procp\AirportLuggage_PoC\AirportLuggage_PoC\bin\Debug\AirportLuggage_PoC.exe.config
 C:\ProCPWorkingDirectory\procp\AirportLuggage_PoC\AirportLuggage_PoC\bin\Debug\AirportLuggage_PoC.exe
 C:\ProCPWorkingDirectory\procp\AirportLuggage_PoC\AirportLuggage_PoC\bin\Debug\AirportLuggage_PoC.pdb
-C:\ProCPWorkingDirectory\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csprojAssemblyReference.cache
 C:\ProCPWorkingDirectory\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.Form1.resources
 C:\ProCPWorkingDirectory\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.Properties.Resources.resources
 C:\ProCPWorkingDirectory\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.StatisticsForm.resources
@@ -31,3 +30,4 @@ C:\Users\Ling\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\Airp
 C:\Users\Ling\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\bin\Debug\AirportLuggage_PoC.exe.config
 C:\Users\Ling\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\bin\Debug\AirportLuggage_PoC.exe
 C:\Users\Ling\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\bin\Debug\AirportLuggage_PoC.pdb
+C:\ProCPWorkingDirectory\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csprojAssemblyReference.cache

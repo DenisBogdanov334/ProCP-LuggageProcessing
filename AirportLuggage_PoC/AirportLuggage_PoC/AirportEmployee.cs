@@ -10,13 +10,11 @@ namespace AirportLuggage_PoC
     {
         public string Name { get; set; }
         public int IdNumber { get; set; }
-        public int LoadingSpeed { get; set; }
 
-        public AirportEmployee (string name, int idNumber, int loadingSpeed)
+        public AirportEmployee (string name, int idNumber)
         {
             Name = name;
             IdNumber = idNumber;
-            LoadingSpeed = loadingSpeed;
         }
     }
 }

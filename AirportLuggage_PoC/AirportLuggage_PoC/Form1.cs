@@ -18,19 +18,11 @@ namespace AirportLuggage_PoC
 
         public StatisticsForm statsForm = new StatisticsForm();
 
-        //public Luggage l1 = new Luggage(1, 22.4, 10.5, 1001);
-        //public Luggage l2 = new Luggage(2, 22.4, 10.5, 1002);
-        //public Luggage l3 = new Luggage(3, 22.4, 13.5, 1003);
-        //public Luggage l4 = new Luggage(4, 22.7, 10.5, 1004);
-        //public Luggage l5 = new Luggage(5, 25.4, 10.5, 1005);
-
-        // create Employees
-        AirportEmployee emp1;
-        AirportEmployee emp2;
-        AirportEmployee emp3;
-        AirportBelt BeltA;
-        AirportBelt BeltB;
-        AirportBelt BeltC;
+        public Luggage l1 = new Luggage(1, 22.4, 10.5, 1001);
+        public Luggage l2 = new Luggage(2, 22.4, 10.5, 1002);
+        public Luggage l3 = new Luggage(3, 22.4, 13.5, 1003);
+        public Luggage l4 = new Luggage(4, 22.7, 10.5, 1004);
+        public Luggage l5 = new Luggage(5, 25.4, 10.5, 1005);
 
 
         public List<Luggage> luggages = new List<Luggage>();
@@ -51,12 +43,6 @@ namespace AirportLuggage_PoC
             //}
 
             // Denis Start Here
-            emp1 = new AirportEmployee("John", 1, 2);
-            emp2 = new AirportEmployee("Michael", 2, 2);
-            emp3 = new AirportEmployee("Peter", 3, 2);
-            BeltA = new AirportBelt(150, 3, emp1.IdNumber);
-            BeltB = new AirportBelt(150, 3, emp2.IdNumber);
-            BeltC = new AirportBelt(150, 3, emp3.IdNumber);
 
             lm = new LuggageManagement();
             DrawSimulation();
@@ -67,12 +53,12 @@ namespace AirportLuggage_PoC
         {
             //AirportBelt beltA = new AirportBelt(150, 50, 75);
 
-            //for (int i = 0; i < listBox1.Items.Count; i++)   
+            //for (int i = 0; i < listBox1.Items.Count; i++)
             //{
 
-            //    if(beltA.AddLuggage(luggages[i].weight))
+            //    if (beltA.AddLuggage(luggages[i].weight))
             //    {
-            //        lbStatus.Items.Add("Luggage" + luggages[i].id+ " moved to belt A");
+            //        lbStatus.Items.Add("Luggage" + luggages[i].id + " moved to belt A");
 
             //        beltA.currentLoad += luggages[i].weight;
 

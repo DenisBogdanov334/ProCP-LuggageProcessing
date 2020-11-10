@@ -16,16 +16,10 @@ namespace AirportLuggage_PoC
         public int CurrentLoad { get; set; }
         public int EmployeeId { get; set; }
 
+        //Ling
         public Point startPos;
 
-        public AirportBelt(int length, int speed, int employeeId)
-        {
-            this.Length = length;
-            this.Speed = speed;
-            this.CurrentLoad = 0;
-            this.EmployeeId = employeeId;
-        }
-
+        //Ling
         public AirportBelt(int length, double weight, int speed, string id)
         {
             this.Length = length;
@@ -42,7 +36,5 @@ namespace AirportLuggage_PoC
         //    }
         //    else return false;
         //}
-
-
     }
 }
