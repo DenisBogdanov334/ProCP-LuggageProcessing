@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 
 namespace AirportLuggage_PoC
 {
-    class LuggageManagement
+    public class LuggageManagement
     {
         private List<Luggage> luggages;
         private List<UpcomingFlight> flights;
         private List<Passenger> passengers;
         private List<AirportBelt> belts;
+
+        public int totalLuggageBeltA { get; set; }
+        public int totalLuggageBeltB { get; set; }
+        public int totalLuggageBeltC { get; set; }
 
         public LuggageManagement()
         {
@@ -20,6 +24,9 @@ namespace AirportLuggage_PoC
             flights = new List<UpcomingFlight>();
             passengers = new List<Passenger>();
             belts = new List<AirportBelt>();
+            totalLuggageBeltA = 10;
+            totalLuggageBeltB = 61;
+            totalLuggageBeltC = 94;
             LoadData();
         }
 
@@ -193,6 +200,11 @@ namespace AirportLuggage_PoC
                     result.Add(luggage);
             }
             return result;
+        }
+
+        public List<UpcomingFlight> GetAllFlights()
+        {
+            return this.flights;
         }
     }
 
