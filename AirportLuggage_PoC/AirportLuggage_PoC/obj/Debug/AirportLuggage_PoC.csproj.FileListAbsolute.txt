@@ -42,3 +42,4 @@ C:\Users\rares\Documents\UNI\PROCP MASTER\Own Procp master branch\procp\AirportL
 C:\Users\rares\Documents\UNI\PROCP MASTER\Own Procp master branch\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csproj.CoreCompileInputs.cache
 C:\Users\rares\Documents\UNI\PROCP MASTER\Own Procp master branch\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.exe
 C:\Users\rares\Documents\UNI\PROCP MASTER\Own Procp master branch\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.pdb
+C:\Users\Ling\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.SimulationForm.resources

@@ -15,6 +15,12 @@ namespace AirportLuggage_PoC
         public Point position;
         public Status status { get; set; }
 
+        public AirportBelt Belt { get; set; }
+
+        public UpcomingFlight Flight { get; set; }
+
+
+
         //Ling
         public Luggage(int id, double weight, double volume, int owner)
         {
@@ -42,6 +48,24 @@ namespace AirportLuggage_PoC
             }
         }
 
+        internal void Transport()
+        {
+            if (position.X < Belt.startPos.X)
+            {
+                position = Belt.startPos;
+                status = Status.InTransfer;
+            }
+            else if (position.X >= Belt.startPos.X && position.X < Belt.startPos.X + Belt.Length)
+            {
+                position.Offset(5, 0);
+            }
+            else
+            {
+                position.Offset(5, 0);
+                status = Status.Loaded;
+            }
+        }
+
         internal bool IsReachingObstacles(List<Luggage> luggages)
         {
             int index = luggages.FindIndex(l => l.id == this.id);
@@ -55,7 +79,10 @@ namespace AirportLuggage_PoC
 
         public override string ToString()
         {
-            return $"Luggage {id} for passenger {ownerId}";
+            if (this.status == Status.WaitingForLoading)
+                return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} departure from {Flight.Zone}";
+            else
+                return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} arrived at {Flight.Zone}";
         }
 
         //public string displayInfo()

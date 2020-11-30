@@ -50,6 +50,12 @@
     <Compile Include="AirportBelt.cs" />
     <Compile Include="AirportEmployee.cs" />
     <Compile Include="Factory\Factory.cs" />
+    <Compile Include="SimulationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationForm.Designer.cs">
+      <DependentUpon>SimulationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UpcomingFlight.cs" />
+    <EmbeddedResource Include="SimulationForm.resx">
+      <DependentUpon>SimulationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,6 +114,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\luggage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\trailer.PNG" />
+    <None Include="Resources\trailer1.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

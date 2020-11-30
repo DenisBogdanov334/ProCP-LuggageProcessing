@@ -28,29 +28,54 @@ namespace AirportLuggage_PoC
             totalLuggageBeltB = 61;
             totalLuggageBeltC = 94;
             LoadData();
+            SetFlight();
         }
 
         private void LoadData()
         {
             belts.Add(new AirportBelt(400, 50, 75, "beltA"));
-            belts.Add(new AirportBelt(500, 50, 75, "beltB"));
-            belts.Add(new AirportBelt(600, 50, 75, "beltC"));
+            belts.Add(new AirportBelt(450, 50, 75, "beltB"));
+            belts.Add(new AirportBelt(500, 50, 75, "beltC"));
 
             flights.Add(new UpcomingFlight("F100A", "zoneA"));
             flights.Add(new UpcomingFlight("F100B", "zoneB"));
             flights.Add(new UpcomingFlight("F100C", "zoneC"));
 
             passengers.Add(new Passenger(1001, "Joe", "Smith", "F100A"));
-            passengers.Add(new Passenger(1002, "Joe", "Smith", "F100A"));
+            passengers.Add(new Passenger(1002, "Joe", "Smith", "F100B"));
             passengers.Add(new Passenger(1003, "Joe", "Smith", "F100A"));
             passengers.Add(new Passenger(1004, "Joe", "Smith", "F100B"));
             passengers.Add(new Passenger(1005, "Joe", "Smith", "F100C"));
+            passengers.Add(new Passenger(1006, "Joe", "Smith", "F100A"));
+            passengers.Add(new Passenger(1007, "Joe", "Smith", "F100C"));
+            passengers.Add(new Passenger(1008, "Joe", "Smith", "F100A"));
+            passengers.Add(new Passenger(1009, "Joe", "Smith", "F100C"));
+            passengers.Add(new Passenger(1010, "Joe", "Smith", "F100B"));
 
             luggages.Add(new Luggage(2001, 22.4, 10.5, 1001));
             luggages.Add(new Luggage(2002, 22.4, 10.5, 1002));
             luggages.Add(new Luggage(2003, 22.4, 10.5, 1003));
             luggages.Add(new Luggage(2004, 22.4, 10.5, 1004));
             luggages.Add(new Luggage(2005, 22.4, 10.5, 1005));
+            luggages.Add(new Luggage(2006, 22.4, 10.5, 1006));
+            luggages.Add(new Luggage(2007, 22.4, 10.5, 1007));
+            luggages.Add(new Luggage(2008, 22.4, 10.5, 1008));
+            luggages.Add(new Luggage(2009, 22.4, 10.5, 1009));
+            luggages.Add(new Luggage(2010, 22.4, 10.5, 1010));
+        }
+
+        private void SetFlight()
+        {
+            foreach (var luggage in luggages)
+            {
+                Passenger passenger = GetPassenger(luggage.ownerId);
+                if (passenger != null)
+                {
+                    UpcomingFlight flight = GetFlight(passenger.flightNo);
+                    if(flight != null)
+                        luggage.Flight = GetFlight(passenger.flightNo);
+                }
+            }
         }
 
         private AirportBelt SetBeltForLuggage(Luggage luggage)
@@ -73,6 +98,21 @@ namespace AirportLuggage_PoC
 
             }
             return null;
+        }
+
+        public void SetBelt(Luggage luggage)
+        {
+            if (luggage.Flight != null)
+            {
+                if (luggage.Flight.Zone == "zoneA")
+                    luggage.Belt = belts[0];
+                else if (luggage.Flight.Zone == "zoneB")
+                    luggage.Belt = belts[1];
+                else
+                    luggage.Belt = belts[2];
+            }
+            luggage.status = Status.InTransfer;
+            
         }
 
         private AirportBelt SetBeltForLuggage(Luggage luggage, UpcomingFlight flight)
@@ -155,9 +195,8 @@ namespace AirportLuggage_PoC
         {
             foreach (var luggage in luggages)
             {
-                AirportBelt belt = SetBeltForLuggage(luggage);
-                if (belt != null)
-                    luggage.Transport(belt);
+                if (luggage.Belt != null)
+                    luggage.Transport();
             }
         }
 
