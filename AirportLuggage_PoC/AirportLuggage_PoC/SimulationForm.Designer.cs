@@ -64,16 +64,16 @@
             this.progressBar5 = new System.Windows.Forms.ProgressBar();
             this.progressBar6 = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbLoadToFlight = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauzeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbLoadToFlight = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
@@ -445,6 +445,26 @@
             this.panel1.Size = new System.Drawing.Size(1474, 328);
             this.panel1.TabIndex = 41;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(17, 17);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(118, 17);
+            this.label8.TabIndex = 45;
+            this.label8.Text = "Information Panel";
+            // 
+            // lbLoadToFlight
+            // 
+            this.lbLoadToFlight.FormattingEnabled = true;
+            this.lbLoadToFlight.ItemHeight = 16;
+            this.lbLoadToFlight.Location = new System.Drawing.Point(999, 48);
+            this.lbLoadToFlight.Margin = new System.Windows.Forms.Padding(4);
+            this.lbLoadToFlight.Name = "lbLoadToFlight";
+            this.lbLoadToFlight.Size = new System.Drawing.Size(473, 276);
+            this.lbLoadToFlight.TabIndex = 44;
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -457,6 +477,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(318, 378);
             this.panel2.TabIndex = 42;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(29, 312);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(257, 28);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "Show statistics";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
@@ -476,62 +506,35 @@
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(54, 26);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.startToolStripMenuItem.Text = "Start";
+            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
             // pauzeToolStripMenuItem
             // 
             this.pauzeToolStripMenuItem.Name = "pauzeToolStripMenuItem";
-            this.pauzeToolStripMenuItem.Size = new System.Drawing.Size(61, 26);
-            this.pauzeToolStripMenuItem.Text = "Pauze";
+            this.pauzeToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
+            this.pauzeToolStripMenuItem.Text = "Pause";
+            this.pauzeToolStripMenuItem.Click += new System.EventHandler(this.pauzeToolStripMenuItem_Click);
             // 
             // resetToolStripMenuItem
             // 
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.resetToolStripMenuItem.Text = "Reset";
+            this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(54, 26);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.stopToolStripMenuItem.Text = "Stop";
             // 
             // configureToolStripMenuItem
             // 
             this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
-            this.configureToolStripMenuItem.Size = new System.Drawing.Size(88, 26);
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.configureToolStripMenuItem.Text = "Configure";
-            // 
-            // lbLoadToFlight
-            // 
-            this.lbLoadToFlight.FormattingEnabled = true;
-            this.lbLoadToFlight.ItemHeight = 16;
-            this.lbLoadToFlight.Location = new System.Drawing.Point(999, 48);
-            this.lbLoadToFlight.Margin = new System.Windows.Forms.Padding(4);
-            this.lbLoadToFlight.Name = "lbLoadToFlight";
-            this.lbLoadToFlight.Size = new System.Drawing.Size(473, 276);
-            this.lbLoadToFlight.TabIndex = 44;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(29, 312);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(257, 28);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Show statistics";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(17, 17);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(118, 17);
-            this.label8.TabIndex = 45;
-            this.label8.Text = "Information Panel";
             // 
             // panel3
             // 

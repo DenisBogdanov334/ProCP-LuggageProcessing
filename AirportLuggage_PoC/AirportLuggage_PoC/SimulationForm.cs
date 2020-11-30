@@ -24,6 +24,7 @@ namespace AirportLuggage_PoC
             DrawSimulation();
             UpdateLbUnloadedLuggages();
             btnPause.Enabled = false;
+            pauzeToolStripMenuItem.Enabled = false;
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -32,6 +33,8 @@ namespace AirportLuggage_PoC
             timerSetBelt.Start();
             btnStart.Enabled = !btnStart.Enabled;
             btnPause.Enabled = !btnPause.Enabled;
+            startToolStripMenuItem.Enabled = !startToolStripMenuItem.Enabled;
+            pauzeToolStripMenuItem.Enabled = !pauzeToolStripMenuItem.Enabled;
         }
 
 
@@ -41,6 +44,8 @@ namespace AirportLuggage_PoC
             timerSetBelt.Stop();
             btnStart.Enabled = !btnStart.Enabled;
             btnPause.Enabled = !btnPause.Enabled;
+            startToolStripMenuItem.Enabled = !startToolStripMenuItem.Enabled;
+            pauzeToolStripMenuItem.Enabled = !pauzeToolStripMenuItem.Enabled;
         }
 
         private void statisticsButton_Click(object sender, EventArgs e)
@@ -132,6 +137,8 @@ namespace AirportLuggage_PoC
             currentLuggage = 0;
             btnPause.Enabled = false;
             btnStart.Enabled = true;
+            startToolStripMenuItem.Enabled = true;
+            pauzeToolStripMenuItem.Enabled = false;
         }
 
         private void clearLuggage_pbs()
@@ -158,6 +165,42 @@ namespace AirportLuggage_PoC
                 currentLuggage++;
                 UpdateLbUnloadedLuggages();
             }
+        }
+
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timerMoveLuggages.Start();
+            timerSetBelt.Start();
+            btnStart.Enabled = !btnStart.Enabled;
+            btnPause.Enabled = !btnPause.Enabled;
+            startToolStripMenuItem.Enabled = !startToolStripMenuItem.Enabled;
+            pauzeToolStripMenuItem.Enabled = !pauzeToolStripMenuItem.Enabled;
+        }
+
+        private void pauzeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timerMoveLuggages.Stop();
+            timerSetBelt.Stop();
+            btnStart.Enabled = !btnStart.Enabled;
+            btnPause.Enabled = !btnPause.Enabled;
+            startToolStripMenuItem.Enabled = !startToolStripMenuItem.Enabled;
+            pauzeToolStripMenuItem.Enabled = !pauzeToolStripMenuItem.Enabled;
+        }
+
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timerMoveLuggages.Stop();
+            timerSetBelt.Stop();
+            this.lm = new LuggageManagement();
+            clearLuggage_pbs();
+            UpdateLbUnloadedLuggages();
+            UpdateLbLoadedLuggaes();
+            DrawSimulation();
+            currentLuggage = 0;
+            btnPause.Enabled = false;
+            btnStart.Enabled = true;
+            startToolStripMenuItem.Enabled = true;
+            pauzeToolStripMenuItem.Enabled = false;
         }
     }
     
