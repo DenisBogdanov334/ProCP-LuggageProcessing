@@ -56,11 +56,28 @@ namespace AirportLuggage_PoC
        
         private void DrawSimulation()
         {
+            //bind belts to grogressBar_belts
             var belts = lm.GetBelts();
-            belts[0].startPos = new Point(progressBar1.Location.X, progressBar1.Location.Y + 10);
-            belts[1].startPos = new Point(progressBar2.Location.X, progressBar2.Location.Y + 10);
-            belts[2].startPos = new Point(progressBar3.Location.X, progressBar3.Location.Y + 10);
+            belts[0].startPos = new Point(progressBar1.Location.X, progressBar1.Location.Y - 30);
+            belts[1].startPos = new Point(progressBar2.Location.X, progressBar2.Location.Y - 30);
+            belts[2].startPos = new Point(progressBar3.Location.X, progressBar3.Location.Y - 30);
 
+            //bind trainers to picturebox_trailers
+            var trailers = lm.GetTrailers();
+            trailers[0].position = new Point(progressBar4.Location.X, progressBar4.Location.Y -20);
+            trailers[1].position = new Point(progressBar5.Location.X, progressBar5.Location.Y -20);
+            trailers[2].position = new Point(progressBar6.Location.X, progressBar6.Location.Y -20);
+
+            pbTrailerA.Location = trailers[0].position;
+            pbTrailerB.Location = trailers[1].position;
+            pbTrailerC.Location = trailers[2].position;
+
+            pbTrailerA.Tag = trailers[0];
+            pbTrailerB.Tag = trailers[1];
+            pbTrailerC.Tag = trailers[2];
+ 
+
+            //bind luggages to picturebox_luggages
             foreach (var luggage in lm.GetAllLuggages())
             {
                 PictureBox pb = new PictureBox();
@@ -85,27 +102,74 @@ namespace AirportLuggage_PoC
                     PictureBox pb = (PictureBox)control;
                     if (pb.Tag != null)
                     {
-                        Luggage luggage = (Luggage)pb.Tag;
-                        pb.Location = luggage.position;
-                        if (luggage.position.X > 0 && luggage.status != Status.Loaded)
-                            pb.Visible = true;
-                        else if(luggage.status == Status.Loaded)
+                        if(pb.Tag is Luggage luggage)
                         {
-                            pb.Visible = false;
-                            lbStatus.Items.Add(pb.Tag);
-                            this.Controls.Remove(pb);
-                            this.pbs.Remove(pb);
-                            if(lm.GetAllLoadedLuggages().Count == lm.GetAllLuggages().Count)
+                            pb.Location = luggage.position;
+                            if (luggage.position.X > 0 && luggage.status != Status.LoadedInTrailer && luggage.status != Status.LoadedInAirplane)
+                                pb.Visible = true;
+                            else if (luggage.status == Status.LoadedInTrailer)
                             {
-                                this.lbStatus.Items.Add("____________________________________________________________");
-                                this.lbStatus.Items.Add("All luggages have been transported to departure zone!");
-                            }    
-                        }                            
+                                pb.Visible = false;
+                                lbStatus.Items.Add(pb.Tag);
+                                this.Controls.Remove(pb);
+                                this.pbs.Remove(pb);
+                                if (lm.GetAllLoadedLuggages().Count == lm.GetAllLuggages().Count)
+                                {
+                                    this.lbDropoff.Items.Add("All luggages have been sent to belt!");
+                                    this.lbStatus.Items.Add("All luggages have been transported to trailer!");
+                                }
+
+                                //update number of loaded luggages for each trailor
+                                lm.AddLoadedLuggageToTrailer(luggage);
+                                UpdateNrOfLoadedLuggages(luggage);
+                            }
+                        }
+                       
+                        else if(pb.Tag is Trailer trailer) // otherwise it is a trailer
+                        {
+                            pb.Location = trailer.position;
+
+                            //check if trailer already arrived at departure zone: if yes, update information listbox
+                            if (trailer.position.X >= pbZoneA.Location.X && trailer.IsTransporting)
+                            {
+                                trailer.IsTransporting = false;
+                                this.lbLoadToFlight.Items.Add($"Trailer {trailer.Id} has arrived at departure zone!");
+                                foreach (var l in trailer.luggages)
+                                {
+                                    if (l.status != Status.LoadedInAirplane)
+                                    {
+                                        l.status = Status.LoadedInAirplane;
+                                        this.lbStatus.Items.Remove(l);
+                                        this.lbLoadToFlight.Items.Add(l);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-            }
+            }           
+            
             this.Invalidate();
         }
+
+        private void UpdateNrOfLoadedLuggages(Luggage luggage)
+        {
+            switch (luggage.Belt.Id)
+            {
+                case "beltA":
+                    lbLoadedA.Text = "+" + lm.GetTrailers()[0].CurrentLoad.ToString();
+                    return;
+                case "beltB":
+                    lbLoadedB.Text = "+" + lm.GetTrailers()[1].CurrentLoad;
+                    return;
+                case "beltC":
+                    lbLoadedC.Text = "+" + lm.GetTrailers()[2].CurrentLoad;
+                    return;
+                default:
+                    break;
+            }
+        }
+
 
         private void UpdateLbUnloadedLuggages()
         {
@@ -131,14 +195,23 @@ namespace AirportLuggage_PoC
             timerSetBelt.Stop();
             this.lm = new LuggageManagement();
             clearLuggage_pbs();
+            clearNrLoadedLuggages_lbs();
             UpdateLbUnloadedLuggages();
             UpdateLbLoadedLuggaes();
+            lbLoadToFlight.Items.Clear();
             DrawSimulation();
             currentLuggage = 0;
             btnPause.Enabled = false;
             btnStart.Enabled = true;
             startToolStripMenuItem.Enabled = true;
             pauzeToolStripMenuItem.Enabled = false;
+        }
+
+        private void clearNrLoadedLuggages_lbs()
+        {
+            lbLoadedA.Text = "+0";
+            lbLoadedB.Text = "+0";
+            lbLoadedC.Text = "+0";
         }
 
         private void clearLuggage_pbs()
@@ -154,6 +227,7 @@ namespace AirportLuggage_PoC
         private void timerMoveLuggages_Tick(object sender, EventArgs e)
         {
             lm.MoveAllLuggage();
+            lm.MoveTrailers(pbZoneA.Location.X);
             ReDrawSimulation();
         }
 

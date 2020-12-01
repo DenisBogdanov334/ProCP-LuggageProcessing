@@ -151,26 +151,6 @@ namespace AirportLuggage_PoC
         }
         #endregion
 
-        private void ReDrawSimulation()
-        {
-            foreach (var control in this.Controls)
-            {
-                if (control is PictureBox)
-                {
-                    PictureBox pb = (PictureBox)control;
-                    if (pb.Tag != null)
-                    {
-                        Luggage luggage = (Luggage)pb.Tag;
-                        pb.Location = luggage.position;
-                        if (luggage.position.X > 0 && luggage.status != Status.Loaded)
-                            pb.Visible = true;
-                        else
-                            pb.Visible = false;
-                    }
-                }
-            }
-            this.Invalidate();
-        }
 
         private void UpdateListBoxes()
         {

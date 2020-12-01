@@ -48,18 +48,18 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pbTrailerA = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pbZoneC = new System.Windows.Forms.PictureBox();
+            this.pbZoneB = new System.Windows.Forms.PictureBox();
+            this.pbZoneA = new System.Windows.Forms.PictureBox();
+            this.pbTrailerB = new System.Windows.Forms.PictureBox();
+            this.pbTrailerC = new System.Windows.Forms.PictureBox();
             this.progressBar4 = new System.Windows.Forms.ProgressBar();
             this.progressBar5 = new System.Windows.Forms.ProgressBar();
             this.progressBar6 = new System.Windows.Forms.ProgressBar();
@@ -76,18 +76,21 @@
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            this.lbLoadedA = new System.Windows.Forms.Label();
+            this.lbLoadedB = new System.Windows.Forms.Label();
+            this.lbLoadedC = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTrailerA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZoneC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZoneB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZoneA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTrailerB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTrailerC)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -96,7 +99,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(370, 78);
+            this.progressBar1.Location = new System.Drawing.Point(370, 107);
             this.progressBar1.MarqueeAnimationSpeed = 750;
             this.progressBar1.Maximum = 150;
             this.progressBar1.Name = "progressBar1";
@@ -106,7 +109,7 @@
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(333, 202);
+            this.progressBar2.Location = new System.Drawing.Point(333, 230);
             this.progressBar2.Maximum = 170;
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(438, 14);
@@ -115,7 +118,7 @@
             // 
             // progressBar3
             // 
-            this.progressBar3.Location = new System.Drawing.Point(261, 345);
+            this.progressBar3.Location = new System.Drawing.Point(261, 364);
             this.progressBar3.Maximum = 225;
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(510, 14);
@@ -125,7 +128,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(535, 58);
+            this.label1.Location = new System.Drawing.Point(462, 124);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 6;
@@ -134,7 +137,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(476, 185);
+            this.label2.Location = new System.Drawing.Point(462, 247);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 7;
@@ -143,7 +146,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(421, 326);
+            this.label3.Location = new System.Drawing.Point(459, 381);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 13);
             this.label3.TabIndex = 8;
@@ -250,20 +253,20 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.startButton_Click);
             // 
-            // pictureBox12
+            // pbTrailerA
             // 
-            this.pictureBox12.Image = global::AirportLuggage_PoC.Properties.Resources.trailer;
-            this.pictureBox12.Location = new System.Drawing.Point(813, 58);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(65, 50);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox12.TabIndex = 33;
-            this.pictureBox12.TabStop = false;
+            this.pbTrailerA.Image = global::AirportLuggage_PoC.Properties.Resources.trailer;
+            this.pbTrailerA.Location = new System.Drawing.Point(814, 87);
+            this.pbTrailerA.Name = "pbTrailerA";
+            this.pbTrailerA.Size = new System.Drawing.Size(65, 50);
+            this.pbTrailerA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbTrailerA.TabIndex = 33;
+            this.pbTrailerA.TabStop = false;
             // 
             // pictureBox9
             // 
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(777, 335);
+            this.pictureBox9.Location = new System.Drawing.Point(777, 354);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(30, 30);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -273,7 +276,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(777, 190);
+            this.pictureBox8.Location = new System.Drawing.Point(777, 218);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(30, 30);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -283,7 +286,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(777, 70);
+            this.pictureBox7.Location = new System.Drawing.Point(777, 99);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(30, 30);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -293,7 +296,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(261, 313);
+            this.pictureBox6.Location = new System.Drawing.Point(261, 332);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(30, 30);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -303,7 +306,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(294, 192);
+            this.pictureBox5.Location = new System.Drawing.Point(294, 220);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(30, 30);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -313,90 +316,90 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(334, 70);
+            this.pictureBox4.Location = new System.Drawing.Point(334, 99);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(30, 30);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 11;
             this.pictureBox4.TabStop = false;
             // 
-            // pictureBox3
+            // pbZoneC
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(1144, 297);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(174, 111);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
+            this.pbZoneC.Image = ((System.Drawing.Image)(resources.GetObject("pbZoneC.Image")));
+            this.pbZoneC.Location = new System.Drawing.Point(1123, 297);
+            this.pbZoneC.Name = "pbZoneC";
+            this.pbZoneC.Size = new System.Drawing.Size(198, 111);
+            this.pbZoneC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbZoneC.TabIndex = 5;
+            this.pbZoneC.TabStop = false;
             // 
-            // pictureBox2
+            // pbZoneB
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(1144, 167);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(174, 107);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
+            this.pbZoneB.Image = ((System.Drawing.Image)(resources.GetObject("pbZoneB.Image")));
+            this.pbZoneB.Location = new System.Drawing.Point(1123, 167);
+            this.pbZoneB.Name = "pbZoneB";
+            this.pbZoneB.Size = new System.Drawing.Size(198, 107);
+            this.pbZoneB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbZoneB.TabIndex = 4;
+            this.pbZoneB.TabStop = false;
             // 
-            // pictureBox1
+            // pbZoneA
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1144, 47);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(174, 107);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.pbZoneA.Image = ((System.Drawing.Image)(resources.GetObject("pbZoneA.Image")));
+            this.pbZoneA.Location = new System.Drawing.Point(1123, 47);
+            this.pbZoneA.Name = "pbZoneA";
+            this.pbZoneA.Size = new System.Drawing.Size(198, 107);
+            this.pbZoneA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbZoneA.TabIndex = 3;
+            this.pbZoneA.TabStop = false;
             // 
-            // pictureBox13
+            // pbTrailerB
             // 
-            this.pictureBox13.Image = global::AirportLuggage_PoC.Properties.Resources.trailer;
-            this.pictureBox13.Location = new System.Drawing.Point(814, 178);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(65, 50);
-            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox13.TabIndex = 36;
-            this.pictureBox13.TabStop = false;
+            this.pbTrailerB.Image = global::AirportLuggage_PoC.Properties.Resources.trailer;
+            this.pbTrailerB.Location = new System.Drawing.Point(814, 206);
+            this.pbTrailerB.Name = "pbTrailerB";
+            this.pbTrailerB.Size = new System.Drawing.Size(65, 50);
+            this.pbTrailerB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbTrailerB.TabIndex = 36;
+            this.pbTrailerB.TabStop = false;
             // 
-            // pictureBox10
+            // pbTrailerC
             // 
-            this.pictureBox10.Image = global::AirportLuggage_PoC.Properties.Resources.trailer;
-            this.pictureBox10.Location = new System.Drawing.Point(814, 322);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(65, 50);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox10.TabIndex = 37;
-            this.pictureBox10.TabStop = false;
+            this.pbTrailerC.Image = global::AirportLuggage_PoC.Properties.Resources.trailer;
+            this.pbTrailerC.Location = new System.Drawing.Point(814, 341);
+            this.pbTrailerC.Name = "pbTrailerC";
+            this.pbTrailerC.Size = new System.Drawing.Size(65, 50);
+            this.pbTrailerC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbTrailerC.TabIndex = 37;
+            this.pbTrailerC.TabStop = false;
             // 
             // progressBar4
             // 
-            this.progressBar4.Location = new System.Drawing.Point(885, 78);
+            this.progressBar4.Location = new System.Drawing.Point(813, 107);
             this.progressBar4.MarqueeAnimationSpeed = 750;
             this.progressBar4.Maximum = 150;
             this.progressBar4.Name = "progressBar4";
-            this.progressBar4.Size = new System.Drawing.Size(229, 14);
+            this.progressBar4.Size = new System.Drawing.Size(301, 14);
             this.progressBar4.Step = 1;
             this.progressBar4.TabIndex = 38;
             // 
             // progressBar5
             // 
-            this.progressBar5.Location = new System.Drawing.Point(885, 202);
+            this.progressBar5.Location = new System.Drawing.Point(814, 230);
             this.progressBar5.MarqueeAnimationSpeed = 750;
             this.progressBar5.Maximum = 150;
             this.progressBar5.Name = "progressBar5";
-            this.progressBar5.Size = new System.Drawing.Size(229, 14);
+            this.progressBar5.Size = new System.Drawing.Size(300, 14);
             this.progressBar5.Step = 1;
             this.progressBar5.TabIndex = 39;
             // 
             // progressBar6
             // 
-            this.progressBar6.Location = new System.Drawing.Point(885, 345);
+            this.progressBar6.Location = new System.Drawing.Point(813, 364);
             this.progressBar6.MarqueeAnimationSpeed = 750;
             this.progressBar6.Maximum = 150;
             this.progressBar6.Name = "progressBar6";
-            this.progressBar6.Size = new System.Drawing.Size(229, 14);
+            this.progressBar6.Size = new System.Drawing.Size(301, 14);
             this.progressBar6.Step = 1;
             this.progressBar6.TabIndex = 40;
             // 
@@ -407,10 +410,10 @@
             this.panel1.Controls.Add(this.lbDropoff);
             this.panel1.Controls.Add(this.lbStatus);
             this.panel1.Controls.Add(this.lbLoadToFlight);
-            this.panel1.Location = new System.Drawing.Point(9, 406);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Location = new System.Drawing.Point(9, 413);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1130, 286);
+            this.panel1.Size = new System.Drawing.Size(1116, 279);
             this.panel1.TabIndex = 41;
             // 
             // label8
@@ -439,7 +442,7 @@
             this.panel2.Controls.Add(this.btnReset);
             this.panel2.Controls.Add(this.btnStatistics);
             this.panel2.Location = new System.Drawing.Point(9, 70);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(239, 308);
             this.panel2.TabIndex = 42;
@@ -508,7 +511,7 @@
             this.panel3.Controls.Add(this.label9);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 723);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1395, 41);
             this.panel3.TabIndex = 44;
@@ -524,22 +527,56 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "SIM Simulation Company 2020";
             // 
+            // lbLoadedA
+            // 
+            this.lbLoadedA.AutoSize = true;
+            this.lbLoadedA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLoadedA.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbLoadedA.Location = new System.Drawing.Point(782, 79);
+            this.lbLoadedA.Name = "lbLoadedA";
+            this.lbLoadedA.Size = new System.Drawing.Size(21, 13);
+            this.lbLoadedA.TabIndex = 45;
+            this.lbLoadedA.Text = "+0";
+            // 
+            // lbLoadedB
+            // 
+            this.lbLoadedB.AutoSize = true;
+            this.lbLoadedB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLoadedB.Location = new System.Drawing.Point(782, 195);
+            this.lbLoadedB.Name = "lbLoadedB";
+            this.lbLoadedB.Size = new System.Drawing.Size(21, 13);
+            this.lbLoadedB.TabIndex = 46;
+            this.lbLoadedB.Text = "+0";
+            // 
+            // lbLoadedC
+            // 
+            this.lbLoadedC.AutoSize = true;
+            this.lbLoadedC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLoadedC.Location = new System.Drawing.Point(782, 332);
+            this.lbLoadedC.Name = "lbLoadedC";
+            this.lbLoadedC.Size = new System.Drawing.Size(21, 13);
+            this.lbLoadedC.TabIndex = 47;
+            this.lbLoadedC.Text = "+0";
+            // 
             // SimulationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1395, 764);
+            this.Controls.Add(this.lbLoadedC);
+            this.Controls.Add(this.lbLoadedB);
+            this.Controls.Add(this.lbLoadedA);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pbTrailerC);
+            this.Controls.Add(this.pbTrailerB);
+            this.Controls.Add(this.pbTrailerA);
             this.Controls.Add(this.progressBar6);
             this.Controls.Add(this.progressBar5);
             this.Controls.Add(this.progressBar4);
-            this.Controls.Add(this.pictureBox10);
-            this.Controls.Add(this.pictureBox13);
-            this.Controls.Add(this.pictureBox12);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -552,9 +589,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbZoneC);
+            this.Controls.Add(this.pbZoneB);
+            this.Controls.Add(this.pbZoneA);
             this.Controls.Add(this.progressBar3);
             this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.progressBar1);
@@ -563,18 +600,18 @@
             this.Name = "SimulationForm";
             this.Text = "Eindhoven Aiport Luggages Transport Simulation";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTrailerA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZoneC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZoneB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZoneA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTrailerB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTrailerC)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -592,9 +629,9 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.ProgressBar progressBar3;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pbZoneA;
+        private System.Windows.Forms.PictureBox pbZoneB;
+        private System.Windows.Forms.PictureBox pbZoneC;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -616,9 +653,9 @@
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.PictureBox pictureBox12;
-        private System.Windows.Forms.PictureBox pictureBox13;
-        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pbTrailerA;
+        private System.Windows.Forms.PictureBox pbTrailerB;
+        private System.Windows.Forms.PictureBox pbTrailerC;
         private System.Windows.Forms.ProgressBar progressBar4;
         private System.Windows.Forms.ProgressBar progressBar5;
         private System.Windows.Forms.ProgressBar progressBar6;
@@ -635,6 +672,9 @@
         private System.Windows.Forms.Button btnConfig;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lbLoadedA;
+        private System.Windows.Forms.Label lbLoadedB;
+        private System.Windows.Forms.Label lbLoadedC;
     }
 }
 

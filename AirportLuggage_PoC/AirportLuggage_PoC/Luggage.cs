@@ -44,7 +44,7 @@ namespace AirportLuggage_PoC
             else
             {
                 position.Offset(5, 0);
-                status = Status.Loaded;
+                status = Status.LoadedInTrailer;
             }
         }
 
@@ -62,7 +62,7 @@ namespace AirportLuggage_PoC
             else
             {
                 position.Offset(5, 0);
-                status = Status.Loaded;
+                status = Status.LoadedInTrailer;
             }
         }
 
@@ -81,8 +81,12 @@ namespace AirportLuggage_PoC
         {
             if (this.status == Status.WaitingForLoading)
                 return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} departure from {Flight.Zone}";
-            else
+            else if (this.status == Status.LoadedInTrailer)
+                return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} loaded to trailer";
+            else if (this.status == Status.LoadedInAirplane)
                 return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} arrived at {Flight.Zone}";
+            else
+                return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} is on transport belt";
         }
 
         //public string displayInfo()
@@ -100,6 +104,7 @@ namespace AirportLuggage_PoC
 {
     WaitingForLoading,
     InTransfer,
-    Loaded,
+    LoadedInTrailer,
+    LoadedInAirplane,
 }
 

@@ -13,6 +13,7 @@ namespace AirportLuggage_PoC
         private List<UpcomingFlight> flights;
         private List<Passenger> passengers;
         private List<AirportBelt> belts;
+        private List<Trailer> trailers;
 
         public int totalLuggageBeltA { get; set; }
         public int totalLuggageBeltB { get; set; }
@@ -24,6 +25,7 @@ namespace AirportLuggage_PoC
             flights = new List<UpcomingFlight>();
             passengers = new List<Passenger>();
             belts = new List<AirportBelt>();
+            trailers = new List<Trailer>();
             totalLuggageBeltA = 10;
             totalLuggageBeltB = 61;
             totalLuggageBeltC = 94;
@@ -62,6 +64,14 @@ namespace AirportLuggage_PoC
             luggages.Add(new Luggage(2008, 22.4, 10.5, 1008));
             luggages.Add(new Luggage(2009, 22.4, 10.5, 1009));
             luggages.Add(new Luggage(2010, 22.4, 10.5, 1010));
+
+            trailers.Add(new Trailer("T100A", 4));
+            trailers.Add(new Trailer("T100B", 3));
+            trailers.Add(new Trailer("T100C", 3));
+
+            trailers[0].Belt = belts[0];
+            trailers[1].Belt = belts[1];
+            trailers[2].Belt = belts[2];
         }
 
         private void SetFlight()
@@ -98,6 +108,40 @@ namespace AirportLuggage_PoC
 
             }
             return null;
+        }
+
+        internal void AddLoadedLuggageToTrailer(Luggage luggage)
+        {
+            foreach (var trailer in trailers)
+            {
+                if(trailer.Belt.Id == luggage.Belt.Id)
+                {
+                    trailer.CurrentLoad++;
+                    trailer.luggages.Add(luggage);
+
+                    //check if trailer is full, if yes, move trailer to airplan
+                    if (trailer.CurrentLoad == trailer.Capacity)
+                    {
+                        trailer.IsTransporting = true;
+                    }
+                }
+            }
+        }
+
+        internal void MoveTrailers(int maxRight)
+        {
+            foreach (var trailer in trailers)
+            {
+                if(trailer.IsTransporting && trailer.position.X < maxRight)
+                {
+                    trailer.Transport();
+                }
+            }
+        }
+
+        internal List<Trailer> GetTrailers()
+        {
+            return this.trailers;
         }
 
         public void SetBelt(Luggage luggage)
@@ -235,7 +279,7 @@ namespace AirportLuggage_PoC
             var result = new List<Luggage>();
             foreach (var luggage in luggages)
             {
-                if (luggage.status == Status.Loaded)
+                if (luggage.status == Status.LoadedInTrailer)
                     result.Add(luggage);
             }
             return result;
