@@ -15,8 +15,9 @@ namespace AirportLuggage_PoC
         private LuggageManagement lm;
         private List<PictureBox> pbs;
         private int currentLuggage;
+        private Simulation simulation;
 
-        public SimulationForm()
+        public SimulationForm(string filePath, int nrTrailers, int nrWagons, int nrEmployees)
         {
             InitializeComponent();
             lm = new LuggageManagement();
@@ -25,6 +26,7 @@ namespace AirportLuggage_PoC
             UpdateLbUnloadedLuggages();
             btnPause.Enabled = false;
             pauzeToolStripMenuItem.Enabled = false;
+            simulation = new Simulation(filePath,nrTrailers,nrWagons,nrEmployees);
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -275,6 +277,11 @@ namespace AirportLuggage_PoC
             btnStart.Enabled = true;
             startToolStripMenuItem.Enabled = true;
             pauzeToolStripMenuItem.Enabled = false;
+        }
+
+        private void SimulationForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
     

@@ -10,12 +10,8 @@ namespace AirportLuggage_PoC
     class Simulation
     {
         List<Plane> planes = new List<Plane>();
-        List<AirportBelt> belts = new List<AirportBelt>(){new AirportBelt(){ Length = 150, Id ="A",Available=true},
-                                                        new AirportBelt() { Length=170, Id="B",Available=true},
-                                                        new AirportBelt() { Length=225,Id="C",Available = true} };
-        List<Zone> zones = new List<Zone>() { new Zone() {Id="A"},
-                                             new Zone() {Id="B"},
-                                             new Zone() {Id="C"} };
+        List<AirportBelt> belts;
+        List<Zone> zones;
         int nrAvailableEmployees;
         int nrAvailableTrailers;
         int nrAvailableWagons;
@@ -31,9 +27,32 @@ namespace AirportLuggage_PoC
         DateTime newTrailerAvailable;
         DateTime newWagonAvailable;
         DateTime newZoneAvailable;
-        //static string filePath = @"D:\procp\AirportLuggage_PoC\FlightsTest.txt";
-        //List<string> lines = File.ReadAllLines(filePath).ToList();
-            
+
+        public Simulation(string filePath,int nrTrailers, int nrWagons, int nrEmployees)
+        {
+            this.nrAvailableEmployees = nrEmployees;
+            this.nrAvailableTrailers = nrTrailers;
+            this.nrAvailableWagons = nrWagons;
+            belts=new List<AirportBelt>(){new AirportBelt(){ Length = 150, Id ="A",Available=true},
+                                                        new AirportBelt() { Length=170, Id="B",Available=true},
+                                                        new AirportBelt() { Length=225,Id="C",Available = true} };
+            zones= new List<Zone>() { new Zone() {Id="A"},
+                                             new Zone() {Id="B"},
+                                             new Zone() {Id="C"} };
+
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+            foreach (var line in lines)
+            {
+                string[] entries = line.Split(',');
+                Plane newPlane = new Plane();
+                newPlane.NrFlight = Convert.ToInt32(entries[0]);
+                newPlane.NrOfLuggages = Convert.ToInt32(entries[1]);
+                newPlane.FlightTime = Convert.ToDateTime(entries[2]);
+
+                planes.Add(newPlane);
+            }
+        }
+         
 
         public void FromCheckinToWagon()
         {

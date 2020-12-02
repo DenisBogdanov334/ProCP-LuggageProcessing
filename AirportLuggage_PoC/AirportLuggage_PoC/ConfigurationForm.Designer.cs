@@ -28,42 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnUpload = new System.Windows.Forms.Button();
             this.manualBox = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbEmployees = new System.Windows.Forms.TextBox();
+            this.tbWagons = new System.Windows.Forms.TextBox();
+            this.tbTrailer = new System.Windows.Forms.TextBox();
             this.rbManual = new System.Windows.Forms.RadioButton();
             this.rbAuto = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnDone = new System.Windows.Forms.Button();
             this.manualBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnUpload
             // 
-            this.button1.Location = new System.Drawing.Point(145, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(501, 52);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Upload flights schedule";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.btnUpload.Location = new System.Drawing.Point(145, 12);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(501, 52);
+            this.btnUpload.TabIndex = 0;
+            this.btnUpload.Text = "Upload flights schedule";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.Button1_Click);
             // 
             // manualBox
             // 
             this.manualBox.Controls.Add(this.label3);
             this.manualBox.Controls.Add(this.label2);
             this.manualBox.Controls.Add(this.label1);
-            this.manualBox.Controls.Add(this.textBox3);
-            this.manualBox.Controls.Add(this.textBox2);
-            this.manualBox.Controls.Add(this.textBox1);
+            this.manualBox.Controls.Add(this.tbEmployees);
+            this.manualBox.Controls.Add(this.tbWagons);
+            this.manualBox.Controls.Add(this.tbTrailer);
             this.manualBox.Location = new System.Drawing.Point(145, 81);
             this.manualBox.Name = "manualBox";
-            this.manualBox.Size = new System.Drawing.Size(501, 335);
+            this.manualBox.Size = new System.Drawing.Size(501, 284);
             this.manualBox.TabIndex = 1;
             this.manualBox.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 197);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(146, 17);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Number of employees";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(25, 104);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 17);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Number of wagons";
+            this.label2.Click += new System.EventHandler(this.Label2_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(121, 17);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Number of trailers";
+            this.label1.Click += new System.EventHandler(this.Label1_Click);
+            // 
+            // tbEmployees
+            // 
+            this.tbEmployees.Location = new System.Drawing.Point(28, 235);
+            this.tbEmployees.Name = "tbEmployees";
+            this.tbEmployees.Size = new System.Drawing.Size(100, 22);
+            this.tbEmployees.TabIndex = 2;
+            // 
+            // tbWagons
+            // 
+            this.tbWagons.Location = new System.Drawing.Point(28, 142);
+            this.tbWagons.Name = "tbWagons";
+            this.tbWagons.Size = new System.Drawing.Size(100, 22);
+            this.tbWagons.TabIndex = 1;
+            // 
+            // tbTrailer
+            // 
+            this.tbTrailer.Location = new System.Drawing.Point(28, 58);
+            this.tbTrailer.Name = "tbTrailer";
+            this.tbTrailer.Size = new System.Drawing.Size(100, 22);
+            this.tbTrailer.TabIndex = 0;
             // 
             // rbManual
             // 
@@ -87,65 +138,26 @@
             this.rbAuto.Text = "Auto";
             this.rbAuto.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // btnDone
             // 
-            this.textBox1.Location = new System.Drawing.Point(28, 58);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 0;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(28, 142);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 1;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(28, 235);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 22);
-            this.textBox3.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Number of trailers";
-            this.label1.Click += new System.EventHandler(this.Label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 104);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Number of wagons";
-            this.label2.Click += new System.EventHandler(this.Label2_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 197);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 17);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Number of employees";
+            this.btnDone.Location = new System.Drawing.Point(542, 400);
+            this.btnDone.Name = "btnDone";
+            this.btnDone.Size = new System.Drawing.Size(75, 23);
+            this.btnDone.TabIndex = 5;
+            this.btnDone.Text = "Done";
+            this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.BtnDone_Click);
             // 
             // ConfigurationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(675, 450);
+            this.Controls.Add(this.btnDone);
             this.Controls.Add(this.rbAuto);
             this.Controls.Add(this.rbManual);
             this.Controls.Add(this.manualBox);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnUpload);
             this.Name = "ConfigurationForm";
             this.Text = "ConfigurationForm";
             this.manualBox.ResumeLayout(false);
@@ -157,15 +169,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.GroupBox manualBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbEmployees;
+        private System.Windows.Forms.TextBox tbWagons;
+        private System.Windows.Forms.TextBox tbTrailer;
         private System.Windows.Forms.RadioButton rbManual;
         private System.Windows.Forms.RadioButton rbAuto;
+        private System.Windows.Forms.Button btnDone;
     }
 }

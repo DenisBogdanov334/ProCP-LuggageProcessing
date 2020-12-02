@@ -8,7 +8,7 @@ namespace AirportLuggage_PoC
 {
     class Plane
     {
-        public int  NrFlight { get; set; }
+        public int NrFlight { get; set; }
         public int NrOfLuggages { get; set; }
         public DateTime FlightTime { get; set; }
         public Zone Zone { get; set; }

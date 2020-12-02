@@ -9,12 +9,13 @@ namespace AirportLuggage_PoC
 {
     public class AirportBelt
     {
-        public string Id { get; private set; }
+        public string Id { get; set; }
         public int Length { get; set; }
         // public double supportedWeight { get; set; } this is not a problem since customer told us there is no limit.
         public int Speed { get; set; }
         public int CurrentLoad { get; set; }
         public int EmployeeId { get; set; }
+        public bool Available { get; set; }
 
         //Ling
         public Point startPos;
@@ -26,6 +27,10 @@ namespace AirportLuggage_PoC
             this.Speed = speed;
             this.CurrentLoad = 0;
             this.Id = id;
+        }
+
+        public AirportBelt()
+        {
         }
 
         //public bool AddLuggage(double luggageWeight)
