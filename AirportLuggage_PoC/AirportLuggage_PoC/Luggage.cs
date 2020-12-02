@@ -89,12 +89,12 @@ namespace AirportLuggage_PoC
                 return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} is on transport belt";
         }
 
-        //public string displayInfo()
-        //{
-        //    string s;
-        //    s = "Luggage no: " + this.id + ", Weight: " + weight + "kg";
-        //    return s;
-        //}
+        public string GetInfo()
+        {
+            string s;
+            s = "Luggage no: " + this.id;
+            return s;
+        }
 
     }
 }

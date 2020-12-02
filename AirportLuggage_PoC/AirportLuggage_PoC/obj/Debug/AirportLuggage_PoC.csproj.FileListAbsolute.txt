@@ -55,3 +55,15 @@ C:\Users\Edward\Documents\GitHub\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj
 C:\Users\Edward\Documents\GitHub\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csproj.CoreCompileInputs.cache
 C:\Users\Edward\Documents\GitHub\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.exe
 C:\Users\Edward\Documents\GitHub\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.pdb
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\bin\Debug\AirportLuggage_PoC.exe.config
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\bin\Debug\AirportLuggage_PoC.exe
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\bin\Debug\AirportLuggage_PoC.pdb
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csprojAssemblyReference.cache
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.SimulationForm.resources
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.Form1.resources
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.Properties.Resources.resources
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.StatisticsForm.resources
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csproj.GenerateResource.cache
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csproj.CoreCompileInputs.cache
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.exe
+C:\Users\bobod\Desktop\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.pdb

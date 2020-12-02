@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace AirportLuggage_PoC
         public List<Luggage> loadedL;
         public List<Luggage> unloadedL;
 
+        FileStream fs;
+        StreamWriter sw; 
         public StatisticsForm(LuggageManagement lm)
         {
             InitializeComponent();
@@ -54,11 +57,6 @@ namespace AirportLuggage_PoC
             lbEmpHoursWorked.Items.Add("6.5");
             lbEmpHoursWorked.Items.Add("9");
             lbEmpHoursWorked.Items.Add("9.5");
-
-            lbHourlySalary.Items.Add("€ 8.4");
-            lbHourlySalary.Items.Add("€ 8.7");
-            lbHourlySalary.Items.Add("€ 10.3");
-            lbHourlySalary.Items.Add("€ 13.0");
 
             DisplayFlightInfo(flights);
             DisplayAllLuggage(luggages);
@@ -133,6 +131,63 @@ namespace AirportLuggage_PoC
             DisplayUnloadedLuggage(l);
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+        
+            string title = "Airport Data Report " + string.Format("{0:yyyy-MM-dd HH-mm-ss}", DateTime.Now); // adds the date to the path
+            try
+            {
+                fs = new FileStream(title,
+                   FileMode.OpenOrCreate,
+                   FileAccess.Write);
+                sw = new StreamWriter(fs);
+            }
+
+            catch (IOException)
+            {
+                MessageBox.Show("There was an error while opening the file");
+            }
+
+            try
+            {
+                sw.WriteLine("Flights info: ");
+                foreach (UpcomingFlight f in flights)
+                {
+                    sw.WriteLine(f.GetInfo());
+                }
+                sw.WriteLine("--------------");
+                sw.WriteLine("Luggage info: ");
+
+                foreach (Luggage l in luggages)
+                {
+                    sw.WriteLine(l.GetInfo());
+                }
+                sw.WriteLine("--------------");
+                sw.WriteLine("Total amount of luggage: " + luggages.Count.ToString());
+                sw.WriteLine("Loaded luggage: " + loadedL.Count.ToString());
+                sw.WriteLine("Unloaded luggage: " + luggages.Count.ToString());
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("File has already been saved");
+            }
+
+            try
+            {
+                if (sw != null)
+                    sw.Close();
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("Error closing file");
+            }
+
+        }
+
+        private void StatisticsForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

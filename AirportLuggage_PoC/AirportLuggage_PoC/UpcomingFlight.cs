@@ -11,11 +11,16 @@ namespace AirportLuggage_PoC
         //Ling
         public string FlightNo { get; private set; } 
         public string Zone { get; set; }
-
+        
         public UpcomingFlight(string flight, string zone)
         {
             this.FlightNo = flight;
             this.Zone = zone;
+        }
+
+        public string GetInfo()
+        {
+            return this.FlightNo + " " + this.Zone;
         }
     }
 }

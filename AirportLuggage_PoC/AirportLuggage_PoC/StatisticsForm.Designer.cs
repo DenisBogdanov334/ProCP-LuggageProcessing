@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lbFlightinfo = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -39,8 +39,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lbHourlySalary = new System.Windows.Forms.ListBox();
             this.lbEmpHoursWorked = new System.Windows.Forms.ListBox();
             this.lbEmpName = new System.Windows.Forms.ListBox();
             this.lblLuggageLoaded = new System.Windows.Forms.Label();
@@ -104,6 +102,7 @@
             this.btnSave.TabIndex = 22;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label4
             // 
@@ -131,23 +130,6 @@
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 20;
             this.label6.Text = "Hours worked";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(344, 125);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 13);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "Hourly salary";
-            // 
-            // lbHourlySalary
-            // 
-            this.lbHourlySalary.FormattingEnabled = true;
-            this.lbHourlySalary.Location = new System.Drawing.Point(383, 141);
-            this.lbHourlySalary.Name = "lbHourlySalary";
-            this.lbHourlySalary.Size = new System.Drawing.Size(114, 147);
-            this.lbHourlySalary.TabIndex = 17;
             // 
             // lbEmpHoursWorked
             // 
@@ -245,16 +227,16 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(503, 18);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Belt ocupancy";
-            this.chart1.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Belt ocupancy";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(286, 270);
             this.chart1.TabIndex = 12;
             this.chart1.Text = "chart1";
@@ -269,8 +251,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.lbHourlySalary);
             this.Controls.Add(this.lbEmpHoursWorked);
             this.Controls.Add(this.lbEmpName);
             this.Controls.Add(this.lbEmpStation);
@@ -278,6 +258,7 @@
             this.Controls.Add(this.chart1);
             this.Name = "StatisticsForm";
             this.Text = "StatisticsForm";
+            this.Load += new System.EventHandler(this.StatisticsForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -298,8 +279,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ListBox lbHourlySalary;
         private System.Windows.Forms.ListBox lbEmpHoursWorked;
         private System.Windows.Forms.ListBox lbEmpName;
         private System.Windows.Forms.Label lblLuggageLoaded;
