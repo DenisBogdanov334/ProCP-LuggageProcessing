@@ -39,6 +39,8 @@
             this.rbManual = new System.Windows.Forms.RadioButton();
             this.rbAuto = new System.Windows.Forms.RadioButton();
             this.btnDone = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dtPick = new System.Windows.Forms.DateTimePicker();
             this.manualBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +56,8 @@
             // 
             // manualBox
             // 
+            this.manualBox.Controls.Add(this.dtPick);
+            this.manualBox.Controls.Add(this.label4);
             this.manualBox.Controls.Add(this.label3);
             this.manualBox.Controls.Add(this.label2);
             this.manualBox.Controls.Add(this.label1);
@@ -148,6 +152,27 @@
             this.btnDone.UseVisualStyleBackColor = true;
             this.btnDone.Click += new System.EventHandler(this.BtnDone_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(236, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 17);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Starting time";
+            this.label4.Click += new System.EventHandler(this.Label4_Click);
+            // 
+            // dtPick
+            // 
+            this.dtPick.CustomFormat = "HH:mm";
+            this.dtPick.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtPick.Location = new System.Drawing.Point(239, 56);
+            this.dtPick.Name = "dtPick";
+            this.dtPick.ShowUpDown = true;
+            this.dtPick.Size = new System.Drawing.Size(200, 22);
+            this.dtPick.TabIndex = 8;
+            this.dtPick.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
+            // 
             // ConfigurationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -180,5 +205,7 @@
         private System.Windows.Forms.RadioButton rbManual;
         private System.Windows.Forms.RadioButton rbAuto;
         private System.Windows.Forms.Button btnDone;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dtPick;
     }
 }

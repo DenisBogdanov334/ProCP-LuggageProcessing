@@ -59,15 +59,17 @@ namespace AirportLuggage_PoC
             int trailers=0;
             int wagons=0;
             int employees=0;
+            TimeSpan start = new TimeSpan(00, 00, 00);
             try
             {
-                if (tbTrailer != null)
+                if (!string.IsNullOrEmpty(tbTrailer.Text))
                 {
                     trailers = Convert.ToInt32(tbTrailer.Text);
                 }
                 else
                 {
                     MessageBox.Show("Please enter the number of trailers!");
+                    return;
                 }
             }
             catch (FormatException)
@@ -77,13 +79,14 @@ namespace AirportLuggage_PoC
             }
             try
             {
-                if (tbWagons != null)
+                if (!string.IsNullOrEmpty(tbWagons.Text))
                 {
                     wagons = Convert.ToInt32(tbWagons.Text);
                 }
                 else
                 {
                     MessageBox.Show("Please enter the number of wagons!");
+                    return;
                 }
             }
             catch (FormatException)
@@ -93,13 +96,14 @@ namespace AirportLuggage_PoC
             }
             try
             {
-                if (tbEmployees != null)
+                if (!string.IsNullOrEmpty(tbEmployees.Text))
                 {
                     employees = Convert.ToInt32(tbEmployees.Text);
                 }
                 else
                 {
                     MessageBox.Show("Please enter the number of employees!");
+                    return;
                 }
             }
             catch (FormatException)
@@ -108,9 +112,20 @@ namespace AirportLuggage_PoC
                 return;
             }
 
-
-            SimulationForm simF = new SimulationForm(filePath, trailers, wagons, employees);
+            TimeSpan ts = TimeSpan.Parse(dtPick.Text);
+            start += ts;
+            SimulationForm simF = new SimulationForm(filePath, trailers, wagons, employees,start);
             simF.Show();
+        }
+
+        private void Label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

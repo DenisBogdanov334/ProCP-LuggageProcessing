@@ -67,3 +67,4 @@ D:\procp\AirportLuggage_PoC\AirportLuggage_PoC\bin\Debug\AirportLuggage_PoC.exe
 D:\procp\AirportLuggage_PoC\AirportLuggage_PoC\bin\Debug\AirportLuggage_PoC.pdb
 D:\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.exe
 D:\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.pdb
+D:\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csprojAssemblyReference.cache
