@@ -107,6 +107,8 @@ namespace AirportLuggage_PoC
                             pb.Location = luggage.position;
                             if (luggage.position.X > 0 && luggage.status != Status.LoadedInTrailer && luggage.status != Status.LoadedInAirplane)
                                 pb.Visible = true;
+                            // might be here
+                            //create a statement that 
                             else if (luggage.status == Status.LoadedInTrailer)
                             {
                                 pb.Visible = false;
@@ -133,7 +135,7 @@ namespace AirportLuggage_PoC
                             if (trailer.position.X >= pbZoneA.Location.X && trailer.IsTransporting)
                             {
                                 trailer.IsTransporting = false;
-                                this.lbLoadToFlight.Items.Add($"Trailer {trailer.Id} has arrived at departure zone!");
+                                this.lbLoadToFlight.Items.Add($"Trailer {trailer.Id} has arrived at the departure zone!");
                                 foreach (var l in trailer.luggages)
                                 {
                                     if (l.status != Status.LoadedInAirplane)
@@ -275,6 +277,11 @@ namespace AirportLuggage_PoC
             btnStart.Enabled = true;
             startToolStripMenuItem.Enabled = true;
             pauzeToolStripMenuItem.Enabled = false;
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
     

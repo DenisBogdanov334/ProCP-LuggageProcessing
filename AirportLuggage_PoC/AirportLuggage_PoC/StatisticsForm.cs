@@ -39,9 +39,9 @@ namespace AirportLuggage_PoC
             chart1.Series["Belt ocupancy"].Points.AddXY("Belt B", lm.totalLuggageBeltB);
             chart1.Series["Belt ocupancy"].Points.AddXY("Belt C", lm.totalLuggageBeltC);
 
-            lblTotalLuggage.Text = "1329";
-            lblLuggageLoaded.Text = "22.4";
-            lblTotalLuggagewaiting.Text = "1.4";
+            lblTotalLuggage.Text = luggages.Count.ToString();
+            lblTotalLuggagewaiting.Text = (luggages.Count - loadedL.Count - unloadedL.Count).ToString();
+            lblLuggageLoaded.Text = loadedL.Count.ToString();
 
             lbEmpName.Items.Add("John Michael");
             lbEmpName.Items.Add("Joe Jonas");

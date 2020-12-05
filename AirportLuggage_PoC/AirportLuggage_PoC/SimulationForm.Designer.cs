@@ -468,41 +468,41 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1395, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1395, 31);
             this.menuStrip1.TabIndex = 43;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(57, 27);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
             // pauzeToolStripMenuItem
             // 
             this.pauzeToolStripMenuItem.Name = "pauzeToolStripMenuItem";
-            this.pauzeToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.pauzeToolStripMenuItem.Size = new System.Drawing.Size(66, 27);
             this.pauzeToolStripMenuItem.Text = "Pause";
             this.pauzeToolStripMenuItem.Click += new System.EventHandler(this.pauzeToolStripMenuItem_Click);
             // 
             // resetToolStripMenuItem
             // 
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(63, 27);
             this.resetToolStripMenuItem.Text = "Reset";
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(56, 27);
             this.stopToolStripMenuItem.Text = "Stop";
             // 
             // configureToolStripMenuItem
             // 
             this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
-            this.configureToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(97, 27);
             this.configureToolStripMenuItem.Text = "Configure";
             // 
             // panel3
@@ -515,6 +515,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1395, 41);
             this.panel3.TabIndex = 44;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // label9
             // 
