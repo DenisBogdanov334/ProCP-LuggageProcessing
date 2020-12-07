@@ -106,7 +106,7 @@ namespace AirportLuggage_PoC
                     l.Belt = p.Belt;
                     if (l.Belt != null)
                     {
-                        await Task.Delay(1000);
+                        await Task.Delay(1500);
                         l.Transport();
                     }
                 }
