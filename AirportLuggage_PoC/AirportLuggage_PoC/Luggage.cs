@@ -38,6 +38,11 @@ namespace AirportLuggage_PoC
             this.position = new Point(0, 0);
         }
 
+        public Luggage()
+        {
+            this.status = Status.WaitingForLoading;
+            this.position = new Point(0, 0);
+        }
         internal void Transport(AirportBelt belt)
         {
             if (position.X < belt.startPos.X)

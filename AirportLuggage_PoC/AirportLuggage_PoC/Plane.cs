@@ -24,7 +24,7 @@ namespace AirportLuggage_PoC
             luggages = new List<Luggage>();
             for (int i = 0; i < 4; i++)
             {
-                luggages.Add(new Luggage(i));
+                luggages.Add(new Luggage());
             }
         }
         public List<Luggage> GetLuggages()
