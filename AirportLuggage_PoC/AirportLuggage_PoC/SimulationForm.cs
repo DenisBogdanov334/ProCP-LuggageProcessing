@@ -14,11 +14,10 @@ namespace AirportLuggage_PoC
     {
 
         private List<PictureBox> pbs;
-        private int currentLuggage;
         private Simulation simulation;
         private System.Windows.Forms.Timer currentTimeTimer = null;
         private DateTime currentTime;
-       
+        bool flag = true;
 
         public SimulationForm(string filePath, int nrTrailers, int nrWagons, int nrEmployees,List<Plane> planes, DateTime start)
         {
@@ -58,10 +57,8 @@ namespace AirportLuggage_PoC
         }
         private void startButton_Click(object sender, EventArgs e)
         {
-            //simulation.FromCheckinToWagon(GetCurrentTime());
+            
             StartSim();
-            //timerSetBelt.Start();
-            //FromCheckinToWagon();
             btnStart.Enabled = !btnStart.Enabled;
             btnPause.Enabled = !btnPause.Enabled;
             startToolStripMenuItem.Enabled = !startToolStripMenuItem.Enabled;
@@ -71,14 +68,14 @@ namespace AirportLuggage_PoC
 
         private async void StartSim()
         {
+            
             foreach (var p in simulation.GetPlanes())
             {
                 bool flag = true;
-                while (p.FlightTime.ToString("HH:mm") != GetCurrentTime())
+                while (p.FlightTime.AddHours(-2).ToString("HH:mm") != GetCurrentTime())
                 {
                     if (flag)
                     {
-                        lbDropoff.Items.Add("Sunt in while");
                         flag = false;
                     }
                     await Task.Delay(1);
@@ -87,11 +84,16 @@ namespace AirportLuggage_PoC
                 simulation.AssignBelt(p);
                 simulation.AssignTrailer(p);
                 simulation.AssignEmployees(p);
-                lbDropoff.Items.Add($"Zone {p.Zone.Id} and band {p.Belt.Id} and trailer {p.Trailer.Id} and {p.NeededEmployees} employees");
+                lbDropoff.Items.Add($"Flight with number {p.NrFlight} will depart from zone {p.Zone.Id}");
+                lbDropoff.Items.Add($"Luggages from band {p.Belt.Id}");
+                lbDropoff.Items.Add($"Trailer with id {p.Trailer.Id}");
+                lbDropoff.Items.Add($"Needed employees: {p.NeededEmployees}");
                 timerMoveLuggages.Start();
+                //timerSetBelt.Start();
                 simulation.TransferToTrailer(p,GetCurrentTime());
                 FinishLoadingToTrailer(p);
             }
+            
         }
 
         public async void FinishLoadingToTrailer(Plane p)
@@ -101,18 +103,19 @@ namespace AirportLuggage_PoC
             {
                 if (flag)
                 {
-                    lbDropoff.Items.Add("Astept sa se termine");
+                    
                     flag = false;
                 }
                 await Task.Delay(1);
             }
-            lbLoadToFlight.Items.Add("S-a terminat");
             p.Belt.Available = true;
+            lbStatus.Items.Add($"All luggages from flight {p.NrFlight} have been loaded into trailer!");
+              
         }
         private void pauzeButton_Click(object sender, EventArgs e)
         {
             timerMoveLuggages.Stop();
-            //timerSetBelt.Stop();
+            timerSetBelt.Stop();
             btnStart.Enabled = !btnStart.Enabled;
             btnPause.Enabled = !btnPause.Enabled;
             startToolStripMenuItem.Enabled = !startToolStripMenuItem.Enabled;
@@ -162,10 +165,12 @@ namespace AirportLuggage_PoC
                     this.Controls.Add(pb);
                     if (luggage.position.X == 0)
                         pb.Visible = false;
+                    luggage.Belt = plane.Belt;
                 }
             }
         }
 
+      
         private void ReDrawSimulation()
         {
             foreach (var control in this.Controls)
@@ -177,29 +182,29 @@ namespace AirportLuggage_PoC
                     {
                         if (pb.Tag is Luggage luggage)
                         {
-                            pb.Location = luggage.position;
-                            if (luggage.position.X > 0 && luggage.status != Status.LoadedInTrailer && luggage.status != Status.LoadedInAirplane)
-                                pb.Visible = true;
-                            else if (luggage.status == Status.LoadedInTrailer)
+                            foreach (var p in simulation.GetPlanes())
                             {
-                                pb.Visible = false;
-                                lbStatus.Items.Add(pb.Tag);
-                                this.Controls.Remove(pb);
-                                this.pbs.Remove(pb);
-                                foreach (var p in simulation.GetPlanes())
-                                {   
-                                    if (GetCurrentTime()==p.FlightTime.AddHours(+1).ToString("HH:mm"))
+                                
+                                if (GetCurrentTime() != p.EndLoadingTime)
                                     {
-                                        this.lbDropoff.Items.Add("All luggages have been sent to belt!");
-                                        this.lbStatus.Items.Add("All luggages have been transported to trailer!");
+                                        pb.Location = luggage.position;
+                                        if (luggage.position.X > 0 && luggage.status != Status.LoadedInTrailer && luggage.status != Status.LoadedInAirplane)
+                                            pb.Visible = true;
+                                        else if (luggage.status == Status.LoadedInTrailer)
+                                        {
+                                            pb.Visible = false;
+                                            luggage.position = p.Belt.startPos;
+                                        }
+                                    }
+                                    else if(luggage.Belt==p.Belt)
+                                    {
+                                        pb.Visible = false;
+                                        this.Controls.Remove(pb);
+                                        this.pbs.Remove(pb);
                                     }
                                 }
-                                //update number of loaded luggages for each trailor
-                                //lm.AddLoadedLuggageToTrailer(luggage);
-                                //UpdateNrOfLoadedLuggages(luggage);
-                            }
+                            
                         }
-
                         else if (pb.Tag is Trailer trailer) // otherwise it is a trailer
                         {
                             pb.Location = trailer.position;
@@ -227,6 +232,7 @@ namespace AirportLuggage_PoC
             this.Invalidate();
         }
 
+       
         //private void UpdateNrOfLoadedLuggages(Luggage luggage)
         //{
         //    switch (luggage.Belt.Id)
@@ -267,7 +273,7 @@ namespace AirportLuggage_PoC
         private void resetButton_Click(object sender, EventArgs e)
         {
             timerMoveLuggages.Stop();
-            //timerSetBelt.Stop();
+            timerSetBelt.Stop();
             //this.lm = new LuggageManagement();
             clearLuggage_pbs();
             //clearNrLoadedLuggages_lbs();
@@ -275,7 +281,6 @@ namespace AirportLuggage_PoC
             //UpdateLbLoadedLuggaes();
             lbLoadToFlight.Items.Clear();
             DrawSimulation();
-            currentLuggage = 0;
             btnPause.Enabled = false;
             btnStart.Enabled = true;
             startToolStripMenuItem.Enabled = true;
@@ -299,17 +304,19 @@ namespace AirportLuggage_PoC
             this.Invalidate();
         }
 
+        
+
         private void timerMoveLuggages_Tick(object sender, EventArgs e)
         {
-
+            
             simulation.MoveAllLuggage();
-            simulation.MoveTrailers(pbZoneA.Location.X);
+            //simulation.MoveTrailers(pbZoneA.Location.X);
             ReDrawSimulation();
         }
 
         private void timerSetBelt_Tick(object sender, EventArgs e)
         {
-            //foreach (var p in planes)
+            //foreach (var p in simulation.GetPlanes())
             //{
             //    if (currentLuggage < p.GetLuggages().Count)
             //    {
@@ -322,7 +329,7 @@ namespace AirportLuggage_PoC
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timerMoveLuggages.Start();
-            //timerSetBelt.Start();
+            timerSetBelt.Start();
             btnStart.Enabled = !btnStart.Enabled;
             btnPause.Enabled = !btnPause.Enabled;
             startToolStripMenuItem.Enabled = !startToolStripMenuItem.Enabled;
@@ -332,7 +339,7 @@ namespace AirportLuggage_PoC
         private void pauzeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timerMoveLuggages.Stop();
-            //timerSetBelt.Stop();
+            timerSetBelt.Stop();
             btnStart.Enabled = !btnStart.Enabled;
             btnPause.Enabled = !btnPause.Enabled;
             startToolStripMenuItem.Enabled = !startToolStripMenuItem.Enabled;
@@ -342,13 +349,13 @@ namespace AirportLuggage_PoC
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timerMoveLuggages.Stop();
-            //timerSetBelt.Stop();
+            timerSetBelt.Stop();
             //this.lm = new LuggageManagement();
             clearLuggage_pbs();
             //UpdateLbUnloadedLuggages();
             //UpdateLbLoadedLuggaes();
             DrawSimulation();
-            currentLuggage = 0;
+            //currentLuggage = 0;
             btnPause.Enabled = false;
             btnStart.Enabled = true;
             startToolStripMenuItem.Enabled = true;
@@ -359,191 +366,6 @@ namespace AirportLuggage_PoC
         {
 
         }
-        //public async void FromCheckinToWagon()
-        //{
-
-        //    foreach (Plane plane in planes)
-        //    {
-        //        int index = planes.FindIndex(a => a.NrFlight == plane.NrFlight);
-        //        var currentPlane = plane;
-        //        var nextPlane = new Plane();
-        //        if (index < planes.Count - 1)
-        //        {
-        //            nextPlane = planes[index + 1];
-        //        }
-        //        else
-        //        {
-        //            nextPlane = null;
-        //        }
-        //        DateTime startTime = plane.FlightTime.AddHours(-2);
-        //        DateTime endTime = plane.FlightTime.AddMinutes(-15);
-        //        DateTime startLoading = startTime;
-
-        //        while (startTime.ToString("HH:mm") != GetCurrentTime())
-        //        {
-        //            await Task.Delay(1);
-        //        }
-        //        foreach (Zone zone in zones)
-        //        {
-        //            bool flag = true;
-        //            while (zones.All(Zones => Zones.Available.Equals(false)))
-        //            {
-        //                if (flag)
-        //                {
-        //                    lbLoadToFlight.Items.Add($"Zones not available!");
-        //                    flag = false;
-        //                }
-
-        //            }
-        //            if (zone.Available == true)
-        //            {
-        //                zone.Available = false;
-        //                plane.Zone = zone;
-        //                string zn = $"Airplane {plane.NrFlight} arrived at zone {zone.Id}";
-        //                lbLoadToFlight.Items.Add(zn);
-        //                break;
-        //            }
-        //        }
-
-        //        foreach (AirportBelt band in belts)
-        //        {
-        //            bool flag = true;
-        //            while (belts.All(AirportBelt => AirportBelt.Available.Equals(false)))
-        //            {
-        //                if (flag)
-        //                {
-        //                    lbLoadToFlight.Items.Add($"Belt not available!");
-        //                    flag = false;
-        //                }
-        //            }
-        //            if (band.Available == true)
-        //            {
-        //                band.Available = false;
-        //                plane.Belt = band;
-        //                string bt = $"Airplane {plane.NrFlight} got belt {band.Id}";
-        //                lbLoadToFlight.Items.Add(bt);
-        //                break;
-        //            }
-        //        }
-        //        bool flg = true;
-        //        while (simulation.NrAvailableEmployees == 0)
-        //        {
-        //            if (flg)
-        //            {
-        //                lbLoadToFlight.Items.Add($"No employees available!");
-        //                flg = false;
-        //            }
-        //        }
-        //        if (simulation.NrAvailableEmployees > 0)
-        //        {
-        //            if (nextPlane != null)
-        //            {
-        //                if ((nextPlane.FlightTime - currentPlane.FlightTime).Minutes >= currentPlane.NrOfLuggages + 5)
-        //                {
-        //                    plane.NeededEmployees = 1;
-        //                    simulation.NrAvailableEmployees--;
-        //                    lbLoadToFlight.Items.Add($"1 employee distributed to flight {plane.NrFlight}");
-
-        //                }
-        //                else if ((nextPlane.FlightTime - currentPlane.FlightTime).Minutes < currentPlane.NrOfLuggages + 5)
-        //                {
-        //                    plane.NeededEmployees = 2;
-        //                    bool flag = true;
-        //                    while (simulation.NrAvailableEmployees < plane.NeededEmployees)
-        //                    {
-        //                        if (flag)
-        //                        {
-        //                            lbLoadToFlight.Items.Add($"{plane.NeededEmployees - simulation.NrAvailableEmployees} more employee(s) needed for flight {plane.NrFlight}");
-        //                            flag = false;
-        //                        }
-        //                    }
-                            
-        //                    lbLoadToFlight.Items.Add($"2 employees distributed to flight {plane.NrFlight}");
-        //                    simulation.NrAvailableEmployees -= plane.NeededEmployees;
-        //                }
-        //                else if ((nextPlane.FlightTime - currentPlane.FlightTime).Minutes < ((currentPlane.NrOfLuggages + 5) / 2))
-        //                {
-        //                    plane.NeededEmployees = 3;
-        //                    bool flag = true;
-        //                    while (simulation.NrAvailableEmployees < plane.NeededEmployees)
-        //                    {
-        //                        if (flag)
-        //                        {
-        //                            lbLoadToFlight.Items.Add($"{plane.NeededEmployees - simulation.NrAvailableEmployees} more employee(s) needed for flight {plane.NrFlight}");
-        //                            flag = false;
-        //                        }
-        //                    }
-        //                    lbLoadToFlight.Items.Add($"3 employees distributed to flight {plane.NrFlight}");
-        //                    simulation.NrAvailableEmployees -= plane.NeededEmployees;
-        //                }
-        //            }
-        //            else
-        //            {
-        //                if((endTime-startTime).Minutes > (currentPlane.NrOfLuggages + 5)){
-        //                    plane.NeededEmployees = 1;
-        //                    simulation.NrAvailableEmployees--;
-        //                    lbLoadToFlight.Items.Add($"1 employee distributed to flight {plane.NrFlight}");
-        //                }
-        //                else if ((endTime - startTime).Minutes < (currentPlane.NrOfLuggages + 5))
-        //                {
-        //                    plane.NeededEmployees = 2;
-        //                    bool flag = true;
-        //                    while (simulation.NrAvailableEmployees < plane.NeededEmployees)
-        //                    {
-        //                        if (flag)
-        //                        {
-        //                            lbLoadToFlight.Items.Add($"{plane.NeededEmployees - simulation.NrAvailableEmployees} more employee(s) needed for flight {plane.NrFlight}");
-        //                            flag = false;
-        //                        }
-        //                    }
-
-        //                    lbLoadToFlight.Items.Add($"2 employees distributed to flight {plane.NrFlight}");
-        //                    simulation.NrAvailableEmployees -= plane.NeededEmployees;
-        //                }
-        //                else if ((endTime - startTime).Minutes < ((currentPlane.NrOfLuggages + 5) / 2))
-        //                {
-        //                    plane.NeededEmployees = 3;
-        //                    bool flag = true;
-        //                    while (simulation.NrAvailableEmployees < plane.NeededEmployees)
-        //                    {
-        //                        if (flag)
-        //                        {
-        //                            lbLoadToFlight.Items.Add($"{plane.NeededEmployees - simulation.NrAvailableEmployees} more employee(s) needed for flight {plane.NrFlight}");
-        //                            flag = false;
-        //                        }
-        //                    }
-        //                    lbLoadToFlight.Items.Add($"3 employees distributed to flight {plane.NrFlight}");
-        //                    simulation.NrAvailableEmployees -= plane.NeededEmployees;
-        //                }
-        //            }
-        //        }
-        //        foreach (Trailer t in trailers)
-        //        {
-        //            bool flag = true;
-        //            while (trailers.All(Trailer => Trailer.Available.Equals(false)))
-        //            {
-        //                if (flag)
-        //                {
-        //                    lbLoadToFlight.Items.Add($"Trailers not available!");
-        //                    flag = false;
-        //                }
-        //            }
-        //            if (t.Available == true)
-        //            {
-        //                t.Available = false;
-        //                plane.Trailer=t;
-        //                string bt = $"Trailer {t.Id} got assigned to flight {plane.NrFlight}";
-        //                lbLoadToFlight.Items.Add(bt);
-        //                break;
-        //            }
-        //        }
-        //        TimeSpan s= TimeSpan.Parse(GetCurrentTime()) - TimeSpan.Parse(startTime.ToString("HH:mm"));
-        //        startLoading = startLoading.Add(s);
-        //        plane.StartLoadingTime = startLoading;
-
-        //    }
-            
-        //}
 
         private void Label4_Click(object sender, EventArgs e)
         {

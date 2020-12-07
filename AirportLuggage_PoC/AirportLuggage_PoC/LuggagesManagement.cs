@@ -146,20 +146,20 @@ namespace AirportLuggage_PoC
             return this.trailers;
         }
 
-        public void SetBelt(Luggage luggage)
-        {
-            if (luggage.Flight != null)
-            {
-                if (luggage.Flight.Zone.Id == "A")
-                    luggage.Belt = belts[0];
-                else if (luggage.Flight.Zone.Id == "B")
-                    luggage.Belt = belts[1];
-                else
-                    luggage.Belt = belts[2];
-            }
-            luggage.status = Status.InTransfer;
+        //public void SetBelt(Luggage luggage)
+        //{
+        //    if (luggage.Flight != null)
+        //    {
+        //        if (luggage.Flight.Zone.Id == "A")
+        //            luggage.Belt = belts[0];
+        //        else if (luggage.Flight.Zone.Id == "B")
+        //            luggage.Belt = belts[1];
+        //        else
+        //            luggage.Belt = belts[2];
+        //    }
+        //    luggage.status = Status.InTransfer;
             
-        }
+        //}
 
         //private AirportBelt SetBeltForLuggage(Luggage luggage, UpcomingFlight flight)
         //{

@@ -22,7 +22,7 @@ namespace AirportLuggage_PoC
         public void FillLuggageList()
         {
             luggages = new List<Luggage>();
-            for (int i = 0; i < NrOfLuggages; i++)
+            for (int i = 0; i < 4; i++)
             {
                 luggages.Add(new Luggage(i));
             }

@@ -121,11 +121,11 @@
             // 
             // progressBar3
             // 
-            this.progressBar3.Location = new System.Drawing.Point(348, 448);
+            this.progressBar3.Location = new System.Drawing.Point(401, 448);
             this.progressBar3.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar3.Maximum = 225;
             this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(680, 17);
+            this.progressBar3.Size = new System.Drawing.Size(627, 17);
             this.progressBar3.Step = 1;
             this.progressBar3.TabIndex = 2;
             // 
@@ -320,7 +320,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(348, 409);
+            this.pictureBox6.Location = new System.Drawing.Point(353, 428);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(40, 37);
