@@ -70,7 +70,7 @@ namespace AirportLuggage_PoC
             else
             {
                 position.Offset(5, 0);
-                //status = Status.LoadedInTrailer;
+                status = Status.LoadedInTrailer;
             }
         }
 

@@ -162,7 +162,6 @@ namespace AirportLuggage_PoC
                     this.Controls.Add(pb);
                     if (luggage.position.X == 0)
                         pb.Visible = false;
-                    lbDropoff.Items.Add(luggage.id);
                 }
             }
         }
