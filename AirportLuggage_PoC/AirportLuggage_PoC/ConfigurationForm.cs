@@ -63,9 +63,9 @@ namespace AirportLuggage_PoC
             DateTime start = new DateTime();
             try
             {
-                if (!string.IsNullOrEmpty(tbTrailer.Text))
+                if (!string.IsNullOrEmpty(cbTrailer.Text))
                 {
-                    trailers = Convert.ToInt32(tbTrailer.Text);
+                    trailers = Convert.ToInt32(cbTrailer.Text);
                 }
                 else
                 {
@@ -80,9 +80,9 @@ namespace AirportLuggage_PoC
             }
             try
             {
-                if (!string.IsNullOrEmpty(tbWagons.Text))
+                if (!string.IsNullOrEmpty(cbWagons.Text))
                 {
-                    wagons = Convert.ToInt32(tbWagons.Text);
+                    wagons = Convert.ToInt32(cbWagons.Text);
                 }
                 else
                 {

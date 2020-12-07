@@ -30,17 +30,17 @@
         {
             this.btnUpload = new System.Windows.Forms.Button();
             this.manualBox = new System.Windows.Forms.GroupBox();
+            this.dtPick = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbEmployees = new System.Windows.Forms.TextBox();
-            this.tbWagons = new System.Windows.Forms.TextBox();
-            this.tbTrailer = new System.Windows.Forms.TextBox();
             this.rbManual = new System.Windows.Forms.RadioButton();
             this.rbAuto = new System.Windows.Forms.RadioButton();
             this.btnDone = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtPick = new System.Windows.Forms.DateTimePicker();
+            this.cbTrailer = new System.Windows.Forms.ComboBox();
+            this.cbWagons = new System.Windows.Forms.ComboBox();
             this.manualBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,19 +56,40 @@
             // 
             // manualBox
             // 
+            this.manualBox.Controls.Add(this.cbWagons);
+            this.manualBox.Controls.Add(this.cbTrailer);
             this.manualBox.Controls.Add(this.dtPick);
             this.manualBox.Controls.Add(this.label4);
             this.manualBox.Controls.Add(this.label3);
             this.manualBox.Controls.Add(this.label2);
             this.manualBox.Controls.Add(this.label1);
             this.manualBox.Controls.Add(this.tbEmployees);
-            this.manualBox.Controls.Add(this.tbWagons);
-            this.manualBox.Controls.Add(this.tbTrailer);
             this.manualBox.Location = new System.Drawing.Point(145, 81);
             this.manualBox.Name = "manualBox";
             this.manualBox.Size = new System.Drawing.Size(501, 284);
             this.manualBox.TabIndex = 1;
             this.manualBox.TabStop = false;
+            // 
+            // dtPick
+            // 
+            this.dtPick.CustomFormat = "HH:mm";
+            this.dtPick.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtPick.Location = new System.Drawing.Point(239, 56);
+            this.dtPick.Name = "dtPick";
+            this.dtPick.ShowUpDown = true;
+            this.dtPick.Size = new System.Drawing.Size(200, 22);
+            this.dtPick.TabIndex = 8;
+            this.dtPick.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(236, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 17);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Starting time";
+            this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 
             // label3
             // 
@@ -106,20 +127,6 @@
             this.tbEmployees.Size = new System.Drawing.Size(100, 22);
             this.tbEmployees.TabIndex = 2;
             // 
-            // tbWagons
-            // 
-            this.tbWagons.Location = new System.Drawing.Point(28, 142);
-            this.tbWagons.Name = "tbWagons";
-            this.tbWagons.Size = new System.Drawing.Size(100, 22);
-            this.tbWagons.TabIndex = 1;
-            // 
-            // tbTrailer
-            // 
-            this.tbTrailer.Location = new System.Drawing.Point(28, 58);
-            this.tbTrailer.Name = "tbTrailer";
-            this.tbTrailer.Size = new System.Drawing.Size(100, 22);
-            this.tbTrailer.TabIndex = 0;
-            // 
             // rbManual
             // 
             this.rbManual.AutoSize = true;
@@ -152,26 +159,31 @@
             this.btnDone.UseVisualStyleBackColor = true;
             this.btnDone.Click += new System.EventHandler(this.BtnDone_Click);
             // 
-            // label4
+            // cbTrailer
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(236, 18);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 17);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Starting time";
-            this.label4.Click += new System.EventHandler(this.Label4_Click);
+            this.cbTrailer.FormattingEnabled = true;
+            this.cbTrailer.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.cbTrailer.Location = new System.Drawing.Point(28, 54);
+            this.cbTrailer.Name = "cbTrailer";
+            this.cbTrailer.Size = new System.Drawing.Size(121, 24);
+            this.cbTrailer.TabIndex = 9;
             // 
-            // dtPick
+            // cbWagons
             // 
-            this.dtPick.CustomFormat = "HH:mm";
-            this.dtPick.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtPick.Location = new System.Drawing.Point(239, 56);
-            this.dtPick.Name = "dtPick";
-            this.dtPick.ShowUpDown = true;
-            this.dtPick.Size = new System.Drawing.Size(200, 22);
-            this.dtPick.TabIndex = 8;
-            this.dtPick.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
+            this.cbWagons.FormattingEnabled = true;
+            this.cbWagons.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.cbWagons.Location = new System.Drawing.Point(28, 148);
+            this.cbWagons.Name = "cbWagons";
+            this.cbWagons.Size = new System.Drawing.Size(121, 24);
+            this.cbWagons.TabIndex = 10;
             // 
             // ConfigurationForm
             // 
@@ -200,12 +212,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbEmployees;
-        private System.Windows.Forms.TextBox tbWagons;
-        private System.Windows.Forms.TextBox tbTrailer;
         private System.Windows.Forms.RadioButton rbManual;
         private System.Windows.Forms.RadioButton rbAuto;
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtPick;
+        private System.Windows.Forms.ComboBox cbWagons;
+        private System.Windows.Forms.ComboBox cbTrailer;
     }
 }
