@@ -29,8 +29,12 @@ namespace AirportLuggage_PoC
             this.Id = id;
         }
 
-        public AirportBelt()
+        public AirportBelt(int lenght, int speed, string id)
         {
+            this.Length = lenght;
+            this.Available = true;
+            this.Speed = speed;
+            this.Id = id;
         }
 
         //public bool AddLuggage(double luggageWeight)

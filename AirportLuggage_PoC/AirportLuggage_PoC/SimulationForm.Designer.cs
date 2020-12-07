@@ -79,6 +79,7 @@
             this.lbLoadedA = new System.Windows.Forms.Label();
             this.lbLoadedB = new System.Windows.Forms.Label();
             this.lbLoadedC = new System.Windows.Forms.Label();
+            this.lbTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbTrailerA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -100,7 +101,7 @@
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(493, 132);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar1.MarqueeAnimationSpeed = 750;
             this.progressBar1.Maximum = 150;
             this.progressBar1.Name = "progressBar1";
@@ -111,7 +112,7 @@
             // progressBar2
             // 
             this.progressBar2.Location = new System.Drawing.Point(444, 283);
-            this.progressBar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar2.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar2.Maximum = 170;
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(584, 17);
@@ -121,7 +122,7 @@
             // progressBar3
             // 
             this.progressBar3.Location = new System.Drawing.Point(348, 448);
-            this.progressBar3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar3.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar3.Maximum = 225;
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(680, 17);
@@ -163,7 +164,7 @@
             this.lbDropoff.FormattingEnabled = true;
             this.lbDropoff.ItemHeight = 16;
             this.lbDropoff.Location = new System.Drawing.Point(20, 48);
-            this.lbDropoff.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbDropoff.Margin = new System.Windows.Forms.Padding(4);
             this.lbDropoff.Name = "lbDropoff";
             this.lbDropoff.Size = new System.Drawing.Size(489, 276);
             this.lbDropoff.TabIndex = 9;
@@ -171,12 +172,13 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 62);
+            this.label4.Location = new System.Drawing.Point(13, 88);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 17);
             this.label4.TabIndex = 10;
             this.label4.Text = "Control Panel";
+            this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 
             // label5
             // 
@@ -213,7 +215,7 @@
             this.lbStatus.FormattingEnabled = true;
             this.lbStatus.ItemHeight = 16;
             this.lbStatus.Location = new System.Drawing.Point(517, 48);
-            this.lbStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbStatus.Margin = new System.Windows.Forms.Padding(4);
             this.lbStatus.Name = "lbStatus";
             this.lbStatus.Size = new System.Drawing.Size(473, 276);
             this.lbStatus.TabIndex = 24;
@@ -230,7 +232,7 @@
             // btnStatistics
             // 
             this.btnStatistics.Location = new System.Drawing.Point(29, 241);
-            this.btnStatistics.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStatistics.Margin = new System.Windows.Forms.Padding(4);
             this.btnStatistics.Name = "btnStatistics";
             this.btnStatistics.Size = new System.Drawing.Size(257, 28);
             this.btnStatistics.TabIndex = 32;
@@ -241,7 +243,7 @@
             // btnReset
             // 
             this.btnReset.Location = new System.Drawing.Point(29, 170);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(4);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(257, 28);
             this.btnReset.TabIndex = 31;
@@ -252,7 +254,7 @@
             // btnPause
             // 
             this.btnPause.Location = new System.Drawing.Point(29, 98);
-            this.btnPause.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPause.Margin = new System.Windows.Forms.Padding(4);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(256, 28);
             this.btnPause.TabIndex = 30;
@@ -263,7 +265,7 @@
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(29, 28);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(253, 28);
             this.btnStart.TabIndex = 29;
@@ -275,7 +277,7 @@
             // 
             this.pbTrailerA.Image = global::AirportLuggage_PoC.Properties.Resources.trailer;
             this.pbTrailerA.Location = new System.Drawing.Point(1085, 107);
-            this.pbTrailerA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbTrailerA.Margin = new System.Windows.Forms.Padding(4);
             this.pbTrailerA.Name = "pbTrailerA";
             this.pbTrailerA.Size = new System.Drawing.Size(87, 62);
             this.pbTrailerA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -286,7 +288,7 @@
             // 
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
             this.pictureBox9.Location = new System.Drawing.Point(1036, 436);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(40, 37);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -297,7 +299,7 @@
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(1036, 268);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(40, 37);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -308,7 +310,7 @@
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(1036, 122);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(40, 37);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -319,7 +321,7 @@
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
             this.pictureBox6.Location = new System.Drawing.Point(348, 409);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(40, 37);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -330,7 +332,7 @@
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(392, 271);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(40, 37);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -341,7 +343,7 @@
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(445, 122);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(40, 37);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -352,7 +354,7 @@
             // 
             this.pbZoneC.Image = ((System.Drawing.Image)(resources.GetObject("pbZoneC.Image")));
             this.pbZoneC.Location = new System.Drawing.Point(1497, 366);
-            this.pbZoneC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbZoneC.Margin = new System.Windows.Forms.Padding(4);
             this.pbZoneC.Name = "pbZoneC";
             this.pbZoneC.Size = new System.Drawing.Size(264, 137);
             this.pbZoneC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -363,7 +365,7 @@
             // 
             this.pbZoneB.Image = ((System.Drawing.Image)(resources.GetObject("pbZoneB.Image")));
             this.pbZoneB.Location = new System.Drawing.Point(1497, 206);
-            this.pbZoneB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbZoneB.Margin = new System.Windows.Forms.Padding(4);
             this.pbZoneB.Name = "pbZoneB";
             this.pbZoneB.Size = new System.Drawing.Size(264, 132);
             this.pbZoneB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -374,7 +376,7 @@
             // 
             this.pbZoneA.Image = ((System.Drawing.Image)(resources.GetObject("pbZoneA.Image")));
             this.pbZoneA.Location = new System.Drawing.Point(1497, 58);
-            this.pbZoneA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbZoneA.Margin = new System.Windows.Forms.Padding(4);
             this.pbZoneA.Name = "pbZoneA";
             this.pbZoneA.Size = new System.Drawing.Size(264, 132);
             this.pbZoneA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -385,7 +387,7 @@
             // 
             this.pbTrailerB.Image = global::AirportLuggage_PoC.Properties.Resources.trailer;
             this.pbTrailerB.Location = new System.Drawing.Point(1085, 254);
-            this.pbTrailerB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbTrailerB.Margin = new System.Windows.Forms.Padding(4);
             this.pbTrailerB.Name = "pbTrailerB";
             this.pbTrailerB.Size = new System.Drawing.Size(87, 62);
             this.pbTrailerB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -396,7 +398,7 @@
             // 
             this.pbTrailerC.Image = global::AirportLuggage_PoC.Properties.Resources.trailer;
             this.pbTrailerC.Location = new System.Drawing.Point(1085, 420);
-            this.pbTrailerC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbTrailerC.Margin = new System.Windows.Forms.Padding(4);
             this.pbTrailerC.Name = "pbTrailerC";
             this.pbTrailerC.Size = new System.Drawing.Size(87, 62);
             this.pbTrailerC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -406,7 +408,7 @@
             // progressBar4
             // 
             this.progressBar4.Location = new System.Drawing.Point(1084, 132);
-            this.progressBar4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar4.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar4.MarqueeAnimationSpeed = 750;
             this.progressBar4.Maximum = 150;
             this.progressBar4.Name = "progressBar4";
@@ -417,7 +419,7 @@
             // progressBar5
             // 
             this.progressBar5.Location = new System.Drawing.Point(1085, 283);
-            this.progressBar5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar5.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar5.MarqueeAnimationSpeed = 750;
             this.progressBar5.Maximum = 150;
             this.progressBar5.Name = "progressBar5";
@@ -428,7 +430,7 @@
             // progressBar6
             // 
             this.progressBar6.Location = new System.Drawing.Point(1084, 448);
-            this.progressBar6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar6.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar6.MarqueeAnimationSpeed = 750;
             this.progressBar6.Maximum = 150;
             this.progressBar6.Name = "progressBar6";
@@ -464,7 +466,7 @@
             this.lbLoadToFlight.FormattingEnabled = true;
             this.lbLoadToFlight.ItemHeight = 16;
             this.lbLoadToFlight.Location = new System.Drawing.Point(999, 48);
-            this.lbLoadToFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbLoadToFlight.Margin = new System.Windows.Forms.Padding(4);
             this.lbLoadToFlight.Name = "lbLoadToFlight";
             this.lbLoadToFlight.Size = new System.Drawing.Size(473, 276);
             this.lbLoadToFlight.TabIndex = 44;
@@ -477,7 +479,7 @@
             this.panel2.Controls.Add(this.btnPause);
             this.panel2.Controls.Add(this.btnReset);
             this.panel2.Controls.Add(this.btnStatistics);
-            this.panel2.Location = new System.Drawing.Point(12, 86);
+            this.panel2.Location = new System.Drawing.Point(12, 107);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(318, 379);
@@ -486,7 +488,7 @@
             // btnConfig
             // 
             this.btnConfig.Location = new System.Drawing.Point(29, 313);
-            this.btnConfig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfig.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(257, 28);
             this.btnConfig.TabIndex = 33;
@@ -597,12 +599,22 @@
             this.lbLoadedC.TabIndex = 47;
             this.lbLoadedC.Text = "+0";
             // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.Location = new System.Drawing.Point(13, 47);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(54, 17);
+            this.lbTime.TabIndex = 48;
+            this.lbTime.Text = "label10";
+            // 
             // SimulationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1860, 940);
+            this.Controls.Add(this.lbTime);
             this.Controls.Add(this.lbLoadedC);
             this.Controls.Add(this.lbLoadedB);
             this.Controls.Add(this.lbLoadedA);
@@ -636,7 +648,7 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SimulationForm";
             this.Text = "Eindhoven Aiport Luggages Transport Simulation";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -716,6 +728,7 @@
         private System.Windows.Forms.Label lbLoadedA;
         private System.Windows.Forms.Label lbLoadedB;
         private System.Windows.Forms.Label lbLoadedC;
+        private System.Windows.Forms.Label lbTime;
     }
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirportLuggage_PoC
 {
-    class Zone
+    public class Zone
     { 
         public string Id { get; set; }
         public bool Available { get; set; }

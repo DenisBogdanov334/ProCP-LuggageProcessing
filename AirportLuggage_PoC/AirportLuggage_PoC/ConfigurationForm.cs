@@ -59,7 +59,8 @@ namespace AirportLuggage_PoC
             int trailers=0;
             int wagons=0;
             int employees=0;
-            TimeSpan start = new TimeSpan(00, 00, 00);
+            List<Plane> planes = new List<Plane>();
+            DateTime start = new DateTime();
             try
             {
                 if (!string.IsNullOrEmpty(tbTrailer.Text))
@@ -114,7 +115,7 @@ namespace AirportLuggage_PoC
 
             TimeSpan ts = TimeSpan.Parse(dtPick.Text);
             start += ts;
-            SimulationForm simF = new SimulationForm(filePath, trailers, wagons, employees,start);
+            SimulationForm simF = new SimulationForm(filePath, trailers, wagons, employees,planes,start);
             simF.Show();
         }
 

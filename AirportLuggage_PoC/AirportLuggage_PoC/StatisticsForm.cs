@@ -23,7 +23,7 @@ namespace AirportLuggage_PoC
         {
             InitializeComponent();
             lmc = lm;
-            this.flights = lm.GetAllFlights();
+            //this.flights = lm.GetAllFlights();
             this.luggages = lm.GetAllLuggages();
             this.loadedL = lm.GetAllLoadedLuggages();
             this.unloadedL = lm.GetAllUnLoadedLuggages();

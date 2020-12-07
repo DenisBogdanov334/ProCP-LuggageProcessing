@@ -10,7 +10,8 @@ namespace AirportLuggage_PoC
     public class LuggageManagement
     {
         private List<Luggage> luggages;
-        private List<UpcomingFlight> flights;
+        private List<Plane> flights;
+        //private List<UpcomingFlight> flights;
         private List<Passenger> passengers;
         private List<AirportBelt> belts;
         private List<Trailer> trailers;
@@ -22,111 +23,112 @@ namespace AirportLuggage_PoC
         public LuggageManagement()
         {
             luggages = new List<Luggage>();
-            flights = new List<UpcomingFlight>();
+            flights = new List<Plane>();
+            //flights = new List<UpcomingFlight>();
             passengers = new List<Passenger>();
             belts = new List<AirportBelt>();
             trailers = new List<Trailer>();
-            totalLuggageBeltA = 10;
-            totalLuggageBeltB = 61;
-            totalLuggageBeltC = 94;
-            LoadData();
-            SetFlight();
+            //totalLuggageBeltA = 10;
+            //totalLuggageBeltB = 61;
+            //totalLuggageBeltC = 94;
+            //LoadData();
+            //SetFlight();
         }
 
-        private void LoadData()
-        {
-            belts.Add(new AirportBelt(400, 50, 75, "beltA"));
-            belts.Add(new AirportBelt(450, 50, 75, "beltB"));
-            belts.Add(new AirportBelt(500, 50, 75, "beltC"));
+        //private void LoadData()
+        //{
+        //belts.Add(new AirportBelt(400, 50, 75, "beltA"));
+        //    belts.Add(new AirportBelt(450, 50, 75, "beltB"));
+        //    belts.Add(new AirportBelt(500, 50, 75, "beltC"));
 
-            flights.Add(new UpcomingFlight("F100A", "zoneA"));
-            flights.Add(new UpcomingFlight("F100B", "zoneB"));
-            flights.Add(new UpcomingFlight("F100C", "zoneC"));
+        //    flights.Add(new UpcomingFlight("F100A", "zoneA"));
+        //    flights.Add(new UpcomingFlight("F100B", "zoneB"));
+        //    flights.Add(new UpcomingFlight("F100C", "zoneC"));
 
-            passengers.Add(new Passenger(1001, "Joe", "Smith", "F100A"));
-            passengers.Add(new Passenger(1002, "Joe", "Smith", "F100B"));
-            passengers.Add(new Passenger(1003, "Joe", "Smith", "F100A"));
-            passengers.Add(new Passenger(1004, "Joe", "Smith", "F100B"));
-            passengers.Add(new Passenger(1005, "Joe", "Smith", "F100C"));
-            passengers.Add(new Passenger(1006, "Joe", "Smith", "F100A"));
-            passengers.Add(new Passenger(1007, "Joe", "Smith", "F100C"));
-            passengers.Add(new Passenger(1008, "Joe", "Smith", "F100A"));
-            passengers.Add(new Passenger(1009, "Joe", "Smith", "F100C"));
-            passengers.Add(new Passenger(1010, "Joe", "Smith", "F100B"));
+        //    passengers.Add(new Passenger(1001, "Joe", "Smith", "F100A"));
+        //    passengers.Add(new Passenger(1002, "Joe", "Smith", "F100B"));
+        //    passengers.Add(new Passenger(1003, "Joe", "Smith", "F100A"));
+        //    passengers.Add(new Passenger(1004, "Joe", "Smith", "F100B"));
+        //    passengers.Add(new Passenger(1005, "Joe", "Smith", "F100C"));
+        //    passengers.Add(new Passenger(1006, "Joe", "Smith", "F100A"));
+        //    passengers.Add(new Passenger(1007, "Joe", "Smith", "F100C"));
+        //    passengers.Add(new Passenger(1008, "Joe", "Smith", "F100A"));
+        //    passengers.Add(new Passenger(1009, "Joe", "Smith", "F100C"));
+        //    passengers.Add(new Passenger(1010, "Joe", "Smith", "F100B"));
 
-            luggages.Add(new Luggage(2001, 22.4, 10.5, 1001));
-            luggages.Add(new Luggage(2002, 22.4, 10.5, 1002));
-            luggages.Add(new Luggage(2003, 22.4, 10.5, 1003));
-            luggages.Add(new Luggage(2004, 22.4, 10.5, 1004));
-            luggages.Add(new Luggage(2005, 22.4, 10.5, 1005));
-            luggages.Add(new Luggage(2006, 22.4, 10.5, 1006));
-            luggages.Add(new Luggage(2007, 22.4, 10.5, 1007));
-            luggages.Add(new Luggage(2008, 22.4, 10.5, 1008));
-            luggages.Add(new Luggage(2009, 22.4, 10.5, 1009));
-            luggages.Add(new Luggage(2010, 22.4, 10.5, 1010));
+        //    luggages.Add(new Luggage(2001, 22.4, 10.5, 1001));
+        //    luggages.Add(new Luggage(2002, 22.4, 10.5, 1002));
+        //    luggages.Add(new Luggage(2003, 22.4, 10.5, 1003));
+        //    luggages.Add(new Luggage(2004, 22.4, 10.5, 1004));
+        //    luggages.Add(new Luggage(2005, 22.4, 10.5, 1005));
+        //    luggages.Add(new Luggage(2006, 22.4, 10.5, 1006));
+        //    luggages.Add(new Luggage(2007, 22.4, 10.5, 1007));
+        //    luggages.Add(new Luggage(2008, 22.4, 10.5, 1008));
+        //    luggages.Add(new Luggage(2009, 22.4, 10.5, 1009));
+        //    luggages.Add(new Luggage(2010, 22.4, 10.5, 1010));
 
-            trailers.Add(new Trailer("T100A", 4));
-            trailers.Add(new Trailer("T100B", 3));
-            trailers.Add(new Trailer("T100C", 3));
+        //    trailers.Add(new Trailer("T100A", 4));
+        //    trailers.Add(new Trailer("T100B", 3));
+        //    trailers.Add(new Trailer("T100C", 3));
 
-            trailers[0].Belt = belts[0];
-            trailers[1].Belt = belts[1];
-            trailers[2].Belt = belts[2];
-        }
+        //    trailers[0].Belt = belts[0];
+        //    trailers[1].Belt = belts[1];
+        //    trailers[2].Belt = belts[2];
+        //}
 
-        private void SetFlight()
-        {
-            foreach (var luggage in luggages)
-            {
-                Passenger passenger = GetPassenger(luggage.ownerId);
-                if (passenger != null)
-                {
-                    UpcomingFlight flight = GetFlight(passenger.flightNo);
-                    if(flight != null)
-                        luggage.Flight = GetFlight(passenger.flightNo);
-                }
-            }
-        }
+        //private void SetFlight()
+        //{
+        //    foreach (var luggage in luggages)
+        //    {
+        //        Passenger passenger = GetPassenger(luggage.ownerId);
+        //        if (passenger != null)
+        //        {
+        //            UpcomingFlight flight = GetFlight(passenger.flightNo);
+        //            if(flight != null)
+        //                luggage.Flight = GetFlight(passenger.flightNo);
+        //        }
+        //    }
+        //}
 
-        private AirportBelt SetBeltForLuggage(Luggage luggage)
-        {
-            Passenger passenger = GetPassenger(luggage.ownerId);
-            if (passenger != null)
-            {
-                UpcomingFlight flight = GetFlight(passenger.flightNo);
-                if (flight != null)
-                {
-                    switch (flight.Zone)
-                    {
-                        case "zoneA": return GetBelt("beltA");
-                        case "zoneB": return GetBelt("beltB");
-                        case "zoneC": return GetBelt("beltC");
-                        default:
-                            break;
-                    }
-                }
+        //private AirportBelt SetBeltForLuggage(Luggage luggage)
+        //{
+        //    Passenger passenger = GetPassenger(luggage.ownerId);
+        //    if (passenger != null)
+        //    {
+        //        UpcomingFlight flight = GetFlight(passenger.flightNo);
+        //        if (flight != null)
+        //        {
+        //            switch (flight.Zone)
+        //            {
+        //                case "zoneA": return GetBelt("beltA");
+        //                case "zoneB": return GetBelt("beltB");
+        //                case "zoneC": return GetBelt("beltC");
+        //                default:
+        //                    break;
+        //            }
+        //        }
 
-            }
-            return null;
-        }
+        //    }
+        //    return null;
+        //}
 
-        internal void AddLoadedLuggageToTrailer(Luggage luggage)
-        {
-            foreach (var trailer in trailers)
-            {
-                if(trailer.Belt.Id == luggage.Belt.Id)
-                {
-                    trailer.CurrentLoad++;
-                    trailer.luggages.Add(luggage);
+        //internal void AddLoadedLuggageToTrailer(Luggage luggage)
+        //{
+        //    foreach (var trailer in trailers)
+        //    {
+        //        if(trailer.Belt.Id == luggage.Belt.Id)
+        //        {
+        //            trailer.CurrentLoad++;
+        //            trailer.luggages.Add(luggage);
 
-                    //check if trailer is full, if yes, move trailer to airplan
-                    if (trailer.CurrentLoad == trailer.Capacity)
-                    {
-                        trailer.IsTransporting = true;
-                    }
-                }
-            }
-        }
+        //            //check if trailer is full, if yes, move trailer to airplan
+        //            if (trailer.CurrentLoad == trailer.Capacity)
+        //            {
+        //                trailer.IsTransporting = true;
+        //            }
+        //        }
+        //    }
+        //}
 
         internal void MoveTrailers(int maxRight)
         {
@@ -148,9 +150,9 @@ namespace AirportLuggage_PoC
         {
             if (luggage.Flight != null)
             {
-                if (luggage.Flight.Zone == "zoneA")
+                if (luggage.Flight.Zone.Id == "A")
                     luggage.Belt = belts[0];
-                else if (luggage.Flight.Zone == "zoneB")
+                else if (luggage.Flight.Zone.Id == "B")
                     luggage.Belt = belts[1];
                 else
                     luggage.Belt = belts[2];
@@ -159,46 +161,46 @@ namespace AirportLuggage_PoC
             
         }
 
-        private AirportBelt SetBeltForLuggage(Luggage luggage, UpcomingFlight flight)
-        {
-            Passenger passenger = GetPassenger(luggage.ownerId);
-            if (passenger != null)
-            {
-                UpcomingFlight upcomingFlight = GetFlight(passenger.flightNo);
-                if (flight.FlightNo == upcomingFlight.FlightNo)
-                {
-                    switch (flight.Zone)
-                    {
-                        case "zoneA": return GetBelt("beltA");
-                        case "zoneB": return GetBelt("beltB");
-                        case "zoneC": return GetBelt("beltC");
-                        default: throw new NotSupportedException();
-                    }
-                }
-            }
-            return null;
-        }
+        //private AirportBelt SetBeltForLuggage(Luggage luggage, UpcomingFlight flight)
+        //{
+        //    Passenger passenger = GetPassenger(luggage.ownerId);
+        //    if (passenger != null)
+        //    {
+        //        UpcomingFlight upcomingFlight = GetFlight(passenger.flightNo);
+        //        if (flight.FlightNo == upcomingFlight.FlightNo)
+        //        {
+        //            switch (flight.Zone)
+        //            {
+        //                case "zoneA": return GetBelt("beltA");
+        //                case "zoneB": return GetBelt("beltB");
+        //                case "zoneC": return GetBelt("beltC");
+        //                default: throw new NotSupportedException();
+        //            }
+        //        }
+        //    }
+        //    return null;
+        //}
 
         public List<Luggage> GetAllLuggages()
         {
             return this.luggages;
         }
 
-        public List<Luggage> GetAllLuggages(string flightNo)
-        {
-            var result = new List<Luggage>();
-            foreach (var luggage in luggages)
-            {
-                Passenger passenger = GetPassenger(luggage.ownerId);
-                if (passenger != null)
-                {
-                    UpcomingFlight upcomingFlight = GetFlight(passenger.flightNo);
-                    if (upcomingFlight.FlightNo == flightNo)
-                        result.Add(luggage);
-                }
-            }
-            return result;
-        }
+        //public List<Luggage> GetAllLuggages(string flightNo)
+        //{
+        //    var result = new List<Luggage>();
+        //    foreach (var luggage in luggages)
+        //    {
+        //        Passenger passenger = GetPassenger(luggage.ownerId);
+        //        if (passenger != null)
+        //        {
+        //            UpcomingFlight upcomingFlight = GetFlight(passenger.flightNo);
+        //            if (upcomingFlight.FlightNo == flightNo)
+        //                result.Add(luggage);
+        //        }
+        //    }
+        //    return result;
+        //}
 
         public List<AirportBelt> GetBelts()
         {
@@ -215,15 +217,15 @@ namespace AirportLuggage_PoC
             return null;
         }
 
-        private UpcomingFlight GetFlight(string fid)
-        {
-            foreach (var flight in flights)
-            {
-                if (flight.FlightNo == fid)
-                    return flight;
-            }
-            return null;
-        }
+        //private UpcomingFlight GetFlight(string fid)
+        //{
+        //    foreach (var flight in flights)
+        //    {
+        //        if (flight.FlightNo == fid)
+        //            return flight;
+        //    }
+        //    return null;
+        //}
 
         private AirportBelt GetBelt(string bid)
         {
@@ -244,24 +246,24 @@ namespace AirportLuggage_PoC
             }
         }
 
-        public void MoveLuggagePerFlight(string flightNo)
-        {
-            var luggages = GetAllLuggages(flightNo);
-            var flight = GetFlight(flightNo);
-            foreach (var luggage in luggages)
-            {
-                AirportBelt belt = SetBeltForLuggage(luggage, flight);
-                if (belt != null && !luggage.IsReachingObstacles(luggages))
-                    luggage.Transport(belt);
-            }
-        }
+        //public void MoveLuggagePerFlight(string flightNo)
+        //{
+        //    var luggages = GetAllLuggages(flightNo);
+        //    var flight = GetFlight(flightNo);
+        //    foreach (var luggage in luggages)
+        //    {
+        //        AirportBelt belt = SetBeltForLuggage(luggage, flight);
+        //        if (belt != null && !luggage.IsReachingObstacles(luggages))
+        //            luggage.Transport(belt);
+        //    }
+        //}
 
-        public void MoveLuggage(Luggage luggage)
-        {
-            AirportBelt belt = SetBeltForLuggage(luggage);
-            if (belt != null)
-                luggage.Transport(belt);
-        }
+        //public void MoveLuggage(Luggage luggage)
+        //{
+        //    AirportBelt belt = SetBeltForLuggage(luggage);
+        //    if (belt != null)
+        //        luggage.Transport(belt);
+        //}
 
         public List<Luggage> GetAllUnLoadedLuggages()
         {
@@ -285,10 +287,10 @@ namespace AirportLuggage_PoC
             return result;
         }
 
-        public List<UpcomingFlight> GetAllFlights()
-        {
-            return this.flights;
-        }
+        //public List<UpcomingFlight> GetAllFlights()
+        //{
+        //    return this.flights;
+        //}
     }
 
 }
