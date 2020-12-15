@@ -15,6 +15,7 @@ namespace AirportLuggage_PoC
         private LuggageManagement lm;
         private List<PictureBox> pbs;
         private int currentLuggage;
+        
 
         public SimulationForm()
         {
@@ -25,6 +26,7 @@ namespace AirportLuggage_PoC
             UpdateLbUnloadedLuggages();
             btnPause.Enabled = false;
             pauzeToolStripMenuItem.Enabled = false;
+
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -170,6 +172,8 @@ namespace AirportLuggage_PoC
                 default:
                     break;
             }
+           
+            
         }
 
 
@@ -282,6 +286,11 @@ namespace AirportLuggage_PoC
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        public int getLuggageOnBeltA()
+        {
+            return lm.GetBelts()[0].CurrentLoad;
         }
     }
     

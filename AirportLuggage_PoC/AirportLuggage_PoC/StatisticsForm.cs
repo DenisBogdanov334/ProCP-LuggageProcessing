@@ -35,9 +35,12 @@ namespace AirportLuggage_PoC
 
             //Hardcoded random data for statistics elements
 
-            chart1.Series["Belt ocupancy"].Points.AddXY("Belt A", lm.totalLuggageBeltA);
+            
             chart1.Series["Belt ocupancy"].Points.AddXY("Belt B", lm.totalLuggageBeltB);
             chart1.Series["Belt ocupancy"].Points.AddXY("Belt C", lm.totalLuggageBeltC);
+
+            chart2.Series["luggageChart"].Points.AddXY("Loaded", loadedL.Count());
+            chart2.Series["luggageChart"].Points.AddXY("Waiting", luggages.Count()-loadedL.Count());
 
             lblTotalLuggage.Text = luggages.Count.ToString();
             lblTotalLuggagewaiting.Text = (luggages.Count - loadedL.Count - unloadedL.Count).ToString();
@@ -53,11 +56,7 @@ namespace AirportLuggage_PoC
             lbEmpStation.Items.Add("Loading plane");
             lbEmpStation.Items.Add("Check-in desk");
 
-            lbEmpHoursWorked.Items.Add("7");
-            lbEmpHoursWorked.Items.Add("6.5");
-            lbEmpHoursWorked.Items.Add("9");
-            lbEmpHoursWorked.Items.Add("9.5");
-
+            
             DisplayFlightInfo(flights);
             DisplayAllLuggage(luggages);
             DisplayLoadedLuggage(loadedL);
@@ -185,6 +184,26 @@ namespace AirportLuggage_PoC
         }
 
         private void StatisticsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public int currA;
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.updateAll(luggages, flights);
+            SimulationForm sim = new SimulationForm();
+            currA = sim.getLuggageOnBeltA();
+            chart1.Series["Belt ocupancy"].Points.AddXY("Belt A", currA);
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
         {
 
         }
