@@ -117,7 +117,7 @@ namespace AirportLuggage_PoC
                                 lbStatus.Items.Add(pb.Tag);
                                 this.Controls.Remove(pb);
                                 this.pbs.Remove(pb);
-                                if (lm.GetAllLoadedLuggages().Count == lm.GetAllLuggages().Count)
+                                if (lm.GetLuggagesLoadedInTrailer().Count == lm.GetAllLuggages().Count)
                                 {
                                     this.lbDropoff.Items.Add("All luggages have been sent to belt!");
                                     this.lbStatus.Items.Add("All luggages have been transported to trailer!");
@@ -180,7 +180,7 @@ namespace AirportLuggage_PoC
         private void UpdateLbUnloadedLuggages()
         {
             lbDropoff.Items.Clear();
-            foreach (var item in lm.GetAllUnLoadedLuggages())
+            foreach (var item in lm.GetLuggagesWaitingForLoading())
             {
                 lbDropoff.Items.Add(item);
             }
@@ -189,7 +189,7 @@ namespace AirportLuggage_PoC
         private void UpdateLbLoadedLuggaes()
         {
             lbStatus.Items.Clear();
-            foreach (var item in lm.GetAllLoadedLuggages())
+            foreach (var item in lm.GetLuggagesLoadedInTrailer())
             {
                 lbStatus.Items.Add(item);
             }

@@ -155,13 +155,13 @@ namespace AirportLuggage_PoC
         private void UpdateListBoxes()
         {
             listBox1.Items.Clear();
-            foreach (var item in lm.GetAllUnLoadedLuggages())
+            foreach (var item in lm.GetLuggagesWaitingForLoading())
             {
                 listBox1.Items.Add(item);
             }
 
             lbStatus.Items.Clear();
-            foreach (var item in lm.GetAllLoadedLuggages())
+            foreach (var item in lm.GetLuggagesLoadedInTrailer())
             {
                 lbStatus.Items.Add(item);
             }

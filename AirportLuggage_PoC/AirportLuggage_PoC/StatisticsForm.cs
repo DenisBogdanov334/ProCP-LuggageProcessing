@@ -28,14 +28,14 @@ namespace AirportLuggage_PoC
             lmc = lm;
             this.flights = lm.GetAllFlights();
             this.luggages = lm.GetAllLuggages();
-            this.loadedL = lm.GetAllLoadedLuggages();
-            this.unloadedL = lm.GetAllUnLoadedLuggages();
+            this.loadedL = lm.GetLuggagesLoadedInTrailer();
+            this.unloadedL = lm.GetLuggagesWaitingForLoading();
 
 
 
             //Hardcoded random data for statistics elements
 
-            
+
             chart1.Series["Belt ocupancy"].Points.AddXY("Belt B", lm.totalLuggageBeltB);
             chart1.Series["Belt ocupancy"].Points.AddXY("Belt C", lm.totalLuggageBeltC);
 
@@ -44,7 +44,7 @@ namespace AirportLuggage_PoC
 
             lblTotalLuggage.Text = luggages.Count.ToString();
             lblTotalLuggagewaiting.Text = (luggages.Count - loadedL.Count - unloadedL.Count).ToString();
-            lblLuggageLoaded.Text = loadedL.Count.ToString();
+            lblLuggageOnbelt.Text = loadedL.Count.ToString();
 
             lbEmpName.Items.Add("John Michael");
             lbEmpName.Items.Add("Joe Jonas");
@@ -91,7 +91,7 @@ namespace AirportLuggage_PoC
                 }
             }
 
-
+            timer1.Start();
 
         }
 
@@ -115,7 +115,7 @@ namespace AirportLuggage_PoC
 
         public void DisplayLoadedLuggage(List<Luggage> l)
         {
-            lblLuggageLoaded.Text = l.Count().ToString();
+            lblLuggageOnbelt.Text = l.Count().ToString();
         }
         public void DisplayUnloadedLuggage(List<Luggage> l)
         {
@@ -192,10 +192,19 @@ namespace AirportLuggage_PoC
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.updateAll(luggages, flights);
-            SimulationForm sim = new SimulationForm();
-            currA = sim.getLuggageOnBeltA();
+            //this.updateAll(luggages, flights);
+            //SimulationForm sim = new SimulationForm();
+            //currA = sim.getLuggageOnBeltA();
             chart1.Series["Belt ocupancy"].Points.AddXY("Belt A", currA);
+            UpdateLuggagesStatus();
+        }
+
+        private void UpdateLuggagesStatus()
+        {
+            lblTotalLuggagewaiting.Text = lmc.GetLuggagesWaitingForLoading().Count.ToString();
+            lblLuggageOnbelt.Text = lmc.GetLuggagesLoadedOnBelt().Count.ToString();
+            lblLuggageInTrailer.Text = lmc.GetLuggagesLoadedInTrailer().Count.ToString();
+            lblLuggageInPlane.Text = lmc.GetLuggagesLoadedInAirplane().Count.ToString();
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)

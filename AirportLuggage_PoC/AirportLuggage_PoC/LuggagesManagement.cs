@@ -155,7 +155,7 @@ namespace AirportLuggage_PoC
                 else
                     luggage.Belt = belts[2];
             }
-            luggage.status = Status.InTransfer;
+            luggage.status = Status.LoadedOnBelt;
             
         }
 
@@ -263,7 +263,7 @@ namespace AirportLuggage_PoC
                 luggage.Transport(belt);
         }
 
-        public List<Luggage> GetAllUnLoadedLuggages()
+        public List<Luggage> GetLuggagesWaitingForLoading()
         {
             var result = new List<Luggage>();
             foreach (var luggage in luggages)
@@ -274,12 +274,34 @@ namespace AirportLuggage_PoC
             return result;
         }
 
-        public List<Luggage> GetAllLoadedLuggages()
+        public List<Luggage> GetLuggagesLoadedInTrailer()
         {
             var result = new List<Luggage>();
             foreach (var luggage in luggages)
             {
                 if (luggage.status == Status.LoadedInTrailer)
+                    result.Add(luggage);
+            }
+            return result;
+        }
+
+        public List<Luggage> GetLuggagesLoadedOnBelt()
+        {
+            var result = new List<Luggage>();
+            foreach (var luggage in luggages)
+            {
+                if (luggage.status == Status.LoadedOnBelt)
+                    result.Add(luggage);
+            }
+            return result;
+        }
+
+        public List<Luggage> GetLuggagesLoadedInAirplane()
+        {
+            var result = new List<Luggage>();
+            foreach (var luggage in luggages)
+            {
+                if (luggage.status == Status.LoadedInAirplane)
                     result.Add(luggage);
             }
             return result;

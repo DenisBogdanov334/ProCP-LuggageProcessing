@@ -35,7 +35,7 @@ namespace AirportLuggage_PoC
             if (position.X < belt.startPos.X)
             {
                 position = belt.startPos;
-                status = Status.InTransfer;
+                status = Status.LoadedOnBelt;
             }
             else if (position.X >= belt.startPos.X && position.X < belt.startPos.X + belt.Length)
             {
@@ -50,19 +50,22 @@ namespace AirportLuggage_PoC
 
         internal void Transport()
         {
-            if (position.X < Belt.startPos.X)
+            if (status != Status.LoadedInAirplane)
             {
-                position = Belt.startPos;
-                status = Status.InTransfer;
-            }
-            else if (position.X >= Belt.startPos.X && position.X < Belt.startPos.X + Belt.Length)
-            {
-                position.Offset(5, 0);
-            }
-            else
-            {
-                position.Offset(5, 0);
-                status = Status.LoadedInTrailer;
+                if (position.X < Belt.startPos.X)
+                {
+                    position = Belt.startPos;
+                    status = Status.LoadedOnBelt;
+                }
+                else if (position.X >= Belt.startPos.X && position.X < Belt.startPos.X + Belt.Length)
+                {
+                    position.Offset(5, 0);
+                }
+                else
+                {
+                    position.Offset(5, 0);
+                    status = Status.LoadedInTrailer;
+                }
             }
         }
 
@@ -103,7 +106,7 @@ namespace AirportLuggage_PoC
     public enum Status
 {
     WaitingForLoading,
-    InTransfer,
+    LoadedOnBelt,
     LoadedInTrailer,
     LoadedInAirplane,
 }
