@@ -39,8 +39,9 @@ namespace AirportLuggage_PoC
             chart1.Series["Belt ocupancy"].Points.AddXY("Belt B", lm.totalLuggageBeltB);
             chart1.Series["Belt ocupancy"].Points.AddXY("Belt C", lm.totalLuggageBeltC);
 
-            chart2.Series["luggageChart"].Points.AddXY("Loaded", loadedL.Count());
-            chart2.Series["luggageChart"].Points.AddXY("Waiting", luggages.Count()-loadedL.Count());
+            chart2.Series["luggageChart"].Points.AddXY("Loaded", lmc.GetLuggagesLoadedInAirplane().Count);
+            chart2.Series["luggageChart"].Points.AddXY("Waiting", lmc.GetLuggagesWaitingForLoading().Count);
+            chart2.Series["luggageChart"].Points.AddXY("In transport", lmc.GetAllLuggages().Count - lmc.GetLuggagesLoadedInAirplane().Count - lmc.GetLuggagesWaitingForLoading().Count);
 
             lblTotalLuggage.Text = luggages.Count.ToString();
             lblTotalLuggagewaiting.Text = (luggages.Count - loadedL.Count - unloadedL.Count).ToString();
@@ -152,7 +153,7 @@ namespace AirportLuggage_PoC
                 sw.WriteLine("Flights info: ");
                 foreach (UpcomingFlight f in flights)
                 {
-                    sw.WriteLine(f.GetInfo());
+                    sw.WriteLine(f);
                 }
                 sw.WriteLine("--------------");
                 sw.WriteLine("Luggage info: ");
@@ -205,6 +206,16 @@ namespace AirportLuggage_PoC
             lblLuggageOnbelt.Text = lmc.GetLuggagesLoadedOnBelt().Count.ToString();
             lblLuggageInTrailer.Text = lmc.GetLuggagesLoadedInTrailer().Count.ToString();
             lblLuggageInPlane.Text = lmc.GetLuggagesLoadedInAirplane().Count.ToString();
+
+            chart2.Series["luggageChart"].Points.Clear();
+            chart2.Series["luggageChart"].Points.AddXY("Loaded", lmc.GetLuggagesLoadedInAirplane().Count);
+            chart2.Series["luggageChart"].Points.AddXY("Waiting", lmc.GetLuggagesWaitingForLoading().Count);
+            chart2.Series["luggageChart"].Points.AddXY("In transport", lmc.GetAllLuggages().Count - lmc.GetLuggagesLoadedInAirplane().Count - lmc.GetLuggagesWaitingForLoading().Count);
+
+            lbTotalA.Text = lmc.GetBelts()[0].Loaded.ToString();
+            lbTotalB.Text = lmc.GetBelts()[1].Loaded.ToString();
+            lbTotalC.Text = lmc.GetBelts()[2].Loaded.ToString();
+
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)

@@ -13,7 +13,7 @@ namespace AirportLuggage_PoC
         public int Length { get; set; }
         // public double supportedWeight { get; set; } this is not a problem since customer told us there is no limit.
         public int Speed { get; set; }
-        public int CurrentLoad { get; set; }
+        public int Loaded { get; set; }
         public int EmployeeId { get; set; }
 
         //Ling
@@ -24,7 +24,7 @@ namespace AirportLuggage_PoC
         {
             this.Length = length;
             this.Speed = speed;
-            this.CurrentLoad = 0;
+            this.Loaded = 0;
             this.Id = id;
         }
 

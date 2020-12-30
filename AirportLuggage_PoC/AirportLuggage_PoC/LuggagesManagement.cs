@@ -39,35 +39,41 @@ namespace AirportLuggage_PoC
             belts.Add(new AirportBelt(450, 50, 75, "beltB"));
             belts.Add(new AirportBelt(500, 50, 75, "beltC"));
 
-            flights.Add(new UpcomingFlight("F100A", "zoneA"));
-            flights.Add(new UpcomingFlight("F100B", "zoneB"));
-            flights.Add(new UpcomingFlight("F100C", "zoneC"));
+            flights.Add(new UpcomingFlight("F100A", "zoneA", DateTime.Parse("10:00:05"), 10));
+            flights.Add(new UpcomingFlight("F100B", "zoneB", DateTime.Parse("10:00:15"), 10));
+            flights.Add(new UpcomingFlight("F100C", "zoneC", DateTime.Parse("10:00:20"), 10));
 
-            passengers.Add(new Passenger(1001, "Joe", "Smith", "F100A"));
-            passengers.Add(new Passenger(1002, "Joe", "Smith", "F100B"));
-            passengers.Add(new Passenger(1003, "Joe", "Smith", "F100A"));
-            passengers.Add(new Passenger(1004, "Joe", "Smith", "F100B"));
-            passengers.Add(new Passenger(1005, "Joe", "Smith", "F100C"));
-            passengers.Add(new Passenger(1006, "Joe", "Smith", "F100A"));
-            passengers.Add(new Passenger(1007, "Joe", "Smith", "F100C"));
-            passengers.Add(new Passenger(1008, "Joe", "Smith", "F100A"));
-            passengers.Add(new Passenger(1009, "Joe", "Smith", "F100C"));
-            passengers.Add(new Passenger(1010, "Joe", "Smith", "F100B"));
+            foreach (var flight in flights)
+            {
+                luggages.AddRange(flight.Luggages);
+                luggages.Sort();
+            }
 
-            luggages.Add(new Luggage(2001, 22.4, 10.5, 1001));
-            luggages.Add(new Luggage(2002, 22.4, 10.5, 1002));
-            luggages.Add(new Luggage(2003, 22.4, 10.5, 1003));
-            luggages.Add(new Luggage(2004, 22.4, 10.5, 1004));
-            luggages.Add(new Luggage(2005, 22.4, 10.5, 1005));
-            luggages.Add(new Luggage(2006, 22.4, 10.5, 1006));
-            luggages.Add(new Luggage(2007, 22.4, 10.5, 1007));
-            luggages.Add(new Luggage(2008, 22.4, 10.5, 1008));
-            luggages.Add(new Luggage(2009, 22.4, 10.5, 1009));
-            luggages.Add(new Luggage(2010, 22.4, 10.5, 1010));
+            //passengers.Add(new Passenger(1001, "Joe", "Smith", "F100A"));
+            //passengers.Add(new Passenger(1002, "Joe", "Smith", "F100B"));
+            //passengers.Add(new Passenger(1003, "Joe", "Smith", "F100A"));
+            //passengers.Add(new Passenger(1004, "Joe", "Smith", "F100B"));
+            //passengers.Add(new Passenger(1005, "Joe", "Smith", "F100C"));
+            //passengers.Add(new Passenger(1006, "Joe", "Smith", "F100A"));
+            //passengers.Add(new Passenger(1007, "Joe", "Smith", "F100C"));
+            //passengers.Add(new Passenger(1008, "Joe", "Smith", "F100A"));
+            //passengers.Add(new Passenger(1009, "Joe", "Smith", "F100C"));
+            //passengers.Add(new Passenger(1010, "Joe", "Smith", "F100B"));
 
-            trailers.Add(new Trailer("T100A", 4));
-            trailers.Add(new Trailer("T100B", 3));
-            trailers.Add(new Trailer("T100C", 3));
+            //luggages.Add(new Luggage(2001, 22.4, 10.5, 1001));
+            //luggages.Add(new Luggage(2002, 22.4, 10.5, 1002));
+            //luggages.Add(new Luggage(2003, 22.4, 10.5, 1003));
+            //luggages.Add(new Luggage(2004, 22.4, 10.5, 1004));
+            //luggages.Add(new Luggage(2005, 22.4, 10.5, 1005));
+            //luggages.Add(new Luggage(2006, 22.4, 10.5, 1006));
+            //luggages.Add(new Luggage(2007, 22.4, 10.5, 1007));
+            //luggages.Add(new Luggage(2008, 22.4, 10.5, 1008));
+            //luggages.Add(new Luggage(2009, 22.4, 10.5, 1009));
+            //luggages.Add(new Luggage(2010, 22.4, 10.5, 1010));         
+
+            trailers.Add(new Trailer("T100A", 80));
+            trailers.Add(new Trailer("T100B", 80));
+            trailers.Add(new Trailer("T100C", 80));
 
             trailers[0].Belt = belts[0];
             trailers[1].Belt = belts[1];
@@ -119,8 +125,9 @@ namespace AirportLuggage_PoC
                     trailer.CurrentLoad++;
                     trailer.luggages.Add(luggage);
 
-                    //check if trailer is full, if yes, move trailer to airplan
-                    if (trailer.CurrentLoad == trailer.Capacity)
+                    //check if trailer is full or all luggages for current flight have been loaded to trailer
+                    // if yes, move trailer to airplane
+                    if (trailer.CurrentLoad == luggage.Flight.Luggages.Count || trailer.CurrentLoad == trailer.Capacity)
                     {
                         trailer.IsTransporting = true;
                     }
@@ -156,7 +163,7 @@ namespace AirportLuggage_PoC
                     luggage.Belt = belts[2];
             }
             luggage.status = Status.LoadedOnBelt;
-            
+            luggage.Belt.Loaded++;
         }
 
         private AirportBelt SetBeltForLuggage(Luggage luggage, UpcomingFlight flight)

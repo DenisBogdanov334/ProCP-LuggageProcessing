@@ -23,10 +23,24 @@ namespace AirportLuggage_PoC
             lm = new LuggageManagement();
             pbs = new List<PictureBox>();
             DrawSimulation();
-            UpdateLbUnloadedLuggages();
+            UpdateFlightsInfo();
             btnPause.Enabled = false;
             pauzeToolStripMenuItem.Enabled = false;
+            lbCurrentTime.Text = "08:00:00";
+            timer1.Start();
+        }
 
+        private void UpdateCurrentTime()
+        {
+            lbCurrentTime.Text = DateTime.Parse(lbCurrentTime.Text).AddSeconds(1).ToString("hh:mm:ss");
+        }
+
+        private void UpdateFlightsInfo()
+        {
+            foreach (var flight in lm.GetAllFlights())
+            {
+                lbFlights.Items.Add(flight);
+            }
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -288,9 +302,15 @@ namespace AirportLuggage_PoC
 
         }
 
-        public int getLuggageOnBeltA()
+        private void btnConfig_Click(object sender, EventArgs e)
         {
-            return lm.GetBelts()[0].CurrentLoad;
+            ConfigrationForm frm = new ConfigrationForm(lm);
+            frm.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            UpdateCurrentTime();
         }
     }
     

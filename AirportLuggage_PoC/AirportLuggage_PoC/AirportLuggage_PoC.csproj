@@ -49,6 +49,12 @@
   <ItemGroup>
     <Compile Include="AirportBelt.cs" />
     <Compile Include="AirportEmployee.cs" />
+    <Compile Include="ConfigrationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigrationForm.Designer.cs">
+      <DependentUpon>ConfigrationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Factory\Factory.cs" />
     <Compile Include="SimulationForm.cs">
       <SubType>Form</SubType>

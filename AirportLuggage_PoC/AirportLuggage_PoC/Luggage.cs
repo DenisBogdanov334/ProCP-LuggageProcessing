@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace AirportLuggage_PoC
 {
-    public class Luggage
+    public class Luggage: IComparable<Luggage>
     {
         //Ling
         public int id { get; set; }
         public int ownerId { get; set; }
+
+        public int weight { get; set; }
+
         public Point position;
         public Status status { get; set; }
 
@@ -19,7 +22,7 @@ namespace AirportLuggage_PoC
 
         public UpcomingFlight Flight { get; set; }
 
-
+        public static int startId = 2001;
 
         //Ling
         public Luggage(int id, double weight, double volume, int owner)
@@ -28,6 +31,15 @@ namespace AirportLuggage_PoC
             this.ownerId = owner;
             this.status = Status.WaitingForLoading;
             this.position = new Point(0, 0);
+        }
+
+        public Luggage(double weight, UpcomingFlight flight)
+        {
+            this.id = startId;
+            this.status = Status.WaitingForLoading;
+            this.position = new Point(0, 0);
+            this.Flight = flight;
+            startId++;
         }
 
         internal void Transport(AirportBelt belt)
@@ -83,13 +95,13 @@ namespace AirportLuggage_PoC
         public override string ToString()
         {
             if (this.status == Status.WaitingForLoading)
-                return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} departure from {Flight.Zone}";
+                return $"Luggage: {id} - flight: {Flight.FlightNo} departure from {Flight.Zone}";
             else if (this.status == Status.LoadedInTrailer)
-                return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} loaded to trailer";
+                return $"Luggage: {id} - flight: {Flight.FlightNo} loaded to trailer";
             else if (this.status == Status.LoadedInAirplane)
-                return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} arrived at {Flight.Zone}";
+                return $"Luggage: {id} - flight: {Flight.FlightNo} arrived at {Flight.Zone}";
             else
-                return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} is on transport belt";
+                return $"Luggage: {id} - flight: {Flight.FlightNo} is on transport belt";
         }
 
         public string GetInfo()
@@ -99,6 +111,14 @@ namespace AirportLuggage_PoC
             return s;
         }
 
+        public int CompareTo(Luggage other)
+        {
+            if (other == null)
+                return 1;
+
+            else
+                return this.weight.CompareTo(other.weight);
+        }
     }
 }
 
