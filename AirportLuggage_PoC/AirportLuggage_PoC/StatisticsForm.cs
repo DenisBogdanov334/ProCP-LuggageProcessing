@@ -14,14 +14,12 @@ namespace AirportLuggage_PoC
 {
     public partial class StatisticsForm : Form
     {
-        public LuggageManagement lmc;
+        private LuggageManagement lmc;
         public List<UpcomingFlight> flights;
         public List<Luggage> luggages;
         public List<Luggage> loadedL;
         public List<Luggage> unloadedL;
 
-        FileStream fs;
-        StreamWriter sw; 
         public StatisticsForm(LuggageManagement lm)
         {
             InitializeComponent();
@@ -57,7 +55,7 @@ namespace AirportLuggage_PoC
             lbEmpStation.Items.Add("Loading plane");
             lbEmpStation.Items.Add("Check-in desk");
 
-            
+
             DisplayFlightInfo(flights);
             DisplayAllLuggage(luggages);
             DisplayLoadedLuggage(loadedL);
@@ -133,55 +131,46 @@ namespace AirportLuggage_PoC
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-        
-            string title = "Airport Data Report " + string.Format("{0:yyyy-MM-dd HH-mm-ss}", DateTime.Now); // adds the date to the path
             try
             {
-                fs = new FileStream(title,
-                   FileMode.OpenOrCreate,
-                   FileAccess.Write);
-                sw = new StreamWriter(fs);
-            }
-
-            catch (IOException)
-            {
-                MessageBox.Show("There was an error while opening the file");
-            }
-
-            try
-            {
-                sw.WriteLine("Flights info: ");
-                foreach (UpcomingFlight f in flights)
+                using (var saveFileDialog = new SaveFileDialog())
                 {
-                    sw.WriteLine(f);
+                    saveFileDialog.Title = "Save statistics";
+                    saveFileDialog.Filter = "Airport file|*.txt";
+                    saveFileDialog.FileName = "myAirport";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write))
+                        using (var streamWriter = new StreamWriter(fileStream))
+                        {
+                            streamWriter.WriteLine("Flights info: " + DateTime.Now.ToString());
+                            foreach (UpcomingFlight f in lmc.GetAllFlights())
+                            {
+                                streamWriter.WriteLine(f);
+                            }
+                            streamWriter.WriteLine("---------------------------------------------------------");
+                            streamWriter.WriteLine("Luggage info: ");
+
+                            foreach (Luggage l in lmc.GetAllLuggages())
+                            {
+                                streamWriter.WriteLine(l);
+                            }
+                            streamWriter.WriteLine("----------------------------------------------------------");
+                            streamWriter.WriteLine("Total amount of luggage: " + lmc.GetAllLuggages().Count.ToString());
+                            streamWriter.WriteLine("Luggages waiting for loading: " + lmc.GetLuggagesWaitingForLoading().Count.ToString());
+                            streamWriter.WriteLine("Luggages loaded to belt: " + lmc.GetLuggagesLoadedOnBelt().Count.ToString());
+                            streamWriter.WriteLine("Luggages loaded to trailers: " + lmc.GetLuggagesLoadedInTrailer().Count.ToString()); ;
+                            streamWriter.WriteLine("Luggages loaded to airplanes: " + lmc.GetLuggagesLoadedInAirplane().Count.ToString());
+                        }
+                    }
                 }
-                sw.WriteLine("--------------");
-                sw.WriteLine("Luggage info: ");
-
-                foreach (Luggage l in luggages)
-                {
-                    sw.WriteLine(l.GetInfo());
-                }
-                sw.WriteLine("--------------");
-                sw.WriteLine("Total amount of luggage: " + luggages.Count.ToString());
-                sw.WriteLine("Loaded luggage: " + loadedL.Count.ToString());
-                sw.WriteLine("Unloaded luggage: " + luggages.Count.ToString());
+                MessageBox.Show("Data is saved!");
             }
-            catch (IOException)
+            catch (Exception ex)
             {
-                MessageBox.Show("File has already been saved");
+                MessageBox.Show(ex.Message);
             }
-
-            try
-            {
-                if (sw != null)
-                    sw.Close();
-            }
-            catch (IOException)
-            {
-                MessageBox.Show("Error closing file");
-            }
-
         }
 
         private void StatisticsForm_Load(object sender, EventArgs e)
