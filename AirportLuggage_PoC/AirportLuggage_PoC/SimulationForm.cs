@@ -109,8 +109,8 @@ namespace AirportLuggage_PoC
                 await Task.Delay(1);
             }
             p.Belt.Available = true;
+            
             lbStatus.Items.Add($"All luggages from flight {p.NrFlight} have been loaded into trailer!");
-              
         }
         private void pauzeButton_Click(object sender, EventArgs e)
         {
@@ -195,6 +195,10 @@ namespace AirportLuggage_PoC
                                         pb.Visible = false;
                                         luggage.position = luggage.Belt.startPos;
                                         luggage.status = Status.InTransfer;
+                                    }
+                                    if (lbStatus.Items.ToString().Contains(luggage.Flight.NrFlight.ToString()))
+                                    {
+                                        luggage.Flight.Trailer.IsTransporting = true;
                                     }
                                 }
                                 else
@@ -311,7 +315,7 @@ namespace AirportLuggage_PoC
         {
             
             simulation.MoveAllLuggage();
-            //simulation.MoveTrailers(pbZoneA.Location.X);
+            simulation.MoveTrailers(pbZoneA.Location.X);
             ReDrawSimulation();
         }
 

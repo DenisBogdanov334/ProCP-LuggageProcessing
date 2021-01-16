@@ -9,7 +9,7 @@ namespace AirportLuggage_PoC
 {
     class Simulation
     {
-        
+
         public int NrAvailableEmployees { get; set; }
         public int NrAvailableTrailers { get; set; }
         public int NrAvailableWagons { get; set; }
@@ -21,7 +21,7 @@ namespace AirportLuggage_PoC
         readonly List<Zone> zones;
         public bool OnTime { get; set; }
 
-        public Simulation(string filePath,int nrTrailers, int nrWagons, int nrEmployees, List<Plane> plns, DateTime startT)
+        public Simulation(string filePath, int nrTrailers, int nrWagons, int nrEmployees, List<Plane> plns, DateTime startT)
         {
             this.NrAvailableEmployees = nrEmployees;
             this.NrAvailableTrailers = nrTrailers;
@@ -61,7 +61,7 @@ namespace AirportLuggage_PoC
             zones.Add(new Zone() { Id = "B", Available = true });
             zones.Add(new Zone() { Id = "C", Available = true });
 
-            trailers.Add(new Trailer("T100A"){ Available = true });
+            trailers.Add(new Trailer("T100A") { Available = true });
             trailers.Add(new Trailer("T100B") { Available = true });
             trailers.Add(new Trailer("T100C") { Available = true });
 
@@ -91,7 +91,7 @@ namespace AirportLuggage_PoC
             return this.trailers;
         }
 
-        
+
         public List<AirportBelt> GetBelts()
         {
             return this.belts;
@@ -113,7 +113,7 @@ namespace AirportLuggage_PoC
             }
         }
 
-        
+
 
         public void MoveLuggagePerFlight(int flightNo)
         {
@@ -123,9 +123,9 @@ namespace AirportLuggage_PoC
                 {
                     foreach (var l in p.GetLuggages())
                     {
-                        if(p.Belt!=null)
+                        if (p.Belt != null)
                             l.Transport(p.Belt);
-                        
+
                     }
                 }
             }
@@ -318,7 +318,7 @@ namespace AirportLuggage_PoC
                 }
             }
         }
-        public void TransferToTrailer(Plane plane,string currentTime)
+        public void TransferToTrailer(Plane plane, string currentTime)
         {
             foreach (var p in planes)
             {
@@ -331,9 +331,30 @@ namespace AirportLuggage_PoC
                 }
             }
         }
-        
-        }
+
+        //internal void AddLoadedLuggageToTrailer(Plane plane)
+        //{
+        //    foreach (var p in planes)
+        //    {
+        //        if (p == plane) { }
+        //        foreach (var t in trailers)
+        //        {
+        //            if (p.Trailer == t)
+        //            {
+        //                t.CurrentLoad++;
+        //                if (t.CurrentLoad == p.NrOfLuggages)
+        //                {
+        //                    t.IsTransporting = true;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    }
+
+        //}
     }
+}
+    
 
     
 

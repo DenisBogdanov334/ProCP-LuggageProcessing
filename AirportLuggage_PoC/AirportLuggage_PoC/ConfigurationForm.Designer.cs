@@ -30,6 +30,8 @@
         {
             this.btnUpload = new System.Windows.Forms.Button();
             this.manualBox = new System.Windows.Forms.GroupBox();
+            this.cbWagons = new System.Windows.Forms.ComboBox();
+            this.cbTrailer = new System.Windows.Forms.ComboBox();
             this.dtPick = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,8 +41,6 @@
             this.rbManual = new System.Windows.Forms.RadioButton();
             this.rbAuto = new System.Windows.Forms.RadioButton();
             this.btnDone = new System.Windows.Forms.Button();
-            this.cbTrailer = new System.Windows.Forms.ComboBox();
-            this.cbWagons = new System.Windows.Forms.ComboBox();
             this.manualBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +70,32 @@
             this.manualBox.TabIndex = 1;
             this.manualBox.TabStop = false;
             // 
+            // cbWagons
+            // 
+            this.cbWagons.FormattingEnabled = true;
+            this.cbWagons.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.cbWagons.Location = new System.Drawing.Point(28, 148);
+            this.cbWagons.Name = "cbWagons";
+            this.cbWagons.Size = new System.Drawing.Size(121, 24);
+            this.cbWagons.TabIndex = 10;
+            // 
+            // cbTrailer
+            // 
+            this.cbTrailer.FormattingEnabled = true;
+            this.cbTrailer.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.cbTrailer.Location = new System.Drawing.Point(28, 54);
+            this.cbTrailer.Name = "cbTrailer";
+            this.cbTrailer.Size = new System.Drawing.Size(121, 24);
+            this.cbTrailer.TabIndex = 9;
+            // 
             // dtPick
             // 
             this.dtPick.CustomFormat = "HH:mm";
@@ -79,6 +105,7 @@
             this.dtPick.ShowUpDown = true;
             this.dtPick.Size = new System.Drawing.Size(200, 22);
             this.dtPick.TabIndex = 8;
+            this.dtPick.Value = new System.DateTime(2021, 1, 16, 6, 0, 0, 0);
             this.dtPick.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
             // 
             // label4
@@ -126,6 +153,7 @@
             this.tbEmployees.Name = "tbEmployees";
             this.tbEmployees.Size = new System.Drawing.Size(100, 22);
             this.tbEmployees.TabIndex = 2;
+            this.tbEmployees.Text = "10";
             // 
             // rbManual
             // 
@@ -158,32 +186,6 @@
             this.btnDone.Text = "Done";
             this.btnDone.UseVisualStyleBackColor = true;
             this.btnDone.Click += new System.EventHandler(this.BtnDone_Click);
-            // 
-            // cbTrailer
-            // 
-            this.cbTrailer.FormattingEnabled = true;
-            this.cbTrailer.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.cbTrailer.Location = new System.Drawing.Point(28, 54);
-            this.cbTrailer.Name = "cbTrailer";
-            this.cbTrailer.Size = new System.Drawing.Size(121, 24);
-            this.cbTrailer.TabIndex = 9;
-            // 
-            // cbWagons
-            // 
-            this.cbWagons.FormattingEnabled = true;
-            this.cbWagons.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.cbWagons.Location = new System.Drawing.Point(28, 148);
-            this.cbWagons.Name = "cbWagons";
-            this.cbWagons.Size = new System.Drawing.Size(121, 24);
-            this.cbWagons.TabIndex = 10;
             // 
             // ConfigurationForm
             // 

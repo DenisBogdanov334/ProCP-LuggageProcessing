@@ -11,7 +11,7 @@ namespace AirportLuggage_PoC
     {
         public Point position;
         public string Id { get; set; }
-        //public int Capacity { get; set; }
+        public int Capacity { get; set; }
         public int CurrentLoad { get; set; }
         public AirportBelt Belt { get; set; }
         public bool Available { get; set; }
