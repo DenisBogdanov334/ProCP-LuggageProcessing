@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace AirportLuggage_PoC
 {
     public partial class StatisticsForm : Form
     {
-        public LuggageManagement lmc;
+        private LuggageManagement lmc;
         public List<UpcomingFlight> flights;
         public List<Luggage> luggages;
         public List<Luggage> loadedL;
@@ -23,22 +24,26 @@ namespace AirportLuggage_PoC
         {
             InitializeComponent();
             lmc = lm;
-            //this.flights = lm.GetAllFlights();
+            this.flights = lm.GetAllFlights();
             this.luggages = lm.GetAllLuggages();
-            this.loadedL = lm.GetAllLoadedLuggages();
-            this.unloadedL = lm.GetAllUnLoadedLuggages();
+            this.loadedL = lm.GetLuggagesLoadedInTrailer();
+            this.unloadedL = lm.GetLuggagesWaitingForLoading();
 
 
 
             //Hardcoded random data for statistics elements
 
-            chart1.Series["Belt ocupancy"].Points.AddXY("Belt A", lm.totalLuggageBeltA);
+
             chart1.Series["Belt ocupancy"].Points.AddXY("Belt B", lm.totalLuggageBeltB);
             chart1.Series["Belt ocupancy"].Points.AddXY("Belt C", lm.totalLuggageBeltC);
 
-            lblTotalLuggage.Text = "1329";
-            lblLuggageLoaded.Text = "22.4";
-            lblTotalLuggagewaiting.Text = "1.4";
+            chart2.Series["luggageChart"].Points.AddXY("Loaded", lmc.GetLuggagesLoadedInAirplane().Count);
+            chart2.Series["luggageChart"].Points.AddXY("Waiting", lmc.GetLuggagesWaitingForLoading().Count);
+            chart2.Series["luggageChart"].Points.AddXY("In transport", lmc.GetAllLuggages().Count - lmc.GetLuggagesLoadedInAirplane().Count - lmc.GetLuggagesWaitingForLoading().Count);
+
+            lblTotalLuggage.Text = luggages.Count.ToString();
+            lblTotalLuggagewaiting.Text = (luggages.Count - loadedL.Count - unloadedL.Count).ToString();
+            lblLuggageOnbelt.Text = loadedL.Count.ToString();
 
             lbEmpName.Items.Add("John Michael");
             lbEmpName.Items.Add("Joe Jonas");
@@ -50,15 +55,6 @@ namespace AirportLuggage_PoC
             lbEmpStation.Items.Add("Loading plane");
             lbEmpStation.Items.Add("Check-in desk");
 
-            lbEmpHoursWorked.Items.Add("7");
-            lbEmpHoursWorked.Items.Add("6.5");
-            lbEmpHoursWorked.Items.Add("9");
-            lbEmpHoursWorked.Items.Add("9.5");
-
-            lbHourlySalary.Items.Add("€ 8.4");
-            lbHourlySalary.Items.Add("€ 8.7");
-            lbHourlySalary.Items.Add("€ 10.3");
-            lbHourlySalary.Items.Add("€ 13.0");
 
             DisplayFlightInfo(flights);
             DisplayAllLuggage(luggages);
@@ -94,7 +90,7 @@ namespace AirportLuggage_PoC
                 }
             }
 
-
+            timer1.Start();
 
         }
 
@@ -118,7 +114,7 @@ namespace AirportLuggage_PoC
 
         public void DisplayLoadedLuggage(List<Luggage> l)
         {
-            lblLuggageLoaded.Text = l.Count().ToString();
+            lblLuggageOnbelt.Text = l.Count().ToString();
         }
         public void DisplayUnloadedLuggage(List<Luggage> l)
         {
@@ -133,6 +129,93 @@ namespace AirportLuggage_PoC
             DisplayUnloadedLuggage(l);
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Title = "Save statistics";
+                    saveFileDialog.Filter = "Airport file|*.txt";
+                    saveFileDialog.FileName = "myAirport";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write))
+                        using (var streamWriter = new StreamWriter(fileStream))
+                        {
+                            streamWriter.WriteLine("Flights info: " + DateTime.Now.ToString());
+                            foreach (UpcomingFlight f in lmc.GetAllFlights())
+                            {
+                                streamWriter.WriteLine(f);
+                            }
+                            streamWriter.WriteLine("---------------------------------------------------------");
+                            streamWriter.WriteLine("Luggage info: ");
+
+                            foreach (Luggage l in lmc.GetAllLuggages())
+                            {
+                                streamWriter.WriteLine(l);
+                            }
+                            streamWriter.WriteLine("----------------------------------------------------------");
+                            streamWriter.WriteLine("Total amount of luggage: " + lmc.GetAllLuggages().Count.ToString());
+                            streamWriter.WriteLine("Luggages waiting for loading: " + lmc.GetLuggagesWaitingForLoading().Count.ToString());
+                            streamWriter.WriteLine("Luggages loaded to belt: " + lmc.GetLuggagesLoadedOnBelt().Count.ToString());
+                            streamWriter.WriteLine("Luggages loaded to trailers: " + lmc.GetLuggagesLoadedInTrailer().Count.ToString()); ;
+                            streamWriter.WriteLine("Luggages loaded to airplanes: " + lmc.GetLuggagesLoadedInAirplane().Count.ToString());
+                        }
+                    }
+                }
+                MessageBox.Show("Data is saved!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void StatisticsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public int currA;
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //this.updateAll(luggages, flights);
+            //SimulationForm sim = new SimulationForm();
+            //currA = sim.getLuggageOnBeltA();
+            chart1.Series["Belt ocupancy"].Points.AddXY("Belt A", currA);
+            UpdateLuggagesStatus();
+        }
+
+        private void UpdateLuggagesStatus()
+        {
+            lblTotalLuggagewaiting.Text = lmc.GetLuggagesWaitingForLoading().Count.ToString();
+            lblLuggageOnbelt.Text = lmc.GetLuggagesLoadedOnBelt().Count.ToString();
+            lblLuggageInTrailer.Text = lmc.GetLuggagesLoadedInTrailer().Count.ToString();
+            lblLuggageInPlane.Text = lmc.GetLuggagesLoadedInAirplane().Count.ToString();
+
+            chart2.Series["luggageChart"].Points.Clear();
+            chart2.Series["luggageChart"].Points.AddXY("Loaded", lmc.GetLuggagesLoadedInAirplane().Count);
+            chart2.Series["luggageChart"].Points.AddXY("Waiting", lmc.GetLuggagesWaitingForLoading().Count);
+            chart2.Series["luggageChart"].Points.AddXY("In transport", lmc.GetAllLuggages().Count - lmc.GetLuggagesLoadedInAirplane().Count - lmc.GetLuggagesWaitingForLoading().Count);
+
+            lbTotalA.Text = lmc.GetBelts()[0].Loaded.ToString();
+            lbTotalB.Text = lmc.GetBelts()[1].Loaded.ToString();
+            lbTotalC.Text = lmc.GetBelts()[2].Loaded.ToString();
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

@@ -97,6 +97,15 @@ namespace AirportLuggage_PoC
             return this.belts;
         }
 
+        public int GetAllLuggages()
+        {
+            int total = 0;
+            foreach (var p in planes)
+            {
+                total += p.NrOfLuggages;
+            }
+            return total;
+        }
         public async void MoveAllLuggage()
         {
             foreach (var p in planes)
