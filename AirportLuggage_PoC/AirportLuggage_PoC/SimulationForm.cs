@@ -109,8 +109,9 @@ namespace AirportLuggage_PoC
                 await Task.Delay(1);
             }
             p.Belt.Available = true;
-            
+            p.Trailer.IsTransporting = true;
             lbStatus.Items.Add($"All luggages from flight {p.NrFlight} have been loaded into trailer!");
+            
         }
         private void pauzeButton_Click(object sender, EventArgs e)
         {
@@ -191,14 +192,10 @@ namespace AirportLuggage_PoC
                                         pb.Visible = true;
                                     else if (luggage.status == Status.LoadedInTrailer)
                                     {
-                                        
+
                                         pb.Visible = false;
                                         luggage.position = luggage.Belt.startPos;
                                         luggage.status = Status.InTransfer;
-                                    }
-                                    if (lbStatus.Items.ToString().Contains(luggage.Flight.NrFlight.ToString()))
-                                    {
-                                        luggage.Flight.Trailer.IsTransporting = true;
                                     }
                                 }
                                 else
@@ -209,23 +206,23 @@ namespace AirportLuggage_PoC
                                 }
                             }
                         }
-                    }
-                    else if (pb.Tag is Trailer trailer) // otherwise it is a trailer
-                    {
-                        pb.Location = trailer.position;
-
-                        //check if trailer already arrived at departure zone: if yes, update information listbox
-                        if (trailer.position.X >= pbZoneA.Location.X && trailer.IsTransporting)
+                        else if (pb.Tag is Trailer trailer) // otherwise it is a trailer
                         {
-                            trailer.IsTransporting = false;
-                            this.lbLoadToFlight.Items.Add($"Trailer {trailer.Id} has arrived at departure zone!");
-                            foreach (var l in trailer.luggages)
+                            pb.Location = trailer.position;
+
+                            //check if trailer already arrived at departure zone: if yes, update information listbox
+                            if (trailer.position.X >= pbZoneA.Location.X && trailer.IsTransporting)
                             {
-                                if (l.status != Status.LoadedInAirplane)
+                                trailer.IsTransporting = false;
+                                this.lbLoadToFlight.Items.Add($"Trailer {trailer.Id} has arrived at departure zone!");
+                                foreach (var l in trailer.luggages)
                                 {
-                                    l.status = Status.LoadedInAirplane;
-                                    this.lbStatus.Items.Remove(l);
-                                    this.lbLoadToFlight.Items.Add(l);
+                                    if (l.status != Status.LoadedInAirplane)
+                                    {
+                                        l.status = Status.LoadedInAirplane;
+                                        this.lbStatus.Items.Remove(l);
+                                        this.lbLoadToFlight.Items.Add(l);
+                                    }
                                 }
                             }
                         }
@@ -305,7 +302,7 @@ namespace AirportLuggage_PoC
             {
                 this.Controls.Remove(pb);
             }
-            pbs.Clear();
+            pbs.Clear(); 
             this.Invalidate();
         }
 

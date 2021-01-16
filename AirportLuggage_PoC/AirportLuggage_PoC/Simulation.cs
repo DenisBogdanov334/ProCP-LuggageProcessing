@@ -82,9 +82,12 @@ namespace AirportLuggage_PoC
         {
             foreach (var trailer in trailers)
             {
-                if (trailer.IsTransporting && trailer.position.X < maxRight)
+                if (trailer.IsTransporting)
                 {
-                    trailer.Transport();
+                    if (trailer.position.X < maxRight)
+                    {
+                        trailer.Transport();
+                    }
                 }
             }
         }

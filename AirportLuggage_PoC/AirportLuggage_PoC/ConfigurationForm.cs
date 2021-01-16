@@ -20,6 +20,8 @@ namespace AirportLuggage_PoC
         public ConfigurationForm()
         {
             InitializeComponent();
+            cbTrailer.SelectedIndex = 0;
+            cbWagons.SelectedIndex = 0;
         }
 
         private void Button1_Click(object sender, EventArgs e)
