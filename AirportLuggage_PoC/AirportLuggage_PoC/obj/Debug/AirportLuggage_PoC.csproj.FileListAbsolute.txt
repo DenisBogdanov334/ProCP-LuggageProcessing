@@ -1,5 +1,4 @@
 C:\Users\rares\Documents\UNI\PROCP MASTER\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csprojAssemblyReference.cache
-C:\Users\rares\Documents\UNI\PROCP MASTER\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.Form1.resources
 C:\Users\rares\Documents\UNI\PROCP MASTER\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.Properties.Resources.resources
 C:\Users\rares\Documents\UNI\PROCP MASTER\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csproj.GenerateResource.cache
 C:\Users\rares\Documents\UNI\PROCP MASTER\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csproj.CoreCompileInputs.cache
@@ -67,3 +66,5 @@ D:\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.cspr
 D:\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.exe
 D:\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.pdb
 D:\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.csprojAssemblyReference.cache
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.ConfigurationForm.resources
+C:\Users\rares\Documents\UNI\PROCP MASTER\procp\AirportLuggage_PoC\AirportLuggage_PoC\obj\Debug\AirportLuggage_PoC.SimulationForm.resources

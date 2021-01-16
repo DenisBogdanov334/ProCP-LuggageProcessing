@@ -7,17 +7,19 @@ using System.IO;
 
 namespace AirportLuggage_PoC
 {
-    class Simulation
+    public class Simulation
     {
 
         public int NrAvailableEmployees { get; set; }
         public int NrAvailableTrailers { get; set; }
         public int NrAvailableWagons { get; set; }
         public DateTime startTime { get; set; }
+        public int TotalEmp { get; set; }
         private List<Luggage> luggages;
         private List<Plane> planes;
         private List<Trailer> trailers;
         private List<AirportBelt> belts;
+        
         readonly List<Zone> zones;
         public bool OnTime { get; set; }
 
@@ -26,6 +28,7 @@ namespace AirportLuggage_PoC
             this.NrAvailableEmployees = nrEmployees;
             this.NrAvailableTrailers = nrTrailers;
             this.NrAvailableWagons = nrWagons;
+            this.TotalEmp = nrEmployees;
             this.startTime = startT;
             planes = new List<Plane>();
             this.planes = plns;
@@ -103,6 +106,15 @@ namespace AirportLuggage_PoC
             foreach (var p in planes)
             {
                 total += p.NrOfLuggages;
+            }
+            return total;
+        }
+        public int GetNeedeEmp()
+        {
+            int total = 0;
+            foreach (var p in planes)
+            {
+                total += p.NeededEmployees;
             }
             return total;
         }

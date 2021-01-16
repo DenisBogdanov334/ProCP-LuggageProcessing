@@ -124,8 +124,8 @@ namespace AirportLuggage_PoC
 
         private void statisticsButton_Click(object sender, EventArgs e)
         {
-            //StatisticsForm frm = new StatisticsForm(lm);
-            //frm.Show();
+            StatisticsForm frm = new StatisticsForm(simulation);
+            frm.Show();
         }
 
         private void DrawSimulation()
