@@ -14,10 +14,14 @@ namespace AirportLuggage_PoC
         public Zone Zone { get; set; }
         public AirportBelt Belt { get; set; }
         public Trailer Trailer { get; set; }
+        public int NeededWagons { get; set; }
         public int NeededEmployees { get; set; }
         public List<Luggage> luggages { get; set; }
         public string StartLoadingTime { get; set; }
         public string EndLoadingTime { get; set; }
+        public string LoadedToWagons { get; set; }
+        public bool OnTime { get; set; }
+        public DateTime Delay { get; set; }
 
         public void FillLuggageList()
         {
@@ -38,7 +42,14 @@ namespace AirportLuggage_PoC
             loadingTime = loadingTime.AddSeconds(Belt.Length * NrOfLuggages);
             loadingTime = loadingTime.AddMinutes(NrOfLuggages);
             return loadingTime;
+        }
 
+        public DateTime GetTotalLoadingTime()
+        {
+            DateTime loadingTime = new DateTime();
+            loadingTime = loadingTime.AddSeconds(Belt.Length * NrOfLuggages);
+            loadingTime = loadingTime.AddMinutes(NrOfLuggages*2+5);
+            return loadingTime;
         }
     }
 }

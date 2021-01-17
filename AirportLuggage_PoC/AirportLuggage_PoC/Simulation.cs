@@ -18,14 +18,26 @@ namespace AirportLuggage_PoC
         private List<Luggage> luggages;
         private List<Plane> planes;
         private List<Trailer> trailers;
+        private List<Wagon> wagons;
         private List<AirportBelt> belts;
-        
+        private List<Employee> employees;
         readonly List<Zone> zones;
-        public bool OnTime { get; set; }
+        public int NeededWagons { get; set; }
+        private int moreEmployees = 0;
 
         public Simulation(string filePath, int nrTrailers, int nrWagons, int nrEmployees, List<Plane> plns, DateTime startT)
         {
             this.NrAvailableEmployees = nrEmployees;
+            employees = new List<Employee>();
+            for (int i = 0; i < nrEmployees; i++)
+            {
+                employees.Add(new Employee());
+            }
+            wagons = new List<Wagon>();
+            for (int i = 0; i < nrWagons; i++)
+            {
+                wagons.Add(new Wagon() { Available = true}) ;
+            }
             this.NrAvailableTrailers = nrTrailers;
             this.NrAvailableWagons = nrWagons;
             this.TotalEmp = nrEmployees;
@@ -97,7 +109,10 @@ namespace AirportLuggage_PoC
             return this.trailers;
         }
 
-
+        internal List<Wagon> GetWagons()
+        {
+            return this.wagons;
+        }
         public List<AirportBelt> GetBelts()
         {
             return this.belts;
@@ -125,34 +140,42 @@ namespace AirportLuggage_PoC
         {
             foreach (var p in planes)
             {
-                foreach (var l in p.GetLuggages())
-                {
-                    l.Belt = p.Belt;
-                    if (l.Belt != null)
+                    foreach (var l in p.GetLuggages())
                     {
-                        await Task.Delay(1500);
-                        l.Transport();
+                    if (l.isMoving)
+                    {
+                        l.Belt = p.Belt;
+                        if (l.Belt != null)
+                        {
+                            await Task.Delay(1500);
+                            l.Transport();
+                        }
                     }
-                }
+                    }
             }
         }
 
 
 
-        public void MoveLuggagePerFlight(int flightNo)
+        public async void MoveLuggagePerFlight(Plane pl)
         {
             foreach (var p in planes)
             {
-                if (p.NrFlight == flightNo)
+                if (p == pl)
                 {
-                    foreach (var l in p.GetLuggages())
+                    foreach (var l in pl.GetLuggages())
                     {
-                        if (p.Belt != null)
-                            l.Transport(p.Belt);
+                        if (pl.Belt != null)
+                        {
+                            await Task.Delay(1500);
+                            l.Transport(pl.Belt);
+                        }
 
                     }
                 }
             }
+                  
+            
         }
 
 
@@ -170,15 +193,6 @@ namespace AirportLuggage_PoC
         {
             foreach (Zone zone in zones)
             {
-                bool flag = true;
-                while (zones.All(Zones => Zones.Available.Equals(false)))
-                {
-                    if (flag)
-                    {
-                        flag = false;
-                    }
-
-                }
                 if (zone.Available == true)
                 {
                     zone.Available = false;
@@ -187,19 +201,16 @@ namespace AirportLuggage_PoC
                 }
             }
         }
+        public List<Zone> GetZones()
+        {
+            return this.zones;
+        }
 
         public void AssignBelt(Plane plane)
         {
             foreach (AirportBelt band in belts)
             {
-                bool flag = true;
-                while (belts.All(AirportBelt => AirportBelt.Available.Equals(false)))
-                {
-                    if (flag)
-                    {
-                        flag = false;
-                    }
-                }
+                
                 if (band.Available == true)
                 {
                     band.Available = false;
@@ -227,112 +238,118 @@ namespace AirportLuggage_PoC
                         nextPlane = null;
                     }
                     DateTime startTime = plane.FlightTime.AddHours(-2);
-                    DateTime endTime = plane.FlightTime.AddMinutes(-15);
-                    DateTime startLoading = startTime;
-
-                    bool flg = true;
-                    while (NrAvailableEmployees == 0)
+                    DateTime endTime = plane.FlightTime.AddMinutes(-15);                   
+                    if (nextPlane != null)
                     {
-                        if (flg)
+                        if ((nextPlane.FlightTime - currentPlane.FlightTime).Minutes >= currentPlane.NrOfLuggages * 2 + 5)
                         {
-                            flg = false;
+                            plane.NeededEmployees = 2;
+                            int count = 0;
+                            foreach (var e in employees)
+                            {
+                                if (e.isAvailable == true && count < 2)
+                                {
+                                    e.isAvailable = false;
+                                    e.isUsed = true;
+                                    count++;
+                                }
+                                break;
+                            }                           
+                        }
+                        else if ((nextPlane.FlightTime - currentPlane.FlightTime).Minutes < currentPlane.NrOfLuggages * 2 + 5)
+                        {
+                            plane.NeededEmployees = 3;
+                
+                            int count = 0;
+                            foreach (var e in employees)
+                            {
+                                if (e.isAvailable == true && count < 3)
+                                {
+                                    e.isAvailable = false;
+                                    e.isUsed = true;
+                                    count++;
+                                }
+                                break;
+                            }
+                        }
+                        else if ((nextPlane.FlightTime - currentPlane.FlightTime).Minutes < (currentPlane.NrOfLuggages + 5))
+                        {
+                            plane.NeededEmployees = 4;
+                            
+                            int count = 0;
+                            foreach (var e in employees)
+                            {
+                                if (e.isAvailable == true && count < 4)
+                                {
+                                    e.isAvailable = false;
+                                    e.isUsed = true;
+                                    count++;
+                                }
+                                break;
+                            }
+                            
                         }
                     }
-                    if (NrAvailableEmployees > 0)
+                    else
                     {
-                        if (nextPlane != null)
+                        if ((endTime - startTime).Minutes > (currentPlane.NrOfLuggages + 5))
                         {
-                            if ((nextPlane.FlightTime - currentPlane.FlightTime).Minutes >= currentPlane.NrOfLuggages + 5)
+                            plane.NeededEmployees = 2;               
+                            
+                            int count = 0;
+                            foreach (var e in employees)
                             {
-                                plane.NeededEmployees = 1;
-                                NrAvailableEmployees--;
-
-                            }
-                            else if ((nextPlane.FlightTime - currentPlane.FlightTime).Minutes < currentPlane.NrOfLuggages + 5)
-                            {
-                                plane.NeededEmployees = 2;
-                                bool flag = true;
-                                while (NrAvailableEmployees < plane.NeededEmployees)
+                                if (e.isAvailable == true && count < 3)
                                 {
-                                    if (flag)
-                                    {
-                                        flag = false;
-                                    }
+                                    e.isAvailable = false;
+                                    e.isUsed = true;
+                                    count++;
                                 }
-
-                                NrAvailableEmployees -= plane.NeededEmployees;
-                            }
-                            else if ((nextPlane.FlightTime - currentPlane.FlightTime).Minutes < ((currentPlane.NrOfLuggages + 5) / 2))
+                                break;
+                            }                          
+                        }
+                        else if ((endTime - startTime).Minutes < (currentPlane.NrOfLuggages + 5))
+                        {
+                            plane.NeededEmployees = 3;
+                            
+                            int count = 0;
+                            foreach (var e in employees)
                             {
-                                plane.NeededEmployees = 3;
-                                bool flag = true;
-                                while (NrAvailableEmployees < plane.NeededEmployees)
+                                if (e.isAvailable == true && count < 3)
                                 {
-                                    if (flag)
-                                    {
-                                        flag = false;
-                                    }
+                                    e.isAvailable = false;
+                                    e.isUsed = true;
+                                    count++;
                                 }
-
-                                NrAvailableEmployees -= plane.NeededEmployees;
+                                break;
+                            }
+                           
+                        }
+                        else if ((endTime - startTime).Minutes < ((currentPlane.NrOfLuggages + 5) / 2))
+                        {
+                            plane.NeededEmployees = 4;
+                           
+                            int count = 0;
+                            foreach (var e in employees)
+                            {
+                                if (e.isAvailable == true && count < 4)
+                                {
+                                    e.isAvailable = false;
+                                    e.isUsed = true;
+                                    count++;
+                                }
+                                break;
                             }
                         }
-                        else
-                        {
-                            if ((endTime - startTime).Minutes > (currentPlane.NrOfLuggages + 5))
-                            {
-                                plane.NeededEmployees = 1;
-                                NrAvailableEmployees--;
-                            }
-                            else if ((endTime - startTime).Minutes < (currentPlane.NrOfLuggages + 5))
-                            {
-                                plane.NeededEmployees = 2;
-                                bool flag = true;
-                                while (NrAvailableEmployees < plane.NeededEmployees)
-                                {
-                                    if (flag)
-                                    {
-
-                                        flag = false;
-                                    }
-                                }
-
-                                NrAvailableEmployees -= plane.NeededEmployees;
-                            }
-                            else if ((endTime - startTime).Minutes < ((currentPlane.NrOfLuggages + 5) / 2))
-                            {
-                                plane.NeededEmployees = 3;
-                                bool flag = true;
-                                while (NrAvailableEmployees < plane.NeededEmployees)
-                                {
-                                    if (flag)
-                                    {
-
-                                        flag = false;
-                                    }
-                                }
-
-                                NrAvailableEmployees -= plane.NeededEmployees;
-                            }
-                        }
+                    }
                     }
                 }
-            }
         }
 
         public void AssignTrailer(Plane plane)
         {
             foreach (Trailer t in trailers)
             {
-                bool flag = true;
-                while (trailers.All(Trailer => Trailer.Available.Equals(false)))
-                {
-                    if (flag)
-                    {
-
-                        flag = false;
-                    }
-                }
                 if (t.Available == true)
                 {
                     t.Available = false;
@@ -342,7 +359,29 @@ namespace AirportLuggage_PoC
                 }
             }
         }
-        public void TransferToTrailer(Plane plane, string currentTime)
+
+        public void AssignWagons(Plane plane)
+        {
+            int wag = plane.NrOfLuggages / 50;
+            switch (wag)
+            {
+                case 0:
+                    plane.NeededWagons = 1;
+                    break;
+                case 1:
+                    plane.NeededWagons = 2;
+                    break;
+                case 2:
+                    plane.NeededWagons = 3;
+                    break;
+                case 3:
+                    plane.NeededWagons = 4;
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void TransferToAirplane(Plane plane, string currentTime)
         {
             foreach (var p in planes)
             {
@@ -350,32 +389,26 @@ namespace AirportLuggage_PoC
                 {
                     DateTime endTime = plane.FlightTime.AddMinutes(-15);
                     p.StartLoadingTime = currentTime;
-                    DateTime endLoading = DateTime.Parse(p.StartLoadingTime).Add(TimeSpan.Parse(p.GetLoadingTimeToWagon().ToString("HH:mm")));
+                    DateTime endLoading = DateTime.Parse(p.StartLoadingTime).Add(TimeSpan.Parse(p.GetTotalLoadingTime().ToString("HH:mm")));
                     p.EndLoadingTime = endLoading.ToString("HH:mm");
+                    DateTime loadedToWagons= DateTime.Parse(p.StartLoadingTime).Add(TimeSpan.Parse(p.GetLoadingTimeToWagon().ToString("HH:mm")));
+                    p.LoadedToWagons = loadedToWagons.ToString("HH:mm");
+                    if (endLoading < endTime)
+                    {
+                        p.OnTime = true;
+                    }
+                    else
+                    {
+                        p.Delay = DateTime.Parse(endLoading.Subtract(endTime).ToString());
+                    }
+                    foreach (var l in p.GetLuggages())
+                    {
+                        l.isMoving = true;
+                    }
                 }
             }
         }
 
-        //internal void AddLoadedLuggageToTrailer(Plane plane)
-        //{
-        //    foreach (var p in planes)
-        //    {
-        //        if (p == plane) { }
-        //        foreach (var t in trailers)
-        //        {
-        //            if (p.Trailer == t)
-        //            {
-        //                t.CurrentLoad++;
-        //                if (t.CurrentLoad == p.NrOfLuggages)
-        //                {
-        //                    t.IsTransporting = true;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    }
-
-        //}
     }
 }
     

@@ -19,7 +19,7 @@ namespace AirportLuggage_PoC
 
         //public UpcomingFlight Flight { get; set; }
         public Plane Flight { get; set; }
-
+        public bool isMoving { get; set; }
 
 
         //Ling
