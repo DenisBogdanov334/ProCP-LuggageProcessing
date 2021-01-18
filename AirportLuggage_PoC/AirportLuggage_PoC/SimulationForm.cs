@@ -19,7 +19,7 @@ namespace AirportLuggage_PoC
         private DateTime currentTime;
         
 
-        public SimulationForm(string filePath, int nrTrailers, int nrWagons, int nrEmployees,List<Plane> planes, DateTime start)
+        public SimulationForm(string filePath, int nrWagons, int nrEmployees,List<Plane> planes, DateTime start)
         {
             InitializeComponent();
             pbs = new List<PictureBox>();
@@ -27,7 +27,7 @@ namespace AirportLuggage_PoC
             //UpdateLbUnloadedLuggages();
             btnPause.Enabled = false;
             pauzeToolStripMenuItem.Enabled = false;
-            simulation = new Simulation(filePath, nrTrailers, nrWagons, nrEmployees, planes, start);
+            simulation = new Simulation(filePath, nrWagons, nrEmployees, planes, start);
             currentTime = start;
             
             DrawSimulation();
@@ -173,7 +173,7 @@ namespace AirportLuggage_PoC
                     cnt++;
                 }
             }
-            simulation.NrAvailableTrailers++;
+            
             simulation.NrAvailableWagons += p.NeededWagons;
             int count = 0;
             foreach (var w in simulation.GetWagons())

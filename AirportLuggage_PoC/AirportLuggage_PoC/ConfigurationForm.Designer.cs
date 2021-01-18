@@ -31,12 +31,10 @@
             this.btnUpload = new System.Windows.Forms.Button();
             this.manualBox = new System.Windows.Forms.GroupBox();
             this.cbWagons = new System.Windows.Forms.ComboBox();
-            this.cbTrailer = new System.Windows.Forms.ComboBox();
             this.dtPick = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tbEmployees = new System.Windows.Forms.TextBox();
             this.rbManual = new System.Windows.Forms.RadioButton();
             this.rbAuto = new System.Windows.Forms.RadioButton();
@@ -57,16 +55,14 @@
             // manualBox
             // 
             this.manualBox.Controls.Add(this.cbWagons);
-            this.manualBox.Controls.Add(this.cbTrailer);
             this.manualBox.Controls.Add(this.dtPick);
             this.manualBox.Controls.Add(this.label4);
             this.manualBox.Controls.Add(this.label3);
             this.manualBox.Controls.Add(this.label2);
-            this.manualBox.Controls.Add(this.label1);
             this.manualBox.Controls.Add(this.tbEmployees);
             this.manualBox.Location = new System.Drawing.Point(145, 81);
             this.manualBox.Name = "manualBox";
-            this.manualBox.Size = new System.Drawing.Size(501, 284);
+            this.manualBox.Size = new System.Drawing.Size(501, 190);
             this.manualBox.TabIndex = 1;
             this.manualBox.TabStop = false;
             // 
@@ -80,21 +76,10 @@
             "4",
             "5",
             "6"});
-            this.cbWagons.Location = new System.Drawing.Point(28, 148);
+            this.cbWagons.Location = new System.Drawing.Point(31, 62);
             this.cbWagons.Name = "cbWagons";
             this.cbWagons.Size = new System.Drawing.Size(121, 24);
             this.cbWagons.TabIndex = 10;
-            // 
-            // cbTrailer
-            // 
-            this.cbTrailer.FormattingEnabled = true;
-            this.cbTrailer.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.cbTrailer.Location = new System.Drawing.Point(28, 54);
-            this.cbTrailer.Name = "cbTrailer";
-            this.cbTrailer.Size = new System.Drawing.Size(121, 24);
-            this.cbTrailer.TabIndex = 9;
             // 
             // dtPick
             // 
@@ -121,7 +106,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 197);
+            this.label3.Location = new System.Drawing.Point(28, 111);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(146, 17);
             this.label3.TabIndex = 5;
@@ -130,26 +115,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 104);
+            this.label2.Location = new System.Drawing.Point(28, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(126, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Number of wagons";
             this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Number of trailers";
-            this.label1.Click += new System.EventHandler(this.Label1_Click);
-            // 
             // tbEmployees
             // 
-            this.tbEmployees.Location = new System.Drawing.Point(28, 235);
+            this.tbEmployees.Location = new System.Drawing.Point(31, 149);
             this.tbEmployees.Name = "tbEmployees";
             this.tbEmployees.Size = new System.Drawing.Size(100, 22);
             this.tbEmployees.TabIndex = 2;
@@ -158,6 +133,7 @@
             // rbManual
             // 
             this.rbManual.AutoSize = true;
+            this.rbManual.Checked = true;
             this.rbManual.Location = new System.Drawing.Point(22, 81);
             this.rbManual.Name = "rbManual";
             this.rbManual.Size = new System.Drawing.Size(75, 21);
@@ -165,6 +141,7 @@
             this.rbManual.TabStop = true;
             this.rbManual.Text = "Manual";
             this.rbManual.UseVisualStyleBackColor = true;
+            this.rbManual.CheckedChanged += new System.EventHandler(this.RbManual_CheckedChanged);
             // 
             // rbAuto
             // 
@@ -173,13 +150,13 @@
             this.rbAuto.Name = "rbAuto";
             this.rbAuto.Size = new System.Drawing.Size(58, 21);
             this.rbAuto.TabIndex = 4;
-            this.rbAuto.TabStop = true;
             this.rbAuto.Text = "Auto";
             this.rbAuto.UseVisualStyleBackColor = true;
+            this.rbAuto.CheckedChanged += new System.EventHandler(this.RbAuto_CheckedChanged);
             // 
             // btnDone
             // 
-            this.btnDone.Location = new System.Drawing.Point(542, 400);
+            this.btnDone.Location = new System.Drawing.Point(571, 287);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(75, 23);
             this.btnDone.TabIndex = 5;
@@ -191,7 +168,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(675, 450);
+            this.ClientSize = new System.Drawing.Size(669, 319);
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.rbAuto);
             this.Controls.Add(this.rbManual);
@@ -212,7 +189,6 @@
         private System.Windows.Forms.GroupBox manualBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbEmployees;
         private System.Windows.Forms.RadioButton rbManual;
         private System.Windows.Forms.RadioButton rbAuto;
@@ -220,6 +196,5 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtPick;
         private System.Windows.Forms.ComboBox cbWagons;
-        private System.Windows.Forms.ComboBox cbTrailer;
     }
 }

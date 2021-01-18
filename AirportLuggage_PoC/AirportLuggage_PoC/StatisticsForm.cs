@@ -39,7 +39,14 @@ namespace AirportLuggage_PoC
 
         public void DisplayEmpInfo()
         {
-            lbEmpHired.Text = s.TotalEmp.ToString();
+            if (s.TotalEmp == 9999)
+            {
+                lbEmpSuggestion.Text = "n/a";
+            }
+            else
+            {
+                lbEmpHired.Text = s.TotalEmp.ToString();
+            }
             string result;
             int emp = s.GetNeedeEmp();
             foreach (var e in s.GetEmployees())
@@ -73,14 +80,28 @@ namespace AirportLuggage_PoC
             }
             if (s.GetPlanes().All(Planes => Planes.Departed.Equals(true)))
             {
-                lbEmpSuggestion.Text = result;
+                if (s.TotalEmp == 9999)
+                {
+                    lbEmpSuggestion.Text = "n/a";
+                }
+                else
+                {
+                    lbEmpSuggestion.Text = result;
+                }
             }
                                
         }
 
         public void DisplayWaggonsInfo()
         {
-            lbAvailableWagons.Text = s.TotalWagons.ToString();
+            if (s.TotalWagons == 9999)
+            {
+                lbAvailableWagons.Text = "n/a";
+            }
+            else
+            {
+                lbAvailableWagons.Text = s.TotalWagons.ToString();
+            }
             string result;
             int wag = s.GetNeededWagons();
             foreach (var w in s.GetWagons())
@@ -112,7 +133,14 @@ namespace AirportLuggage_PoC
             }
             if (s.GetPlanes().All(Planes => Planes.Departed.Equals(true)))
             {
-                lbSuggestionWagons.Text = result;
+                if (s.TotalWagons == 9999)
+                {
+                    lbSuggestionWagons.Text = "n/a";
+                }
+                else
+                {
+                    lbSuggestionWagons.Text = result;
+                }
             }
         }
         public void DisplayLuggageInfo()

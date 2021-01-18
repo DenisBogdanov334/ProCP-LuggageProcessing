@@ -16,12 +16,11 @@ namespace AirportLuggage_PoC
     public partial class ConfigurationForm : Form
     { 
         private string filePath = string.Empty;
-    
+
         public ConfigurationForm()
         {
             InitializeComponent();
-            cbTrailer.SelectedIndex = 0;
-            cbWagons.SelectedIndex = 0;
+            cbWagons.SelectedIndex = 0;           
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -58,69 +57,60 @@ namespace AirportLuggage_PoC
 
         private void BtnDone_Click(object sender, EventArgs e)
         {
-            int trailers=0;
-            int wagons=0;
-            int employees=0;
-            List<Plane> planes = new List<Plane>();
-            DateTime start = new DateTime();
-            try
-            {
-                if (!string.IsNullOrEmpty(cbTrailer.Text))
+                int wagons = 0;
+                int employees = 0;
+                List<Plane> planes = new List<Plane>();
+                DateTime start = new DateTime();
+                try
                 {
-                    trailers = Convert.ToInt32(cbTrailer.Text);
+                    if (!string.IsNullOrEmpty(cbWagons.Text))
+                    {
+                        wagons = Convert.ToInt32(cbWagons.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please enter the number of wagons!");
+                        return;
+                    }
                 }
-                else
+                catch (FormatException)
                 {
-                    MessageBox.Show("Please enter the number of trailers!");
+                    MessageBox.Show("Wagons in wrong format! Please enter an integer!");
                     return;
                 }
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Trailers in wrong format! Please enter an integer!");
-                return;
-            }
-            try
-            {
-                if (!string.IsNullOrEmpty(cbWagons.Text))
+                try
                 {
-                    wagons = Convert.ToInt32(cbWagons.Text);
+                    if (!string.IsNullOrEmpty(tbEmployees.Text))
+                    {
+                        employees = Convert.ToInt32(tbEmployees.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please enter the number of employees!");
+                        return;
+                    }
                 }
-                else
+                catch (FormatException)
                 {
-                    MessageBox.Show("Please enter the number of wagons!");
+                    MessageBox.Show("Employees in wrong format! Please enter an integer!");
                     return;
                 }
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Wagons in wrong format! Please enter an integer!");
-                return;
-            }
-            try
-            {
-                if (!string.IsNullOrEmpty(tbEmployees.Text))
-                {
-                    employees = Convert.ToInt32(tbEmployees.Text);
-                }
-                else
-                {
-                    MessageBox.Show("Please enter the number of employees!");
-                    return;
-                }
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Employees in wrong format! Please enter an integer!");
-                return;
-            }
 
-            TimeSpan ts = TimeSpan.Parse(dtPick.Text);
-            start += ts;
-            SimulationForm simF = new SimulationForm(filePath, trailers, wagons, employees,planes,start);
-            simF.Show();
+                TimeSpan ts = TimeSpan.Parse(dtPick.Text);
+                start += ts;
+                if (rbManual.Checked)
+                {
+                SimulationForm simF = new SimulationForm(filePath, wagons, employees, planes, start);
+                simF.Show();
+                }
+                else if (rbAuto.Checked)
+            {
+                SimulationForm simF = new SimulationForm(filePath, 9999, 9999, planes, start);
+                simF.Show();
+            }
+                
+            
         }
-
         private void Label4_Click(object sender, EventArgs e)
         {
 
@@ -129,6 +119,18 @@ namespace AirportLuggage_PoC
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void RbAuto_CheckedChanged(object sender, EventArgs e)
+        {
+                cbWagons.Enabled = false;
+                tbEmployees.Enabled = false;           
+        }
+
+        private void RbManual_CheckedChanged(object sender, EventArgs e)
+        {
+            cbWagons.Enabled = true;
+            tbEmployees.Enabled = true;
         }
     }
 }

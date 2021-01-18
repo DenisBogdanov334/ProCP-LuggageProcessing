@@ -11,7 +11,6 @@ namespace AirportLuggage_PoC
     {
 
         public int NrAvailableEmployees { get; set; }
-        public int NrAvailableTrailers { get; set; }
         public int NrAvailableWagons { get; set; }
         public DateTime startTime { get; set; }
         public int TotalEmp { get; set; }
@@ -28,7 +27,7 @@ namespace AirportLuggage_PoC
         
 
 
-        public Simulation(string filePath, int nrTrailers, int nrWagons, int nrEmployees, List<Plane> plns, DateTime startT)
+        public Simulation(string filePath, int nrWagons, int nrEmployees, List<Plane> plns, DateTime startT)
         {
             this.NrAvailableEmployees = nrEmployees;
             employees = new List<Employee>();
@@ -41,7 +40,6 @@ namespace AirportLuggage_PoC
             {
                 wagons.Add(new Wagon() { Available = true, TimesUsed = 0 }) ;
             }
-            this.NrAvailableTrailers = nrTrailers;
             this.NrAvailableWagons = nrWagons;
             this.TotalWagons = nrWagons;
             this.TotalEmp = nrEmployees;
@@ -247,16 +245,31 @@ namespace AirportLuggage_PoC
                     if (TimeSpan.Parse(p.GetTotalLoadingTime().ToString("HH:mm")) < (p.FlightTime.AddMinutes(-30) - p.FlightTime.AddMinutes(-120)))
                     {
                         p.NeededEmployees = 2;
+                        
                         int count = 0;
-                        foreach (var e in employees)
-                        {
-                            if (count < 2 && e.isAvailable == true)
+                        bool contains = employees.Any(e => e.TimesUsed >= 1 && e.isAvailable == true);
+                        foreach (var em in employees)
+                        {                          
+                            if (contains==true)
                             {
-                                e.isAvailable = false;
-                                e.TimesUsed++;
-                                count++;
+                                if (count < 2 && em.isAvailable == true && em.TimesUsed >= 1)
+                                {
+                                    em.isAvailable = false;
+                                    em.TimesUsed++;
+                                    count++;
+                                }
+                                else break;
                             }
-                            break;
+                            else
+                            {
+                                if (count < 2 && em.isAvailable == true)
+                                {
+                                    em.isAvailable = false;
+                                    em.TimesUsed++;
+                                    count++;
+                                }
+                            }
+                            
                         }
                     }
                     else { p.NeededEmployees = 3;
