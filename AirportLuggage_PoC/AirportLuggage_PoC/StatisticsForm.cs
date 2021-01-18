@@ -20,6 +20,7 @@ namespace AirportLuggage_PoC
         public int luggagesNo;
         public int hiredEmpNo;
         public int neededEmpNo;
+        public int neededWagons;
 
         public StatisticsForm(Simulation sm)
         {
@@ -29,7 +30,7 @@ namespace AirportLuggage_PoC
             luggagesNo = sm.GetAllLuggages();
             hiredEmpNo = sm.TotalEmp;
             neededEmpNo = sm.GetNeedeEmp();
-
+            neededWagons = sm.GetNeededWagons();
 
             //Display info on screen
             timer1.Start();
@@ -39,18 +40,80 @@ namespace AirportLuggage_PoC
         public void DisplayEmpInfo()
         {
             lbEmpHired.Text = s.TotalEmp.ToString();
-            lbEmpNeeded.Text = s.GetNeedeEmp().ToString();
             string result;
-            if (s.TotalEmp - s.GetNeedeEmp() > 0)
+            int emp = s.GetNeedeEmp();
+            foreach (var e in s.GetEmployees())
             {
-                result = "Fire " + (s.TotalEmp - s.GetNeedeEmp()) + " employees";
+                if (e.TimesUsed > 1)
+                {
+                    emp -= e.TimesUsed;
+                    emp++;
+                }
             }
-            else if (s.TotalEmp - s.GetNeedeEmp() < 0)
+            if (s.MoreEmployees > 0)
             {
-                result = "Hire " + (s.GetNeedeEmp() - s.TotalEmp) + " employees";
+                lbEmpNeeded.Text = (s.TotalEmp+s.MoreEmployees).ToString();
+                result = s.MoreEmployees + " more employee(s) needed.";
             }
-            else result = "No actions needed";
-            lbEmpSuggestion.Text = result;
+            else
+            {
+                lbEmpNeeded.Text = emp.ToString();
+                if (s.TotalEmp > emp)
+                {
+                    result = (s.TotalEmp - emp) + " employee(s) too much.";
+                }
+                else if (s.TotalEmp < emp)
+                {
+                    result = (emp - s.TotalEmp) + " more employee(s) needed.";
+                }
+                else
+                {
+                    result = "No actions needed";
+                }
+            }
+            if (s.GetPlanes().All(Planes => Planes.Departed.Equals(true)))
+            {
+                lbEmpSuggestion.Text = result;
+            }
+                               
+        }
+
+        public void DisplayWaggonsInfo()
+        {
+            lbAvailableWagons.Text = s.TotalWagons.ToString();
+            string result;
+            int wag = s.GetNeededWagons();
+            foreach (var w in s.GetWagons())
+            {
+                if (w.TimesUsed > 1)
+                {
+                    wag -= w.TimesUsed;
+                    wag++;
+                }
+            }
+            if (s.MoreWaggons > 0)
+            {
+                lbNeededWagons.Text = (s.TotalWagons+s.MoreWaggons).ToString();
+                result = s.MoreWaggons + " more waggon(s) needed.";
+            }
+            else
+            {
+                
+                lbNeededWagons.Text = wag.ToString();
+                if (s.TotalWagons > wag)
+                {
+                    
+                    result = (s.TotalWagons - wag) + " waggon(s) too much.";
+                }
+                else
+                {
+                    result = "No actions needed";
+                }
+            }
+            if (s.GetPlanes().All(Planes => Planes.Departed.Equals(true)))
+            {
+                lbSuggestionWagons.Text = result;
+            }
         }
         public void DisplayLuggageInfo()
         {
@@ -61,7 +124,14 @@ namespace AirportLuggage_PoC
             lbFlightsInfo.Items.Clear();
             foreach (Plane p in s.GetPlanes())
             {
-                lbFlightsInfo.Items.Add(p.NrFlight + "                       " + p.NeededEmployees.ToString() + "                                 n/a");
+                if (p.Delay != null)
+                {
+                    lbFlightsInfo.Items.Add(p.NrFlight + "                       " + p.NeededEmployees.ToString() + "                              "+ p.Delay.ToString("HH:mm"));
+                }
+                else
+                {
+                    lbFlightsInfo.Items.Add(p.NrFlight + "                       " + p.NeededEmployees.ToString() + "                                 n/a");
+                }
             }
         }
 
@@ -75,6 +145,12 @@ namespace AirportLuggage_PoC
             DisplayEmpInfo();
             DisplayLuggageInfo();
             DisplayFlightInfo();
+            DisplayWaggonsInfo();
+        }
+
+        private void Label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

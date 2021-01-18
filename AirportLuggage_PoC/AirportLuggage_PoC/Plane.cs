@@ -22,6 +22,7 @@ namespace AirportLuggage_PoC
         public string LoadedToWagons { get; set; }
         public bool OnTime { get; set; }
         public DateTime Delay { get; set; }
+        public bool Departed { get; set; }
 
         public void FillLuggageList()
         {

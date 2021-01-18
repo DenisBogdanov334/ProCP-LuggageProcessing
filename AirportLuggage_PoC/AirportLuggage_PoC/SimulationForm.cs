@@ -95,26 +95,30 @@ namespace AirportLuggage_PoC
                 simulation.AssignBelt(p);
                 simulation.AssignTrailer(p);
                 simulation.AssignWagons(p);
+                simulation.AssignEmployees(p);
                 bool ff = true;
-                while(p.NeededWagons>simulation.NrAvailableWagons)
+                while(p.NeededWagons>simulation.NrAvailableWagons || p.NeededEmployees > simulation.NrAvailableEmployees)
                 {
                     if (ff)
                     {
+                        simulation.MoreWaggons += p.NeededWagons - simulation.NrAvailableWagons;
+                        simulation.MoreEmployees += p.NeededEmployees - simulation.NrAvailableEmployees;
                         ff = false;
                     }
                     await Task.Delay(1);
                 }
                 simulation.NrAvailableWagons -= p.NeededWagons;
-                simulation.AssignEmployees(p);
-                bool ss = true;
-                while (p.NeededEmployees>simulation.NrAvailableEmployees)
-                {
-                    if (ss)
-                    {
-                        ss = false;
-                    }
-                    await Task.Delay(1);
-                }
+                
+                //bool ss = true;
+                //while (p.NeededEmployees>simulation.NrAvailableEmployees)
+                //{
+                //    if (ss)
+                //    {
+                //        simulation.MoreEmployees += p.NeededEmployees - simulation.NrAvailableEmployees;
+                //        ss = false;
+                //    }
+                //    await Task.Delay(1);
+                //}
                 simulation.NrAvailableEmployees -= p.NeededEmployees;
                 lbDropoff.Items.Add($"Flight with number {p.NrFlight} will depart from zone {p.Zone.Id}");
                 lbDropoff.Items.Add($"Luggages from band {p.Belt.Id}");
@@ -160,6 +164,15 @@ namespace AirportLuggage_PoC
             p.Trailer.Available = true;
             p.Zone.Available = true;
             simulation.NrAvailableEmployees += p.NeededEmployees;
+            int cnt = 0;
+            foreach (var e in simulation.GetEmployees())
+            {
+              if(cnt<p.NeededEmployees && e.isAvailable == false)
+                {
+                    e.isAvailable = true;
+                    cnt++;
+                }
+            }
             simulation.NrAvailableTrailers++;
             simulation.NrAvailableWagons += p.NeededWagons;
             int count = 0;
@@ -171,6 +184,7 @@ namespace AirportLuggage_PoC
                     count++;
                 }
             }
+            p.Departed = true;
             lbLoadToFlight.Items.Add($"Plane {p.NrFlight} has been loaded and is ready to departure!");
         }
         private void pauzeButton_Click(object sender, EventArgs e)

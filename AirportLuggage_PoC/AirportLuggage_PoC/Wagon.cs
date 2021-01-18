@@ -9,5 +9,6 @@ namespace AirportLuggage_PoC
     class Wagon
     {
         public bool Available { get; set; }
+        public int TimesUsed { get; set; }
     }
 }

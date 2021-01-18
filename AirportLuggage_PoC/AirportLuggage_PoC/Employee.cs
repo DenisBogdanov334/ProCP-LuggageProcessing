@@ -9,6 +9,6 @@ namespace AirportLuggage_PoC
     class Employee
     {
         public bool isAvailable { get; set; }
-        public bool isUsed { get; set; }
+        public int TimesUsed { get; set; }
     }
 }
