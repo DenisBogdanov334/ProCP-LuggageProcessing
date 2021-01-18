@@ -17,7 +17,7 @@ namespace AirportLuggage_PoC
         private Simulation simulation;
         private System.Windows.Forms.Timer currentTimeTimer = null;
         private DateTime currentTime;
-        
+        private int startCounter;
 
         public SimulationForm(string filePath, int nrWagons, int nrEmployees,List<Plane> planes, DateTime start)
         {
@@ -38,8 +38,7 @@ namespace AirportLuggage_PoC
             currentTimeTimer = new System.Windows.Forms.Timer();
             currentTimeTimer.Interval = 1000;
             currentTimeTimer.Tick += new EventHandler(currentTimeTimer_Tick);
-            currentTimeTimer.Enabled = true;
-            lbTime.Text = currentTime.ToString();
+            currentTimeTimer.Start();
         }
 
         public void currentTimeTimer_Tick(object sender, EventArgs e)
@@ -57,8 +56,16 @@ namespace AirportLuggage_PoC
         }
         private void startButton_Click(object sender, EventArgs e)
         {
-            
-            StartSim();
+            startCounter++;
+            if (startCounter <= 1)
+            {
+                StartSim();
+                timerMoveLuggages.Start();
+            }
+            else
+            {
+                timerMoveLuggages.Start();
+            }
             StartTimer();
             
             btnStart.Enabled = !btnStart.Enabled;
@@ -107,26 +114,14 @@ namespace AirportLuggage_PoC
                     }
                     await Task.Delay(1);
                 }
-                simulation.NrAvailableWagons -= p.NeededWagons;
-                
-                //bool ss = true;
-                //while (p.NeededEmployees>simulation.NrAvailableEmployees)
-                //{
-                //    if (ss)
-                //    {
-                //        simulation.MoreEmployees += p.NeededEmployees - simulation.NrAvailableEmployees;
-                //        ss = false;
-                //    }
-                //    await Task.Delay(1);
-                //}
+                simulation.NrAvailableWagons -= p.NeededWagons;                            
                 simulation.NrAvailableEmployees -= p.NeededEmployees;
                 lbDropoff.Items.Add($"Flight with number {p.NrFlight} will depart from zone {p.Zone.Id}");
                 lbDropoff.Items.Add($"Luggages from band {p.Belt.Id}");
                 lbDropoff.Items.Add($"Trailer with id {p.Trailer.Id}");
                 lbDropoff.Items.Add($"Needed wagons {p.NeededWagons}");
                 lbDropoff.Items.Add($"Needed employees: {p.NeededEmployees}");
-                simulation.TransferToAirplane(p, GetCurrentTime());
-                timerMoveLuggages.Start();
+                simulation.TransferToAirplane(p, GetCurrentTime());               
                 FinishLoadingToTrailer(p);
                 FinishedLoading(p);
             }
@@ -190,7 +185,8 @@ namespace AirportLuggage_PoC
         private void pauzeButton_Click(object sender, EventArgs e)
         {
             timerMoveLuggages.Stop();
-            timerSetBelt.Stop();
+            //timerSetBelt.Stop();
+            currentTimeTimer.Stop();
             btnStart.Enabled = !btnStart.Enabled;
             btnPause.Enabled = !btnPause.Enabled;
             startToolStripMenuItem.Enabled = !startToolStripMenuItem.Enabled;
@@ -311,42 +307,6 @@ namespace AirportLuggage_PoC
         }
 
        
-        //private void UpdateNrOfLoadedLuggages(Luggage luggage)
-        //{
-        //    switch (luggage.Belt.Id)
-        //    {
-        //        case "beltA":
-        //            lbLoadedA.Text = "+" + lm.GetTrailers()[0].CurrentLoad.ToString();
-        //            return;
-        //        case "beltB":
-        //            lbLoadedB.Text = "+" + lm.GetTrailers()[1].CurrentLoad;
-        //            return;
-        //        case "beltC":
-        //            lbLoadedC.Text = "+" + lm.GetTrailers()[2].CurrentLoad;
-        //            return;
-        //        default:
-        //            break;
-        //    }
-        //}
-
-
-        //private void UpdateLbUnloadedLuggages()
-        //{
-        //    lbDropoff.Items.Clear();
-        //    foreach (var item in lm.GetAllUnLoadedLuggages())
-        //    {
-        //        lbDropoff.Items.Add(item);
-        //    }
-        //}
-
-        //private void UpdateLbLoadedLuggaes()
-        //{
-        //    lbStatus.Items.Clear();
-        //    foreach (var item in lm.GetAllLoadedLuggages())
-        //    {
-        //        lbStatus.Items.Add(item);
-        //    }
-        //}
 
         private void resetButton_Click(object sender, EventArgs e)
         {
@@ -365,12 +325,6 @@ namespace AirportLuggage_PoC
             pauzeToolStripMenuItem.Enabled = false;
         }
 
-        private void clearNrLoadedLuggages_lbs()
-        {
-            lbLoadedA.Text = "+0";
-            lbLoadedB.Text = "+0";
-            lbLoadedC.Text = "+0";
-        }
 
         private void clearLuggage_pbs()
         {
