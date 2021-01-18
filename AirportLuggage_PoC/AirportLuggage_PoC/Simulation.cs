@@ -33,7 +33,7 @@ namespace AirportLuggage_PoC
             employees = new List<Employee>();
             for (int i = 0; i < nrEmployees; i++)
             {
-                employees.Add(new Employee());
+                employees.Add(new Employee() { isAvailable = true }) ;
             }
             wagons = new List<Wagon>();
             for (int i = 0; i < nrWagons; i++)
@@ -90,7 +90,7 @@ namespace AirportLuggage_PoC
 
         internal List<Employee> GetEmployees()
         {
-            return employees;
+            return this.employees;
         }
         public List<Plane> GetPlanes()
         {
@@ -247,9 +247,9 @@ namespace AirportLuggage_PoC
                         p.NeededEmployees = 2;
                         
                         int count = 0;
-                        bool contains = employees.Any(e => e.TimesUsed >= 1 && e.isAvailable == true);
+                        bool contains = employees.Any(e => (e.TimesUsed >= 1) && e.isAvailable == true);
                         foreach (var em in employees)
-                        {                          
+                        {                           
                             if (contains==true)
                             {
                                 if (count < 2 && em.isAvailable == true && em.TimesUsed >= 1)
@@ -258,7 +258,10 @@ namespace AirportLuggage_PoC
                                     em.TimesUsed++;
                                     count++;
                                 }
-                                else break;
+                                else if(count>=2 || em.isAvailable==false || em.TimesUsed < 1)
+                                {
+                                    break;
+                                }
                             }
                             else
                             {
@@ -274,12 +277,26 @@ namespace AirportLuggage_PoC
                     }
                     else { p.NeededEmployees = 3;
                         int count = 0;
-                        foreach (var e in employees)
+                        bool contains = employees.Any(e => (e.TimesUsed >= 1) && e.isAvailable == true);
+                        foreach (var em in employees)
                         {
-                            if (e.isAvailable == true && count < 3)
+                            if (contains == true)
                             {
-                                e.isAvailable = false;
-                                e.TimesUsed++;
+                                if (count < 3 && em.isAvailable == true && em.TimesUsed >= 1)
+                                {
+                                    em.isAvailable = false;
+                                    em.TimesUsed++;
+                                    count++;
+                                }
+                                else if (count >= 3 || em.isAvailable == false || em.TimesUsed < 1)
+                                {
+                                    break;
+                                }
+                            }
+                            else if (em.isAvailable == true && count < 3)
+                            {
+                                em.isAvailable = false;
+                                em.TimesUsed++;
                                 count++;
                             }
                             break;
