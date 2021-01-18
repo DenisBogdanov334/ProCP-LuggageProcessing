@@ -325,6 +325,15 @@ namespace AirportLuggage_PoC
             pauzeToolStripMenuItem.Enabled = false;
         }
 
+<<<<<<< HEAD
+=======
+        //private void clearNrLoadedLuggages_lbs()
+        //{
+        //    lbLoadedA.Text = "+0";
+        //    lbLoadedB.Text = "+0";
+        //    lbLoadedC.Text = "+0";
+        //}
+>>>>>>> 977ccc67e1c67e6a3dc0d932ed3f2058f61246da
 
         private void clearLuggage_pbs()
         {
