@@ -157,7 +157,7 @@ namespace AirportLuggage_PoC
             foreach (var p in planes)
             {
                     foreach (var l in p.GetLuggages())
-                    {
+                    {                   
                     if (l.isMoving)
                     {
                         l.Belt = p.Belt;
@@ -528,6 +528,18 @@ namespace AirportLuggage_PoC
                         l.isMoving = true;
                     }
                 }
+            }
+        }
+        public void SetBelt(Luggage luggage)
+        {
+            if (luggage.Flight != null)
+            {
+                if (luggage.Flight.Zone.Id == "A")
+                    luggage.Belt = belts[0];
+                else if (luggage.Flight.Zone.Id == "B")
+                    luggage.Belt = belts[1];
+                else
+                    luggage.Belt = belts[2];
             }
         }
 
