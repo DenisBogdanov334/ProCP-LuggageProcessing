@@ -76,9 +76,6 @@
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.lbLoadedA = new System.Windows.Forms.Label();
-            this.lbLoadedB = new System.Windows.Forms.Label();
-            this.lbLoadedC = new System.Windows.Forms.Label();
             this.lbTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbTrailerA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -565,40 +562,6 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "SIM Simulation Company 2020";
             // 
-            // lbLoadedA
-            // 
-            this.lbLoadedA.AutoSize = true;
-            this.lbLoadedA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLoadedA.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbLoadedA.Location = new System.Drawing.Point(1043, 97);
-            this.lbLoadedA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbLoadedA.Name = "lbLoadedA";
-            this.lbLoadedA.Size = new System.Drawing.Size(26, 17);
-            this.lbLoadedA.TabIndex = 45;
-            this.lbLoadedA.Text = "+0";
-            // 
-            // lbLoadedB
-            // 
-            this.lbLoadedB.AutoSize = true;
-            this.lbLoadedB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLoadedB.Location = new System.Drawing.Point(1043, 240);
-            this.lbLoadedB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbLoadedB.Name = "lbLoadedB";
-            this.lbLoadedB.Size = new System.Drawing.Size(26, 17);
-            this.lbLoadedB.TabIndex = 46;
-            this.lbLoadedB.Text = "+0";
-            // 
-            // lbLoadedC
-            // 
-            this.lbLoadedC.AutoSize = true;
-            this.lbLoadedC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLoadedC.Location = new System.Drawing.Point(1043, 409);
-            this.lbLoadedC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbLoadedC.Name = "lbLoadedC";
-            this.lbLoadedC.Size = new System.Drawing.Size(26, 17);
-            this.lbLoadedC.TabIndex = 47;
-            this.lbLoadedC.Text = "+0";
-            // 
             // lbTime
             // 
             this.lbTime.AutoSize = true;
@@ -615,9 +578,6 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1860, 940);
             this.Controls.Add(this.lbTime);
-            this.Controls.Add(this.lbLoadedC);
-            this.Controls.Add(this.lbLoadedB);
-            this.Controls.Add(this.lbLoadedA);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel2);
@@ -725,9 +685,6 @@
         private System.Windows.Forms.Button btnConfig;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lbLoadedA;
-        private System.Windows.Forms.Label lbLoadedB;
-        private System.Windows.Forms.Label lbLoadedC;
         private System.Windows.Forms.Label lbTime;
     }
 }

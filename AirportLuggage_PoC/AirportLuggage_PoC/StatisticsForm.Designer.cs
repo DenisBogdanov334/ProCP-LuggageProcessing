@@ -46,12 +46,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lbAvailableWagons = new System.Windows.Forms.Label();
-            this.lbNeededWagons = new System.Windows.Forms.Label();
             this.lbSuggestionWagons = new System.Windows.Forms.Label();
+            this.lbNeededWagons = new System.Windows.Forms.Label();
+            this.lbAvailableWagons = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -88,9 +89,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(16, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(449, 119);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -142,9 +143,9 @@
             this.groupBox2.Controls.Add(this.lbLuggageNo);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(473, 208);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(348, 58);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
@@ -178,9 +179,9 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Location = new System.Drawing.Point(473, 15);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(348, 185);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
@@ -191,7 +192,7 @@
             this.lbFlightsInfo.FormattingEnabled = true;
             this.lbFlightsInfo.ItemHeight = 16;
             this.lbFlightsInfo.Location = new System.Drawing.Point(13, 55);
-            this.lbFlightsInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbFlightsInfo.Margin = new System.Windows.Forms.Padding(4);
             this.lbFlightsInfo.Name = "lbFlightsInfo";
             this.lbFlightsInfo.Size = new System.Drawing.Size(309, 116);
             this.lbFlightsInfo.TabIndex = 3;
@@ -245,43 +246,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Wagons info";
             // 
-            // label8
+            // lbSuggestionWagons
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 28);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(156, 17);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Total available wagons:";
-            this.label8.Click += new System.EventHandler(this.Label8_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 58);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(148, 17);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Total needed wagons:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 92);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(179, 17);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "Wagons action suggestion:";
-            // 
-            // lbAvailableWagons
-            // 
-            this.lbAvailableWagons.AutoSize = true;
-            this.lbAvailableWagons.Location = new System.Drawing.Point(229, 28);
-            this.lbAvailableWagons.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbAvailableWagons.Name = "lbAvailableWagons";
-            this.lbAvailableWagons.Size = new System.Drawing.Size(28, 17);
-            this.lbAvailableWagons.TabIndex = 9;
-            this.lbAvailableWagons.Text = "n/a";
+            this.lbSuggestionWagons.AutoSize = true;
+            this.lbSuggestionWagons.Location = new System.Drawing.Point(229, 92);
+            this.lbSuggestionWagons.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbSuggestionWagons.Name = "lbSuggestionWagons";
+            this.lbSuggestionWagons.Size = new System.Drawing.Size(28, 17);
+            this.lbSuggestionWagons.TabIndex = 11;
+            this.lbSuggestionWagons.Text = "n/a";
             // 
             // lbNeededWagons
             // 
@@ -293,27 +266,66 @@
             this.lbNeededWagons.TabIndex = 10;
             this.lbNeededWagons.Text = "n/a";
             // 
-            // lbSuggestionWagons
+            // lbAvailableWagons
             // 
-            this.lbSuggestionWagons.AutoSize = true;
-            this.lbSuggestionWagons.Location = new System.Drawing.Point(229, 92);
-            this.lbSuggestionWagons.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbSuggestionWagons.Name = "lbSuggestionWagons";
-            this.lbSuggestionWagons.Size = new System.Drawing.Size(28, 17);
-            this.lbSuggestionWagons.TabIndex = 11;
-            this.lbSuggestionWagons.Text = "n/a";
+            this.lbAvailableWagons.AutoSize = true;
+            this.lbAvailableWagons.Location = new System.Drawing.Point(229, 28);
+            this.lbAvailableWagons.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbAvailableWagons.Name = "lbAvailableWagons";
+            this.lbAvailableWagons.Size = new System.Drawing.Size(28, 17);
+            this.lbAvailableWagons.TabIndex = 9;
+            this.lbAvailableWagons.Text = "n/a";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 92);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(179, 17);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Wagons action suggestion:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 58);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(148, 17);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Total needed wagons:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(8, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(156, 17);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Total available wagons:";
+            this.label8.Click += new System.EventHandler(this.Label8_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(16, 290);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(804, 70);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "Save statistics";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // StatisticsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCyan;
-            this.ClientSize = new System.Drawing.Size(832, 296);
+            this.ClientSize = new System.Drawing.Size(832, 372);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StatisticsForm";
             this.Text = "StatisticsForm";
             this.groupBox1.ResumeLayout(false);
@@ -352,5 +364,6 @@
         private System.Windows.Forms.Label lbSuggestionWagons;
         private System.Windows.Forms.Label lbNeededWagons;
         private System.Windows.Forms.Label lbAvailableWagons;
+        private System.Windows.Forms.Button btnSave;
     }
 }

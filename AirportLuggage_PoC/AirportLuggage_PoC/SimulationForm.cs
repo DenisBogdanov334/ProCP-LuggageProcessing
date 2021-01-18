@@ -365,12 +365,12 @@ namespace AirportLuggage_PoC
             pauzeToolStripMenuItem.Enabled = false;
         }
 
-        private void clearNrLoadedLuggages_lbs()
-        {
-            lbLoadedA.Text = "+0";
-            lbLoadedB.Text = "+0";
-            lbLoadedC.Text = "+0";
-        }
+        //private void clearNrLoadedLuggages_lbs()
+        //{
+        //    lbLoadedA.Text = "+0";
+        //    lbLoadedB.Text = "+0";
+        //    lbLoadedC.Text = "+0";
+        //}
 
         private void clearLuggage_pbs()
         {

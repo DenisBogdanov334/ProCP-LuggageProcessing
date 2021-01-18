@@ -180,5 +180,53 @@ namespace AirportLuggage_PoC
         {
 
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (lbEmpSuggestion.Text != "n/a")
+            {
+                try
+                {
+                    using (var saveFileDialog = new SaveFileDialog())
+                    {
+                        saveFileDialog.Title = "Save statistics";
+                        saveFileDialog.Filter = "Airport file|*.txt";
+                        saveFileDialog.FileName = "myAirport";
+
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            using (var fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write))
+                            using (var streamWriter = new StreamWriter(fileStream))
+                            {
+                                streamWriter.WriteLine("Flights info: "); //+ DateTime.Now.ToString());
+                                foreach (Plane p in s.GetPlanes())
+                                {
+                                    streamWriter.WriteLine(p.NrFlight + "       Needed employees: " + p.NeededEmployees.ToString());
+                                }
+                                streamWriter.WriteLine("---------------------------------------------------------");
+                                streamWriter.WriteLine("Employee info: ");
+                                streamWriter.WriteLine("Employees hired: " + lbEmpHired.Text);
+                                streamWriter.WriteLine("Employees needed: " + lbEmpNeeded.Text);
+                                streamWriter.WriteLine("Employee action suggestion: " + lbEmpSuggestion.Text);
+                                streamWriter.WriteLine("---------------------------------------------------------");
+                                streamWriter.WriteLine("Wagons info: ");
+                                streamWriter.WriteLine("Available wagons: " + lbAvailableWagons.Text);
+                                streamWriter.WriteLine("Needed wagons: " + lbNeededWagons.Text);
+                                streamWriter.WriteLine("Wagons action suggestion: " + lbSuggestionWagons.Text);
+                                streamWriter.WriteLine("---------------------------------------------------------");
+                                streamWriter.WriteLine("Total number of luggage: " + lbLuggageNo.Text);
+                            }
+                        }
+                    }
+                    MessageBox.Show("Data is saved!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+                MessageBox.Show("Wait for the simulation to finish!");
+        }
     }
 }
