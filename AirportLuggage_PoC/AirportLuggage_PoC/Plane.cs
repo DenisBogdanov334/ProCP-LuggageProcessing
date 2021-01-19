@@ -8,6 +8,7 @@ namespace AirportLuggage_PoC
 {
     public class Plane
     {
+        #region Properties
         public int NrFlight { get; set; }
         public int NrOfLuggages { get; set; }
         public DateTime FlightTime { get; set; }
@@ -21,15 +22,18 @@ namespace AirportLuggage_PoC
         public string EndLoadingTime { get; set; }
         public string LoadedToWagons { get; set; }
         public bool OnTime { get; set; }
-        public DateTime Delay { get; set; }
+        public TimeSpan Delay { get; set; }
         public bool Departed { get; set; }
+        #endregion
+
+        #region Methods
 
         public void FillLuggageList()
         {
             luggages = new List<Luggage>();
             for (int i = 0; i < 9; i++)
             {
-                luggages.Add(new Luggage() { Flight = this });
+                luggages.Add(new Luggage() { Flight = this, isMoving = false }) ;
             }
         }
         public List<Luggage> GetLuggages()
@@ -52,5 +56,6 @@ namespace AirportLuggage_PoC
             loadingTime = loadingTime.AddMinutes(NrOfLuggages*2+5);
             return loadingTime;
         }
+        #endregion
     }
 }

@@ -9,6 +9,8 @@ namespace AirportLuggage_PoC
 {
     public class Trailer
     {
+        #region Properties
+
         public Point position;
         public string Id { get; set; }
         public int Capacity { get; set; }
@@ -19,6 +21,7 @@ namespace AirportLuggage_PoC
         public List<Luggage> luggages { get; set; }
 
         public bool IsTransporting { get; set; }
+        #endregion
 
         public Trailer(string id)
         {

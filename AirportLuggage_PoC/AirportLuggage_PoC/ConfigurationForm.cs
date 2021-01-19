@@ -40,20 +40,6 @@ namespace AirportLuggage_PoC
             }
         }
 
-        private void ManualBox_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void BtnDone_Click(object sender, EventArgs e)
         {
@@ -111,15 +97,7 @@ namespace AirportLuggage_PoC
                 
             
         }
-        private void Label4_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void RbAuto_CheckedChanged(object sender, EventArgs e)
         {

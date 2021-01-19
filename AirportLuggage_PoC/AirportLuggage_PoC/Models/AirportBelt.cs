@@ -27,7 +27,7 @@ namespace DenisProCP
         {
             foreach (Luggage l in flight.Luggages)
             {
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
                 AmountOfProcessedLuggages++;
 
                 OnProcessedLuggageEvent?.Invoke(this, $"Processed {AmountOfProcessedLuggages} out of {flight.Luggages.Count}");

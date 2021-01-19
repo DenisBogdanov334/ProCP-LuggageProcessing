@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirportBelt.cs" />
-    <Compile Include="AirportEmployee.cs" />
     <Compile Include="ConfigurationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,7 +80,6 @@
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Trailer.cs" />
-    <Compile Include="UpcomingFlight.cs" />
     <Compile Include="Wagon.cs" />
     <Compile Include="Zone.cs" />
     <EmbeddedResource Include="ConfigurationForm.resx">

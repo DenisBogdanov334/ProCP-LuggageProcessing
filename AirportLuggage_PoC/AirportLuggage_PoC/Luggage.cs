@@ -9,28 +9,16 @@ namespace AirportLuggage_PoC
 {
     public class Luggage
     {
-        //Ling
+        #region Properties
         public int id { get; set; }
-        //public int ownerId { get; set; }
         public Point position;
         public Status status { get; set; }
-
         public AirportBelt Belt { get; set; }
-
-        //public UpcomingFlight Flight { get; set; }
         public Plane Flight { get; set; }
         public bool isMoving { get; set; }
+        #endregion
 
-
-        //Ling
-        //public Luggage(int id, double weight, double volume, int owner)
-        //{
-        //    this.id = id;
-        //    this.ownerId = owner;
-        //    this.status = Status.WaitingForLoading;
-        //    this.position = new Point(0, 0);
-        //}
-
+        #region Methods
         public Luggage(int id)
         {
             this.id = id;
@@ -78,49 +66,7 @@ namespace AirportLuggage_PoC
                 status = Status.LoadedInTrailer;
             }
         }
-
-        internal bool IsReachingObstacles(List<Luggage> luggages)
-        {
-            int index = luggages.FindIndex(l => l.id == this.id);
-            if (index > 0)
-            {
-                if (luggages[index - 1].position.X - luggages[index].position.X < 40)
-                    return true;
-            }
-            return false;
-        }
-
-        //public override string ToString()
-        //{
-        //    if (this.status == Status.WaitingForLoading)
-        //        return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} departure from {Flight.Zone}";
-        //    else if (this.status == Status.LoadedInTrailer)
-        //        return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} loaded to trailer";
-        //    else if (this.status == Status.LoadedInAirplane)
-        //        return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} arrived at {Flight.Zone}";
-        //    else
-        //        return $"Luggage: {id} - passenger: {ownerId} - flight: {Flight.FlightNo} is on transport belt";
-        //}
-
-        //public override string ToString()
-        //{
-        //    if (this.status == Status.WaitingForLoading)
-        //        return $"Luggage:   - flight: {Flight.NrFlight} departure from {Flight.Zone}";
-        //    else if (this.status == Status.LoadedInTrailer)
-        //        return $"Luggage:  - flight: {Flight.NrFlight} loaded to trailer";
-        //    else if (this.status == Status.LoadedInAirplane)
-        //        return $"Luggage:   - flight: {Flight.NrFlight} arrived at {Flight.Zone}";
-        //    else
-        //        return $"Luggage:  - flight: {Flight.NrFlight} is on transport belt";
-        //}
-
-
-        //public string displayInfo()
-        //{
-        //    string s;
-        //    s = "Luggage no: " + this.id + ", Weight: " + weight + "kg";
-        //    return s;
-        //}
+        #endregion
 
     }
 }

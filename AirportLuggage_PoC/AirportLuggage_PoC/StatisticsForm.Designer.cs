@@ -146,7 +146,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(348, 58);
+            this.groupBox2.Size = new System.Drawing.Size(365, 58);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Luggage info";
@@ -182,7 +182,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(348, 185);
+            this.groupBox3.Size = new System.Drawing.Size(365, 185);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Flight info";
@@ -302,13 +302,12 @@
             this.label8.Size = new System.Drawing.Size(156, 17);
             this.label8.TabIndex = 6;
             this.label8.Text = "Total available wagons:";
-            this.label8.Click += new System.EventHandler(this.Label8_Click);
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(16, 290);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(804, 70);
+            this.btnSave.Size = new System.Drawing.Size(822, 70);
             this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save statistics";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -319,7 +318,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCyan;
-            this.ClientSize = new System.Drawing.Size(832, 372);
+            this.ClientSize = new System.Drawing.Size(851, 372);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);

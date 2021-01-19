@@ -91,7 +91,6 @@
             this.dtPick.Size = new System.Drawing.Size(200, 22);
             this.dtPick.TabIndex = 8;
             this.dtPick.Value = new System.DateTime(2021, 1, 16, 6, 0, 0, 0);
-            this.dtPick.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
             // 
             // label4
             // 
@@ -101,7 +100,6 @@
             this.label4.Size = new System.Drawing.Size(87, 17);
             this.label4.TabIndex = 7;
             this.label4.Text = "Starting time";
-            this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 
             // label3
             // 
@@ -120,7 +118,6 @@
             this.label2.Size = new System.Drawing.Size(126, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Number of wagons";
-            this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
             // tbEmployees
             // 

@@ -175,7 +175,6 @@
             this.label4.Size = new System.Drawing.Size(93, 17);
             this.label4.TabIndex = 10;
             this.label4.Text = "Control Panel";
-            this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 
             // label5
             // 
@@ -504,41 +503,41 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1860, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1860, 30);
             this.menuStrip1.TabIndex = 43;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(54, 26);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
             // pauzeToolStripMenuItem
             // 
             this.pauzeToolStripMenuItem.Name = "pauzeToolStripMenuItem";
-            this.pauzeToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
+            this.pauzeToolStripMenuItem.Size = new System.Drawing.Size(60, 26);
             this.pauzeToolStripMenuItem.Text = "Pause";
             this.pauzeToolStripMenuItem.Click += new System.EventHandler(this.pauzeToolStripMenuItem_Click);
             // 
             // resetToolStripMenuItem
             // 
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
             this.resetToolStripMenuItem.Text = "Reset";
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(54, 26);
             this.stopToolStripMenuItem.Text = "Stop";
             // 
             // configureToolStripMenuItem
             // 
             this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
-            this.configureToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(88, 26);
             this.configureToolStripMenuItem.Text = "Configure";
             // 
             // panel3
@@ -565,11 +564,14 @@
             // lbTime
             // 
             this.lbTime.AutoSize = true;
+            this.lbTime.BackColor = System.Drawing.SystemColors.Highlight;
+            this.lbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lbTime.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbTime.Location = new System.Drawing.Point(13, 47);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(54, 17);
+            this.lbTime.Size = new System.Drawing.Size(70, 29);
             this.lbTime.TabIndex = 48;
-            this.lbTime.Text = "label10";
+            this.lbTime.Text = "Time";
             // 
             // SimulationForm
             // 
@@ -612,7 +614,6 @@
             this.Name = "SimulationForm";
             this.Text = "Eindhoven Aiport Luggages Transport Simulation";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.SimulationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbTrailerA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();

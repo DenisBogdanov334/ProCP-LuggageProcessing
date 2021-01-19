@@ -15,6 +15,7 @@ namespace AirportLuggage_PoC
    
     public partial class StatisticsForm : Form
     {
+        #region Properties and constructor
         public Simulation s;
         public List<Plane> planes;
         public int luggagesNo;
@@ -36,6 +37,9 @@ namespace AirportLuggage_PoC
             timer1.Start();
             
         }
+        #endregion
+
+        #region Displaying info methods
 
         public void DisplayEmpInfo()
         {
@@ -154,7 +158,7 @@ namespace AirportLuggage_PoC
             {
                 if (p.Delay != null)
                 {
-                    lbFlightsInfo.Items.Add(p.NrFlight + "                       " + p.NeededEmployees.ToString() + "                              "+ p.Delay.ToString("HH:mm"));
+                    lbFlightsInfo.Items.Add(p.NrFlight + "                       " + p.NeededEmployees.ToString() + "                              "+ p.Delay.ToString());
                 }
                 else
                 {
@@ -162,6 +166,9 @@ namespace AirportLuggage_PoC
                 }
             }
         }
+        #endregion
+
+        #region Others
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -174,11 +181,6 @@ namespace AirportLuggage_PoC
             DisplayLuggageInfo();
             DisplayFlightInfo();
             DisplayWaggonsInfo();
-        }
-
-        private void Label8_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -228,5 +230,6 @@ namespace AirportLuggage_PoC
             else
                 MessageBox.Show("Wait for the simulation to finish!");
         }
+        #endregion
     }
 }

@@ -9,7 +9,7 @@ namespace AirportLuggage_PoC
 {
     public class Simulation
     {
-
+        #region Properties
         public int NrAvailableEmployees { get; set; }
         public int NrAvailableWagons { get; set; }
         public DateTime startTime { get; set; }
@@ -23,70 +23,10 @@ namespace AirportLuggage_PoC
         readonly List<Zone> zones;
         public int TotalWagons { get; set; }
         public int MoreWaggons { get; set; }
-        public int MoreEmployees { get; set; }      
+        public int MoreEmployees { get; set; }
+        #endregion
 
-
-        public Simulation(string filePath, int nrWagons, int nrEmployees, List<Plane> plns, DateTime startT)
-        {
-            this.NrAvailableEmployees = nrEmployees;
-            employees = new List<Employee>();
-            for (int i = 0; i < nrEmployees; i++)
-            {
-                employees.Add(new Employee() { isAvailable = true }) ;
-            }
-            wagons = new List<Wagon>();
-            for (int i = 0; i < nrWagons; i++)
-            {
-                wagons.Add(new Wagon() { Available = true, TimesUsed = 0 }) ;
-            }
-            this.NrAvailableWagons = nrWagons;
-            this.TotalWagons = nrWagons;
-            this.TotalEmp = nrEmployees;
-            this.startTime = startT;
-            planes = new List<Plane>();
-            this.planes = plns;
-            luggages = new List<Luggage>();
-            trailers = new List<Trailer>();
-            belts = new List<AirportBelt>();
-            zones = new List<Zone>();
-            List<string> lines = File.ReadAllLines(filePath).ToList();
-            foreach (var line in lines)
-            {
-                string[] entries = line.Split(',');
-                Plane newPlane = new Plane();
-                newPlane.NrFlight = Convert.ToInt32(entries[0]);
-                newPlane.NrOfLuggages = Convert.ToInt32(entries[1]);
-                newPlane.FlightTime = Convert.ToDateTime(entries[2]);
-
-                planes.Add(newPlane);
-            }          
-            LoadData();
-        }
-        private void LoadData()
-        {
-            belts.Add(new AirportBelt(400, 50, 75, "A") { Available = true });
-            belts.Add(new AirportBelt(450, 50, 75, "B") { Available = true });
-            belts.Add(new AirportBelt(500, 50, 75, "C") { Available = true });
-
-            foreach (var p in planes)
-            {
-                p.FillLuggageList();
-                
-            }            
-
-            zones.Add(new Zone() { Id = "A", Available = true });
-            zones.Add(new Zone() { Id = "B", Available = true });
-            zones.Add(new Zone() { Id = "C", Available = true });
-
-            trailers.Add(new Trailer("T100A") { Available = true });
-            trailers.Add(new Trailer("T100B") { Available = true });
-            trailers.Add(new Trailer("T100C") { Available = true });
-
-            trailers[0].Belt = belts[0];
-            trailers[1].Belt = belts[1];
-            trailers[2].Belt = belts[2];
-
-        }
+        #region Getters
 
         internal List<Luggage> GetLuggage()
         {
@@ -99,19 +39,6 @@ namespace AirportLuggage_PoC
         public List<Plane> GetPlanes()
         {
             return planes;
-        }
-        internal void MoveTrailers(int maxRight)
-        {
-            foreach (var trailer in trailers)
-            {
-                if (trailer.IsTransporting)
-                {
-                    if (trailer.position.X < maxRight)
-                    {
-                        trailer.Transport();
-                    }
-                }
-            }
         }
 
         internal List<Trailer> GetTrailers()
@@ -156,66 +83,14 @@ namespace AirportLuggage_PoC
             }
             return total;
         }
-        public async void MoveAllLuggage()
+
+        public List<Zone> GetZones()
         {
-            foreach (var luggage in luggages)
-            {
-                if (luggage.Belt != null)
-                {
-                    
-                    luggage.Transport();
-                }          
-            }
-            //foreach (var p in planes)
-            //{
-            //        foreach (var l in p.GetLuggages())
-            //        {                   
-            //        if (l.isMoving)
-            //        {
-            //            l.Belt = p.Belt;
-            //            if (l.Belt != null)
-            //            {
-            //                await Task.Delay(1500);
-            //                l.Transport();
-            //            }
-            //        }
-            //        }
-            //}
+            return this.zones;
         }
+        #endregion
 
-
-
-        public async void MoveLuggagePerFlight(Plane pl)
-        {
-            foreach (var p in planes)
-            {
-                if (p == pl)
-                {
-                    foreach (var l in pl.GetLuggages())
-                    {
-                        if (pl.Belt != null)
-                        {
-                            await Task.Delay(1500);
-                            l.Transport(pl.Belt);
-                        }
-
-                    }
-                }
-            }
-                  
-            
-        }
-
-
-        private AirportBelt GetBelt(string bid)
-        {
-            foreach (var belt in belts)
-            {
-                if (belt.Id == bid)
-                    return belt;
-            }
-            return null;
-        }
+        #region Assigning resources
 
         public void AssignZone(Plane plane)
         {
@@ -225,21 +100,18 @@ namespace AirportLuggage_PoC
                 {
                     zone.Available = false;
                     plane.Zone = zone;
-                    luggages.AddRange(plane.luggages);                   
+                    luggages.AddRange(plane.luggages);
                     break;
                 }
             }
         }
-        public List<Zone> GetZones()
-        {
-            return this.zones;
-        }
+
 
         public void AssignBelt(Plane plane)
         {
             foreach (AirportBelt band in belts)
             {
-                
+
                 if (band.Available == true)
                 {
                     band.Available = false;
@@ -258,12 +130,12 @@ namespace AirportLuggage_PoC
                     if (TimeSpan.Parse(p.GetTotalLoadingTime().ToString("HH:mm")) < (p.FlightTime.AddMinutes(-30) - p.FlightTime.AddMinutes(-120)))
                     {
                         p.NeededEmployees = 2;
-                        
+
                         int count = 0;
                         bool contains = employees.Any(e => (e.TimesUsed >= 1) && e.isAvailable == true);
                         foreach (var em in employees)
-                        {                           
-                            if (contains==true)
+                        {
+                            if (contains == true)
                             {
                                 if (count < 2 && em.isAvailable == true && em.TimesUsed >= 1)
                                 {
@@ -271,7 +143,7 @@ namespace AirportLuggage_PoC
                                     em.TimesUsed++;
                                     count++;
                                 }
-                                else if(count>=2 || em.isAvailable==false || em.TimesUsed < 1)
+                                else if (count >= 2 || em.isAvailable == false || em.TimesUsed < 1)
                                 {
                                     break;
                                 }
@@ -285,10 +157,12 @@ namespace AirportLuggage_PoC
                                     count++;
                                 }
                             }
-                            
+
                         }
                     }
-                    else { p.NeededEmployees = 3;
+                    else
+                    {
+                        p.NeededEmployees = 3;
                         int count = 0;
                         bool contains = employees.Any(e => (e.TimesUsed >= 1) && e.isAvailable == true);
                         foreach (var em in employees)
@@ -316,7 +190,8 @@ namespace AirportLuggage_PoC
                         }
                     }
                 }
-                }
+            }
+            #region Old version for big nr of luggages
             //foreach (Plane plane in planes)
             //{
             //    if (plane == p)
@@ -354,7 +229,7 @@ namespace AirportLuggage_PoC
             //            else if ((nextPlane.FlightTime - currentPlane.FlightTime).Minutes < currentPlane.NrOfLuggages * 2 + 5)
             //            {
             //                plane.NeededEmployees = 3;
-                
+
             //                int count = 0;
             //                foreach (var e in employees)
             //                {
@@ -370,7 +245,7 @@ namespace AirportLuggage_PoC
             //            else if ((nextPlane.FlightTime - currentPlane.FlightTime).Minutes < (currentPlane.NrOfLuggages + 5))
             //            {
             //                plane.NeededEmployees = 4;
-                            
+
             //                int count = 0;
             //                foreach (var e in employees)
             //                {
@@ -382,7 +257,7 @@ namespace AirportLuggage_PoC
             //                    }
             //                    break;
             //                }
-                            
+
             //            }
             //        }
             //        else
@@ -390,7 +265,7 @@ namespace AirportLuggage_PoC
             //            if ((endTime - startTime).Minutes > (currentPlane.NrOfLuggages + 5))
             //            {
             //                plane.NeededEmployees = 2;               
-                            
+
             //                int count = 0;
             //                foreach (var e in employees)
             //                {
@@ -406,7 +281,7 @@ namespace AirportLuggage_PoC
             //            else if ((endTime - startTime).Minutes < (currentPlane.NrOfLuggages + 5))
             //            {
             //                plane.NeededEmployees = 3;
-                            
+
             //                int count = 0;
             //                foreach (var e in employees)
             //                {
@@ -418,12 +293,12 @@ namespace AirportLuggage_PoC
             //                    }
             //                    break;
             //                }
-                           
+
             //            }
             //            else if ((endTime - startTime).Minutes < ((currentPlane.NrOfLuggages + 5) / 2))
             //            {
             //                plane.NeededEmployees = 4;
-                           
+
             //                int count = 0;
             //                foreach (var e in employees)
             //                {
@@ -439,6 +314,7 @@ namespace AirportLuggage_PoC
             //        }
             //        }
             //    }
+            #endregion
         }
 
         public void AssignTrailer(Plane plane)
@@ -516,29 +392,52 @@ namespace AirportLuggage_PoC
                     break;
             }
         }
-        public void TransferToAirplane(Plane plane, string currentTime)
+        #endregion
+
+        #region Methods for animation
+
+        internal void MoveTrailers(int maxRight)
+        {
+            foreach (var trailer in trailers)
+            {
+                if (trailer.IsTransporting)
+                {
+                    if (trailer.position.X < maxRight)
+                    {
+                        trailer.Transport();
+                    }
+                }
+            }
+        }
+
+
+        public void MoveAllLuggage()
+        {
+            foreach (var luggage in luggages)
+            {
+                if (luggage.Belt!=null && luggage.isMoving==true)
+                {
+                    luggage.Transport();
+                }
+            }
+        }
+
+
+
+        public async void MoveLuggagePerFlight(Plane pl)
         {
             foreach (var p in planes)
             {
-                if (p == plane)
+                if (p == pl)
                 {
-                    DateTime endTime = plane.FlightTime.AddMinutes(-30);
-                    p.StartLoadingTime = currentTime;
-                    DateTime endLoading = DateTime.Parse(p.StartLoadingTime).Add(TimeSpan.Parse(p.GetTotalLoadingTime().ToString("HH:mm")));
-                    p.EndLoadingTime = endLoading.ToString("HH:mm");
-                    DateTime loadedToWagons= DateTime.Parse(p.StartLoadingTime).Add(TimeSpan.Parse(p.GetLoadingTimeToWagon().ToString("HH:mm")));
-                    p.LoadedToWagons = loadedToWagons.ToString("HH:mm");
-                    if (endLoading < endTime)
+                    foreach (var l in pl.GetLuggages())
                     {
-                        p.OnTime = true;
-                    }
-                    else
-                    {
-                        p.Delay = DateTime.Parse(endLoading.Subtract(endTime).ToString());
-                    }
-                    foreach (var l in p.GetLuggages())
-                    {
-                        l.isMoving = true;
+                        if (pl.Belt != null)
+                        {
+                            await Task.Delay(1500);
+                            l.Transport(pl.Belt);
+                        }
+
                     }
                 }
             }
@@ -571,7 +470,96 @@ namespace AirportLuggage_PoC
                 }
             }
         }
+        #endregion
 
+        #region Constructor and other methods
+
+        public Simulation(string filePath, int nrWagons, int nrEmployees, List<Plane> plns, DateTime startT)
+        {
+            this.NrAvailableEmployees = nrEmployees;
+            employees = new List<Employee>();
+            for (int i = 0; i < nrEmployees; i++)
+            {
+                employees.Add(new Employee() { isAvailable = true });
+            }
+            wagons = new List<Wagon>();
+            for (int i = 0; i < nrWagons; i++)
+            {
+                wagons.Add(new Wagon() { Available = true, TimesUsed = 0 });
+            }
+            this.NrAvailableWagons = nrWagons;
+            this.TotalWagons = nrWagons;
+            this.TotalEmp = nrEmployees;
+            this.startTime = startT;
+            planes = new List<Plane>();
+            this.planes = plns;
+            luggages = new List<Luggage>();
+            trailers = new List<Trailer>();
+            belts = new List<AirportBelt>();
+            zones = new List<Zone>();
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+            foreach (var line in lines)
+            {
+                string[] entries = line.Split(',');
+                Plane newPlane = new Plane();
+                newPlane.NrFlight = Convert.ToInt32(entries[0]);
+                newPlane.NrOfLuggages = Convert.ToInt32(entries[1]);
+                newPlane.FlightTime = Convert.ToDateTime(entries[2]);               
+                planes.Add(newPlane);
+            }
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            belts.Add(new AirportBelt(400, 50, 75, "A") { Available = true });
+            belts.Add(new AirportBelt(450, 50, 75, "B") { Available = true });
+            belts.Add(new AirportBelt(500, 50, 75, "C") { Available = true });
+
+            foreach (var p in planes)
+            {
+                p.FillLuggageList();
+            }
+
+            zones.Add(new Zone() { Id = "A", Available = true });
+            zones.Add(new Zone() { Id = "B", Available = true });
+            zones.Add(new Zone() { Id = "C", Available = true });
+
+            trailers.Add(new Trailer("T100A") { Available = true });
+            trailers.Add(new Trailer("T100B") { Available = true });
+            trailers.Add(new Trailer("T100C") { Available = true });
+
+            trailers[0].Belt = belts[0];
+            trailers[1].Belt = belts[1];
+            trailers[2].Belt = belts[2];
+
+        }
+
+
+        public void TransferToAirplane(Plane plane, string currentTime)
+        {
+            foreach (var p in planes)
+            {
+                if (p == plane)
+                {
+                    DateTime startTime = plane.FlightTime.AddHours(-2);
+                    p.StartLoadingTime = currentTime;
+                    DateTime endLoading = DateTime.Parse(p.StartLoadingTime).Add(TimeSpan.Parse(p.GetTotalLoadingTime().ToString("HH:mm")));
+                    p.EndLoadingTime = endLoading.ToString("HH:mm");
+                    DateTime loadedToWagons = DateTime.Parse(p.StartLoadingTime).Add(TimeSpan.Parse(p.GetLoadingTimeToWagon().ToString("HH:mm")));
+                    p.LoadedToWagons = loadedToWagons.ToString("HH:mm");
+                    if (startTime < DateTime.Parse(p.StartLoadingTime))
+                    {            
+                        p.Delay = DateTime.Parse(p.StartLoadingTime).Subtract(startTime);
+                    }
+                    foreach (var l in p.GetLuggages())
+                    {
+                        l.isMoving = true;
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }
     
