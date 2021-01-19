@@ -315,19 +315,20 @@ namespace AirportLuggage_PoC
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            timerMoveLuggages.Stop();
-            timerSetBelt.Stop();
-            //this.lm = new LuggageManagement();
-            clearLuggage_pbs();
-            //clearNrLoadedLuggages_lbs();
-            //UpdateLbUnloadedLuggages();
-            //UpdateLbLoadedLuggaes();
-            lbLoadToFlight.Items.Clear();
-            DrawSimulation();
-            btnPause.Enabled = false;
-            btnStart.Enabled = true;
-            startToolStripMenuItem.Enabled = true;
-            pauzeToolStripMenuItem.Enabled = false;
+            //timerMoveLuggages.Stop();
+            //timerSetBelt.Stop();
+            ////this.lm = new LuggageManagement();
+            //clearLuggage_pbs();
+            ////clearNrLoadedLuggages_lbs();
+            ////UpdateLbUnloadedLuggages();
+            ////UpdateLbLoadedLuggaes();
+            //lbLoadToFlight.Items.Clear();
+            //DrawSimulation();
+            //btnPause.Enabled = false;
+            //btnStart.Enabled = true;
+            //startToolStripMenuItem.Enabled = true;
+            //pauzeToolStripMenuItem.Enabled = false;
+            Application.Restart();
         }
 
 
@@ -352,14 +353,13 @@ namespace AirportLuggage_PoC
 
         private void timerSetBelt_Tick(object sender, EventArgs e)
         {
-            foreach (var p in simulation.GetPlanes())
-            {               
-                if(p.FlightTime.AddHours(-2) <= Convert.ToDateTime(GetCurrentTime()) && currentLuggage < p.GetLuggages().Count)
+                           
+                if(currentLuggage < simulation.GetLuggage().Count)
                 {                  
                         simulation.SetBelt(simulation.GetLuggage()[currentLuggage]);
                         currentLuggage++;                    
                 }              
-            }                                                          
+                                                                     
         }
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
