@@ -18,6 +18,7 @@ namespace AirportLuggage_PoC
         private System.Windows.Forms.Timer currentTimeTimer = null;
         private DateTime currentTime;
         private int startCounter;
+        private int currentLuggage = 0;
 
         public SimulationForm(string filePath, int nrWagons, int nrEmployees,List<Plane> planes, DateTime start)
         {
@@ -61,11 +62,12 @@ namespace AirportLuggage_PoC
             {
                 StartSim();
                 timerMoveLuggages.Start();
-               
+                timerSetBelt.Start();
             }
             else
             {
                 timerMoveLuggages.Start();
+                timerSetBelt.Start();
                 
             }
             StartTimer();
@@ -187,7 +189,8 @@ namespace AirportLuggage_PoC
         }
         private void pauzeButton_Click(object sender, EventArgs e)
         {
-            timerMoveLuggages.Stop();            
+            timerMoveLuggages.Stop();
+            timerSetBelt.Stop();
             currentTimeTimer.Stop();
             btnStart.Enabled = !btnStart.Enabled;
             btnPause.Enabled = !btnPause.Enabled;
@@ -350,18 +353,17 @@ namespace AirportLuggage_PoC
         private void timerSetBelt_Tick(object sender, EventArgs e)
         {
             foreach (var p in simulation.GetPlanes())
-            {
-                if (p.FlightTime.AddHours(-2) <= Convert.ToDateTime(GetCurrentTime()))
-                {
-                    int currentLuggage = 0;
-                    if (currentLuggage < p.GetLuggages().Count)
-                    {
+            {               
+                if(p.FlightTime.AddHours(-2) <= Convert.ToDateTime(GetCurrentTime()) && currentLuggage < p.GetLuggages().Count)
+                {                  
                         simulation.SetBelt(p.GetLuggages()[currentLuggage]);
-                        currentLuggage++;
-                    }
+                        currentLuggage++;                    
                 }
-                else break;
-                    }
+                else if (currentLuggage == p.GetLuggages().Count)
+                {
+                    currentLuggage = 0;
+                }
+            }                                                          
         }
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e)

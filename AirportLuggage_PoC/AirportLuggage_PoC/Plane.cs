@@ -29,7 +29,7 @@ namespace AirportLuggage_PoC
             luggages = new List<Luggage>();
             for (int i = 0; i < 6; i++)
             {
-                luggages.Add(new Luggage() { Flight = this });
+                luggages.Add(new Luggage() { Flight = this , Belt=this.Belt});
             }
         }
         public List<Luggage> GetLuggages()

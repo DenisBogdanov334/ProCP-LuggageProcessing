@@ -23,8 +23,7 @@ namespace AirportLuggage_PoC
         readonly List<Zone> zones;
         public int TotalWagons { get; set; }
         public int MoreWaggons { get; set; }
-        public int MoreEmployees { get; set; }
-        
+        public int MoreEmployees { get; set; }      
 
 
         public Simulation(string filePath, int nrWagons, int nrEmployees, List<Plane> plns, DateTime startT)
@@ -60,7 +59,7 @@ namespace AirportLuggage_PoC
                 newPlane.FlightTime = Convert.ToDateTime(entries[2]);
 
                 planes.Add(newPlane);
-            }
+            }          
             LoadData();
         }
         private void LoadData()
@@ -72,7 +71,8 @@ namespace AirportLuggage_PoC
             foreach (var p in planes)
             {
                 p.FillLuggageList();
-            }
+                
+            }            
 
             zones.Add(new Zone() { Id = "A", Available = true });
             zones.Add(new Zone() { Id = "B", Available = true });
@@ -88,6 +88,10 @@ namespace AirportLuggage_PoC
 
         }
 
+        internal List<Luggage> GetLuggage()
+        {
+            return this.luggages;
+        }
         internal List<Employee> GetEmployees()
         {
             return this.employees;
@@ -154,21 +158,29 @@ namespace AirportLuggage_PoC
         }
         public async void MoveAllLuggage()
         {
-            foreach (var p in planes)
+            foreach (var luggage in luggages)
             {
-                    foreach (var l in p.GetLuggages())
-                    {                   
-                    if (l.isMoving)
-                    {
-                        l.Belt = p.Belt;
-                        if (l.Belt != null)
-                        {
-                            await Task.Delay(1500);
-                            l.Transport();
-                        }
-                    }
-                    }
+                if (luggage.Belt != null)
+                {
+                    
+                    luggage.Transport();
+                }          
             }
+            //foreach (var p in planes)
+            //{
+            //        foreach (var l in p.GetLuggages())
+            //        {                   
+            //        if (l.isMoving)
+            //        {
+            //            l.Belt = p.Belt;
+            //            if (l.Belt != null)
+            //            {
+            //                await Task.Delay(1500);
+            //                l.Transport();
+            //            }
+            //        }
+            //        }
+            //}
         }
 
 
@@ -213,6 +225,10 @@ namespace AirportLuggage_PoC
                 {
                     zone.Available = false;
                     plane.Zone = zone;
+                    foreach (var l in plane.GetLuggages())
+                    {
+                        luggages.Add(l);
+                    }
                     break;
                 }
             }
@@ -532,7 +548,7 @@ namespace AirportLuggage_PoC
         }
         public void SetBelt(Luggage luggage)
         {
-            if (luggage.Flight != null)
+            if (luggage.Flight.Zone.Id != null)
             {
                 if (luggage.Flight.Zone.Id == "A")
                     luggage.Belt = belts[0];
@@ -540,6 +556,22 @@ namespace AirportLuggage_PoC
                     luggage.Belt = belts[1];
                 else
                     luggage.Belt = belts[2];
+            }
+        }
+
+        public void SetBeltPerFlight(Plane plane)
+        {
+            foreach (var l in plane.GetLuggages())
+            {
+                if (plane.Zone.Id != null)
+                {
+                    if (plane.Zone.Id == "A")
+                        l.Belt = belts[0];
+                    else if (plane.Zone.Id == "B")
+                        l.Belt = belts[1];
+                    else
+                        l.Belt = belts[2];
+                }
             }
         }
 
