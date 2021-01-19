@@ -203,7 +203,7 @@ namespace AirportLuggage_PoC
                                 streamWriter.WriteLine("Flights info: "); //+ DateTime.Now.ToString());
                                 foreach (Plane p in s.GetPlanes())
                                 {
-                                    streamWriter.WriteLine(p.NrFlight + "       Needed employees: " + p.NeededEmployees.ToString());
+                                    streamWriter.WriteLine(p.NrFlight + "       Needed employees: " + p.NeededEmployees.ToString() + "     Delay time: " + p.Delay.ToString());
                                 }
                                 streamWriter.WriteLine("---------------------------------------------------------");
                                 streamWriter.WriteLine("Employee info: ");
@@ -228,7 +228,7 @@ namespace AirportLuggage_PoC
                 }
             }
             else
-                MessageBox.Show("Wait for the simulation to finish!");
+                MessageBox.Show("Please wait for the simulation to finish!");
         }
         #endregion
     }
