@@ -225,10 +225,7 @@ namespace AirportLuggage_PoC
                 {
                     zone.Available = false;
                     plane.Zone = zone;
-                    foreach (var l in plane.GetLuggages())
-                    {
-                        luggages.Add(l);
-                    }
+                    luggages.AddRange(plane.luggages);                   
                     break;
                 }
             }

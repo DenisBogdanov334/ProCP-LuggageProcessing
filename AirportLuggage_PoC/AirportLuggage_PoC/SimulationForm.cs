@@ -356,13 +356,9 @@ namespace AirportLuggage_PoC
             {               
                 if(p.FlightTime.AddHours(-2) <= Convert.ToDateTime(GetCurrentTime()) && currentLuggage < p.GetLuggages().Count)
                 {                  
-                        simulation.SetBelt(p.GetLuggages()[currentLuggage]);
+                        simulation.SetBelt(simulation.GetLuggage()[currentLuggage]);
                         currentLuggage++;                    
-                }
-                else if (currentLuggage == p.GetLuggages().Count)
-                {
-                    currentLuggage = 0;
-                }
+                }              
             }                                                          
         }
 
